@@ -96,7 +96,7 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
                   <p className="whitespace-pre-wrap">{text}</p>
                 ) : (
                   <>
-                    <div className="prose prose-sm max-w-none prose-headings:text-foreground prose-strong:text-foreground prose-p:text-foreground prose-li:text-foreground">
+                    <div className="agent-md">
                       <ReactMarkdown>{text}</ReactMarkdown>
                     </div>
                     <div className="mt-3 flex items-center gap-2 border-t border-border pt-2">
