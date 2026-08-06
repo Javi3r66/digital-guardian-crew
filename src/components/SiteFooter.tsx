@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Clock } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
+import logo from "@/assets/logo-red-violeta.png.asset.json";
 
 export function SiteFooter() {
   return (
@@ -8,8 +9,15 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-5 py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="text-sm font-semibold text-foreground">Red Violeta</p>
-            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+            <img
+              src={logo.url}
+              alt="Red Violeta Ciberprevención"
+              width={140}
+              height={140}
+              loading="lazy"
+              className="h-20 w-auto object-contain"
+            />
+            <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
               Solución integral contra el ciberacoso. Respuesta en menos de 24 horas.
             </p>
           </div>

@@ -20,9 +20,13 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
         <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <ShieldCheck className="size-4" />
-          </span>
+          <img
+            src={logo.url}
+            alt="Red Violeta Ciberprevención"
+            width={40}
+            height={40}
+            className="size-10 object-contain"
+          />
           <span className="leading-tight">
             <span className="block text-sm font-semibold tracking-tight">Red Violeta</span>
             <span className="block text-[11px] text-muted-foreground">Ciberprevención</span>
