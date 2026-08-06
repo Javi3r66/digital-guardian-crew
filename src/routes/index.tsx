@@ -11,6 +11,7 @@ import {
   Bot,
 } from "lucide-react";
 import heroImg from "@/assets/hero-familia.jpg";
+import logo from "@/assets/logo-red-violeta.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -85,6 +86,13 @@ function Home() {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 lg:grid-cols-2 lg:py-24">
           <div>
+            <img
+              src={logo.url}
+              alt="Logotipo de Red Violeta Ciberprevención"
+              width={220}
+              height={220}
+              className="mb-6 h-28 w-auto object-contain"
+            />
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
               Solución integral
             </p>
