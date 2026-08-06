@@ -143,3 +143,37 @@
     color: var(--color-foreground);
   }
 }
+
+/* Respuestas Markdown de los agentes */
+.agent-md {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.agent-md > * + * {
+  margin-top: 0.6rem;
+}
+.agent-md ul,
+.agent-md ol {
+  padding-left: 1.15rem;
+  list-style: disc;
+}
+.agent-md ol {
+  list-style: decimal;
+}
+.agent-md li + li {
+  margin-top: 0.25rem;
+}
+.agent-md strong {
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+.agent-md h1,
+.agent-md h2,
+.agent-md h3 {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.agent-md a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
