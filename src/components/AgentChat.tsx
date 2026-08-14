@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { AGENT_MAP, type AgentId } from "@/lib/agents";
 import { cn } from "@/lib/utils";
+import { haptic } from "@/lib/native";
 
 export function AgentChat({ agentId }: { agentId: AgentId }) {
   const agent = AGENT_MAP[agentId];
@@ -36,12 +37,13 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
   function submit() {
     const text = input.trim();
     if (!text || busy) return;
+    void haptic("light");
     setInput("");
     void sendMessage({ text });
   }
 
   return (
-    <div className="flex h-[560px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+    <div className="flex h-[70svh] max-h-[620px] min-h-[440px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
       <div className="flex items-center gap-3 border-b border-border px-5 py-4">
         <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
           <agent.icon className="size-5" />
@@ -56,7 +58,7 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
         </div>
       </div>
 
-      <div className="flex-1 space-y-4 overflow-y-auto px-5 py-5">
+      <div className="touch-scroll flex-1 space-y-4 overflow-y-auto px-4 py-5 sm:px-5">
         <div className="rounded-xl bg-muted/60 px-4 py-3 text-sm text-muted-foreground">
           {agent.greeting}
         </div>
@@ -69,7 +71,7 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
                 onClick={() => {
                   if (!busy) void sendMessage({ text: ex });
                 }}
-                className="rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                className="rounded-full border border-border px-3 py-2 text-xs text-muted-foreground transition-transform active:scale-95 active:border-primary active:text-primary"
               >
                 {ex}
               </button>
@@ -107,9 +109,12 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
                         <button
                           key={v}
                           aria-label={v === "up" ? "Útil" : "No útil"}
-                          onClick={() => setFeedback((f) => ({ ...f, [m.id]: v }))}
+                          onClick={() => {
+                            void haptic("light");
+                            setFeedback((f) => ({ ...f, [m.id]: v }));
+                          }}
                           className={cn(
-                            "rounded-md p-1 text-muted-foreground transition-colors hover:text-primary",
+                            "rounded-md p-1.5 text-muted-foreground transition-colors active:text-primary",
                             feedback[m.id] === v && "bg-primary/10 text-primary",
                           )}
                         >
@@ -156,7 +161,7 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
         <div ref={endRef} />
       </div>
 
-      <div className="border-t border-border p-3">
+      <div className="border-t border-border p-3 pb-safe">
         <div className="flex items-end gap-2">
           <Textarea
             ref={inputRef}
