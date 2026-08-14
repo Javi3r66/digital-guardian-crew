@@ -84,7 +84,7 @@ function Home() {
   return (
     <div>
       <section className="border-b border-border">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 lg:grid-cols-2 lg:py-24">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-10 sm:py-16 lg:grid-cols-2 lg:py-24">
           <div>
             <img
               src={logo.url}
@@ -96,7 +96,7 @@ function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
               Solución integral
             </p>
-            <h1 className="mt-4 text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold sm:text-4xl leading-[1.1] tracking-tight text-foreground sm:text-5xl">
               Ciberseguridad con impacto social
             </h1>
             <p className="mt-4 text-lg font-medium text-foreground">
@@ -117,7 +117,7 @@ function Home() {
               </Link>
               <Link
                 to="/test"
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary active:border-primary active:bg-accent/60 hover:text-primary"
               >
                 Iniciar test gratuito
               </Link>
@@ -144,7 +144,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16">
+      <section className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
         <h2 className="text-3xl font-bold tracking-tight text-foreground">
           El ciberacoso es un problema real
         </h2>
@@ -166,7 +166,7 @@ function Home() {
       </section>
 
       <section className="border-y border-border bg-muted/40">
-        <div className="mx-auto max-w-6xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
           <h2 className="text-3xl font-bold tracking-tight text-foreground">
             Cómo funciona Red Violeta
           </h2>
@@ -199,7 +199,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16">
+      <section className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
         <div className="rounded-3xl border border-border bg-card p-8 text-center sm:p-12">
           <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             ¿Tu hijo sufre ciberacoso?
@@ -217,7 +217,7 @@ function Home() {
             </Link>
             <Link
               to="/contacto"
-              className="rounded-xl border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+              className="rounded-xl border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary active:border-primary active:bg-accent/60 hover:text-primary"
             >
               Contactar especialista
             </Link>

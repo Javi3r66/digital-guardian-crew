@@ -32,8 +32,8 @@ const TEAM = [
 
 function Sobre() {
   return (
-    <div className="mx-auto max-w-4xl px-5 py-16">
-      <h1 className="text-4xl font-bold tracking-tight text-foreground">Nuestra misión</h1>
+    <div className="mx-auto max-w-4xl px-5 py-10 sm:py-16">
+      <h1 className="text-3xl font-bold sm:text-4xl tracking-tight text-foreground">Nuestra misión</h1>
       <p className="mt-5 text-base leading-relaxed text-muted-foreground">
         Red Violeta Ciberprevención nace para transformar la respuesta al ciberacoso. Cuando una
         familia detecta que algo va mal, se encuentra con recursos dispersos: un informático por un

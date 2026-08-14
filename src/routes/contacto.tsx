@@ -26,8 +26,8 @@ export const Route = createFileRoute("/contacto")({
 
 function Contacto() {
   return (
-    <div className="mx-auto max-w-3xl px-5 py-16">
-      <h1 className="text-4xl font-bold tracking-tight text-foreground">Contactar</h1>
+    <div className="mx-auto max-w-3xl px-5 py-10 sm:py-16">
+      <h1 className="text-3xl font-bold sm:text-4xl tracking-tight text-foreground">Contactar</h1>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
         Cuéntanos tu caso por correo y un especialista se pone en contacto contigo en menos de 24
         horas. Si necesitas orientación ahora mismo, los agentes están disponibles a cualquier
@@ -37,7 +37,7 @@ function Contacto() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <a
           href="mailto:info@redvioletaciberprevencion.es"
-          className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary"
+          className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary active:border-primary active:bg-accent/60"
         >
           <Mail className="size-5 text-primary" />
           <p className="mt-3 text-sm font-semibold text-foreground">Correo electrónico</p>
@@ -47,7 +47,7 @@ function Contacto() {
         </a>
         <Link
           to="/agentes"
-          className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary"
+          className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary active:border-primary active:bg-accent/60"
         >
           <Bot className="size-5 text-primary" />
           <p className="mt-3 text-sm font-semibold text-foreground">Agentes 24/7</p>
