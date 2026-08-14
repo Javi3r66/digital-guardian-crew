@@ -41,7 +41,10 @@ const QUESTIONS = [
 const PROTECTIVE = new Set([4, 6, 7]);
 
 function Test() {
-  const [answers, setAnswers] = useState<Record<number, boolean>>({});
+  const [answers, setAnswers, { reset }] = usePersistentState<Record<number, boolean>>(
+    "rv.test.answers",
+    {},
+  );
   const [sent, setSent] = useState(false);
   const answered = Object.keys(answers).length;
 
@@ -60,30 +63,34 @@ function Test() {
         : { label: "Bajo", tone: "text-foreground", bg: "border-border bg-card" };
 
   return (
-    <div className="mx-auto max-w-3xl px-5 py-16">
-      <h1 className="text-4xl font-bold tracking-tight text-foreground">
+    <div className="mx-auto max-w-3xl px-5 py-10 sm:py-16">
+      <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
         Test gratuito de vulnerabilidad digital
       </h1>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
         Ocho preguntas orientativas para situar tu caso. Es anónimo: no pide ningún dato personal y
-        no se guarda nada, ni en el navegador ni en nuestros servidores. No es un diagnóstico ni
-        una valoración jurídica.
+        no se envía nada a nuestros servidores. Tus respuestas quedan guardadas solo en este
+        dispositivo para que puedas continuar el test sin conexión, y puedes borrarlas cuando
+        quieras con «Reiniciar». No es un diagnóstico ni una valoración jurídica.
       </p>
 
       <div className="mt-8 space-y-3">
         {QUESTIONS.map((q, i) => (
           <div key={q} className="rounded-2xl border border-border bg-card p-4">
-            <p className="text-sm text-foreground">{q}</p>
-            <div className="mt-3 flex gap-2">
+            <p className="text-sm leading-relaxed text-foreground">{q}</p>
+            <div className="mt-3 grid grid-cols-2 gap-2 sm:flex">
               {[true, false].map((v) => (
                 <button
                   key={String(v)}
-                  onClick={() => setAnswers((a) => ({ ...a, [i]: v }))}
+                  onClick={() => {
+                    void haptic("light");
+                    setAnswers((a) => ({ ...a, [i]: v }));
+                  }}
                   className={cn(
-                    "rounded-lg border px-4 py-1.5 text-xs font-medium transition-colors",
+                    "rounded-xl border px-4 py-2.5 text-sm font-medium transition-transform active:scale-95 sm:py-1.5 sm:text-xs",
                     answers[i] === v
                       ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border text-muted-foreground hover:border-primary",
+                      : "border-border text-muted-foreground active:bg-accent",
                   )}
                 >
                   {v ? "Sí" : "No"}
@@ -96,21 +103,26 @@ function Test() {
 
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <button
-          onClick={() => setSent(true)}
+          onClick={() => {
+            void haptic(risk >= 6 ? "warning" : "success");
+            setSent(true);
+          }}
           disabled={answered < QUESTIONS.length}
-          className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground disabled:opacity-40"
+          className="w-full rounded-xl bg-primary px-5 py-3.5 text-sm font-medium text-primary-foreground transition-transform active:scale-95 disabled:opacity-40 sm:w-auto sm:py-3"
         >
           Ver resultado
         </button>
         <button
           onClick={() => {
-            setAnswers({});
+            void haptic("light");
+            reset();
             setSent(false);
           }}
-          className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary"
+          className="inline-flex items-center gap-2 text-xs text-muted-foreground active:text-primary"
         >
           <RotateCcw className="size-3.5" /> Reiniciar
         </button>
+
         <span className="text-xs text-muted-foreground">
           {answered}/{QUESTIONS.length} respondidas
         </span>
