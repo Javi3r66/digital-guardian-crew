@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { haptic } from "@/lib/native";
+import { usePersistentState } from "@/hooks/use-persistent-state";
 
 export const Route = createFileRoute("/test")({
   head: () => ({
