@@ -111,7 +111,7 @@ function Home() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 to="/agentes"
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:opacity-90 active:scale-95"
               >
                 <Bot className="size-4" /> Hablar con un agente ahora
               </Link>
@@ -211,7 +211,7 @@ function Home() {
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link
               to="/test"
-              className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:opacity-90 active:scale-95"
             >
               Hacer test gratuito
             </Link>

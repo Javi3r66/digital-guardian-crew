@@ -28,7 +28,7 @@ export function SiteFooter() {
             <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
               {["Familias", "Colegios", "Empresas", "Administraciones"].map((s) => (
                 <li key={s}>
-                  <Link to="/servicios" className="hover:text-primary">
+                  <Link to="/servicios" className="active:text-primary hover:text-primary">
                     {s}
                   </Link>
                 </li>
@@ -41,17 +41,17 @@ export function SiteFooter() {
             </p>
             <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
               <li>
-                <Link to="/agentes" className="hover:text-primary">
+                <Link to="/agentes" className="active:text-primary hover:text-primary">
                   Agentes 24/7
                 </Link>
               </li>
               <li>
-                <Link to="/test" className="hover:text-primary">
+                <Link to="/test" className="active:text-primary hover:text-primary">
                   Test Gratuito
                 </Link>
               </li>
               <li>
-                <Link to="/sobre-nosotros" className="hover:text-primary">
+                <Link to="/sobre-nosotros" className="active:text-primary hover:text-primary">
                   Sobre Nosotros
                 </Link>
               </li>

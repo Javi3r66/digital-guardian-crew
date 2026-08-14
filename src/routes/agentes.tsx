@@ -93,7 +93,7 @@ function Agentes() {
                   "w-full rounded-2xl border p-4 text-left transition-colors",
                   active === a.id
                     ? "border-primary bg-primary/5"
-                    : "border-border bg-card hover:border-primary/40",
+                    : "border-border bg-card hover:border-primary/40 active:border-primary/60",
                 )}
               >
                 <div className="flex items-center gap-3">
