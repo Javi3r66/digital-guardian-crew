@@ -56,11 +56,11 @@ function Agentes() {
 
   return (
     <div>
-      <section className="mx-auto max-w-6xl px-5 pt-14 pb-8">
+      <section className="mx-auto max-w-6xl px-5 pt-10 sm:pt-14 pb-8">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
           Cuatro pilares, cuatro agentes
         </p>
-        <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-foreground">
+        <h1 className="mt-3 max-w-3xl text-3xl font-bold sm:text-4xl leading-tight tracking-tight text-foreground">
           Agentes automatizados especializados en ciberacoso
         </h1>
         <p className="mt-4 max-w-2xl text-base text-muted-foreground">
@@ -93,7 +93,7 @@ function Agentes() {
                   "w-full rounded-2xl border p-4 text-left transition-colors",
                   active === a.id
                     ? "border-primary bg-primary/5"
-                    : "border-border bg-card hover:border-primary/40",
+                    : "border-border bg-card hover:border-primary/40 active:border-primary/60",
                 )}
               >
                 <div className="flex items-center gap-3">

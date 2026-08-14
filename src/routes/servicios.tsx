@@ -68,8 +68,8 @@ const SERVICES = [
 
 function Servicios() {
   return (
-    <div className="mx-auto max-w-6xl px-5 py-16">
-      <h1 className="text-4xl font-bold tracking-tight text-foreground">
+    <div className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
+      <h1 className="text-3xl font-bold sm:text-4xl tracking-tight text-foreground">
         Servicios especializados
       </h1>
       <p className="mt-3 max-w-2xl text-sm text-muted-foreground">

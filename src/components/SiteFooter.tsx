@@ -5,8 +5,8 @@ import logo from "@/assets/logo-red-violeta.png.asset.json";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-muted/40">
-      <div className="mx-auto max-w-6xl px-5 py-12">
+    <footer className="border-t border-border bg-muted/40 px-safe pb-safe">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <img
@@ -28,7 +28,7 @@ export function SiteFooter() {
             <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
               {["Familias", "Colegios", "Empresas", "Administraciones"].map((s) => (
                 <li key={s}>
-                  <Link to="/servicios" className="hover:text-primary">
+                  <Link to="/servicios" className="active:text-primary hover:text-primary">
                     {s}
                   </Link>
                 </li>
@@ -41,17 +41,17 @@ export function SiteFooter() {
             </p>
             <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
               <li>
-                <Link to="/agentes" className="hover:text-primary">
+                <Link to="/agentes" className="active:text-primary hover:text-primary">
                   Agentes 24/7
                 </Link>
               </li>
               <li>
-                <Link to="/test" className="hover:text-primary">
+                <Link to="/test" className="active:text-primary hover:text-primary">
                   Test Gratuito
                 </Link>
               </li>
               <li>
-                <Link to="/sobre-nosotros" className="hover:text-primary">
+                <Link to="/sobre-nosotros" className="active:text-primary hover:text-primary">
                   Sobre Nosotros
                 </Link>
               </li>
