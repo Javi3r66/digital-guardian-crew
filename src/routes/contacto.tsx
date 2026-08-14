@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mail, Clock, Bot } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
+import { DeviceToolkit } from "@/components/DeviceToolkit";
 
 export const Route = createFileRoute("/contacto")({
   head: () => ({
@@ -59,6 +60,10 @@ function Contacto() {
       <p className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">
         <Clock className="size-3.5" /> Disponible 24/7 · Respuesta humana en menos de 24 horas
       </p>
+
+      <div className="mt-8">
+        <DeviceToolkit />
+      </div>
 
       <div className="mt-10 rounded-2xl border border-destructive/30 bg-destructive/5 p-6">
         <h2 className="text-sm font-semibold text-foreground">
