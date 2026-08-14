@@ -5,8 +5,8 @@ import logo from "@/assets/logo-red-violeta.png.asset.json";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-muted/40">
-      <div className="mx-auto max-w-6xl px-5 py-12">
+    <footer className="border-t border-border bg-muted/40 px-safe pb-safe">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <img
