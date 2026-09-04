@@ -14,7 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      b2b_leads: {
+        Row: {
+          cargo: string | null
+          centro: string
+          consentimiento: boolean
+          contacto: string
+          created_at: string
+          email: string
+          id: string
+          kind: string
+          mensaje: string | null
+          num_alumnos: string | null
+          publico: string | null
+          respuestas: Json | null
+          riesgo: number | null
+          telefono: string | null
+        }
+        Insert: {
+          cargo?: string | null
+          centro: string
+          consentimiento?: boolean
+          contacto: string
+          created_at?: string
+          email: string
+          id?: string
+          kind: string
+          mensaje?: string | null
+          num_alumnos?: string | null
+          publico?: string | null
+          respuestas?: Json | null
+          riesgo?: number | null
+          telefono?: string | null
+        }
+        Update: {
+          cargo?: string | null
+          centro?: string
+          consentimiento?: boolean
+          contacto?: string
+          created_at?: string
+          email?: string
+          id?: string
+          kind?: string
+          mensaje?: string | null
+          num_alumnos?: string | null
+          publico?: string | null
+          respuestas?: Json | null
+          riesgo?: number | null
+          telefono?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
