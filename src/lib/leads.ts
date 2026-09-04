@@ -1,0 +1,31 @@
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+
+export const leadSchema = z.object({
+  kind: z.enum(["auditoria", "charla", "videollamada"]),
+  centro: z.string().trim().min(2, "Indica el nombre del centro").max(120),
+  contacto: z.string().trim().min(2, "Indica el nombre de contacto").max(120),
+  cargo: z.string().trim().max(60).optional(),
+  telefono: z
+    .string()
+    .trim()
+    .min(7, "Indica un teléfono válido")
+    .max(20)
+    .regex(/^[0-9+\s().-]+$/, "El teléfono solo admite números")
+    .optional(),
+  email: z.string().trim().email("Correo no válido").max(160),
+  num_alumnos: z.string().trim().max(20).optional(),
+  publico: z.string().trim().max(60).optional(),
+  mensaje: z.string().trim().max(1000).optional(),
+  riesgo: z.number().int().min(0).max(100).optional(),
+  respuestas: z.record(z.string(), z.number()).optional(),
+  consentimiento: z.literal(true, { message: "Debes aceptar la cláusula de tratamiento de datos" }),
+});
+
+export type LeadInput = z.infer<typeof leadSchema>;
+
+export async function submitLead(input: LeadInput) {
+  const data = leadSchema.parse(input);
+  const { error } = await supabase.from("b2b_leads").insert(data);
+  if (error) throw new Error(error.message);
+}
