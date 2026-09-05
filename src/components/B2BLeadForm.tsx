@@ -54,14 +54,14 @@ export function B2BLeadForm({
     setError(null);
     const payload = {
       kind,
-      centro: values.centro,
-      contacto: values.contacto,
-      cargo: values.cargo,
-      telefono: values.telefono,
-      email: values.email,
-      num_alumnos: compact ? undefined : values.num_alumnos,
-      publico: values.publico || undefined,
-      mensaje: values.mensaje || undefined,
+      centro: values["centro"],
+      contacto: values["contacto"],
+      cargo: values["cargo"],
+      telefono: values["telefono"],
+      email: values["email"],
+      num_alumnos: compact ? undefined : values["num_alumnos"],
+      publico: values["publico"] || undefined,
+      mensaje: values["mensaje"] || undefined,
       riesgo,
       respuestas,
       consentimiento: consent,
@@ -88,7 +88,7 @@ export function B2BLeadForm({
       <div className="flex items-start gap-3 rounded-2xl border border-primary/30 bg-primary/5 p-5">
         <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
         <p className="text-sm text-foreground">
-          Solicitud registrada. Te escribimos a <strong>{values.email}</strong> en menos de 24 horas
+          Solicitud registrada. Te escribimos a <strong>{values["email"]}</strong> en menos de 24 horas
           con el informe y una propuesta de fecha para la reunión de diagnóstico.
         </p>
       </div>
@@ -102,7 +102,7 @@ export function B2BLeadForm({
           <Label htmlFor={`${kind}-centro`}>Nombre del centro</Label>
           <Input
             id={`${kind}-centro`}
-            value={values.centro}
+            value={values["centro"]}
             onChange={(e) => set("centro", e.target.value)}
             maxLength={120}
             required
@@ -112,7 +112,7 @@ export function B2BLeadForm({
           <Label htmlFor={`${kind}-contacto`}>Nombre del contacto</Label>
           <Input
             id={`${kind}-contacto`}
-            value={values.contacto}
+            value={values["contacto"]}
             onChange={(e) => set("contacto", e.target.value)}
             maxLength={120}
             required
@@ -122,7 +122,7 @@ export function B2BLeadForm({
           <Label htmlFor={`${kind}-cargo`}>Cargo</Label>
           <select
             id={`${kind}-cargo`}
-            value={values.cargo}
+            value={values["cargo"]}
             onChange={(e) => set("cargo", e.target.value)}
             className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
@@ -136,7 +136,7 @@ export function B2BLeadForm({
           <Input
             id={`${kind}-tel`}
             type="tel"
-            value={values.telefono}
+            value={values["telefono"]}
             onChange={(e) => set("telefono", e.target.value)}
             maxLength={20}
             required
@@ -147,7 +147,7 @@ export function B2BLeadForm({
             <Label htmlFor={`${kind}-alumnos`}>Número de alumnos</Label>
             <select
               id={`${kind}-alumnos`}
-              value={values.num_alumnos}
+              value={values["num_alumnos"]}
               onChange={(e) => set("num_alumnos", e.target.value)}
               className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
@@ -162,7 +162,7 @@ export function B2BLeadForm({
             <Label htmlFor={`${kind}-publico`}>Destinatarios de la formación</Label>
             <select
               id={`${kind}-publico`}
-              value={values.publico}
+              value={values["publico"]}
               onChange={(e) => set("publico", e.target.value)}
               className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
@@ -178,7 +178,7 @@ export function B2BLeadForm({
             id={`${kind}-email`}
             type="email"
             placeholder="direccion@tucentro.es"
-            value={values.email}
+            value={values["email"]}
             onChange={(e) => set("email", e.target.value)}
             maxLength={160}
             required
@@ -189,7 +189,7 @@ export function B2BLeadForm({
             <Label htmlFor={`${kind}-msg`}>Fechas preferentes o comentarios</Label>
             <Textarea
               id={`${kind}-msg`}
-              value={values.mensaje}
+              value={values["mensaje"]}
               onChange={(e) => set("mensaje", e.target.value)}
               maxLength={1000}
               rows={3}

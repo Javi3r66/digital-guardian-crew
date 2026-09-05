@@ -26,6 +26,19 @@ export type LeadInput = z.infer<typeof leadSchema>;
 
 export async function submitLead(input: LeadInput) {
   const data = leadSchema.parse(input);
-  const { error } = await supabase.from("b2b_leads").insert(data);
+  const { error } = await supabase.from("b2b_leads").insert({
+    kind: data.kind,
+    centro: data.centro,
+    contacto: data.contacto,
+    cargo: data.cargo ?? null,
+    telefono: data.telefono ?? null,
+    email: data.email,
+    num_alumnos: data.num_alumnos ?? null,
+    publico: data.publico ?? null,
+    mensaje: data.mensaje ?? null,
+    riesgo: data.riesgo ?? null,
+    respuestas: data.respuestas ?? null,
+    consentimiento: data.consentimiento,
+  });
   if (error) throw new Error(error.message);
 }
