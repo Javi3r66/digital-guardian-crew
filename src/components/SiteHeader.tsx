@@ -32,6 +32,13 @@ export function SiteHeader() {
           className="flex min-w-0 items-center gap-2 active:opacity-70"
           onClick={() => setOpen(false)}
         >
+          <span className="hidden items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold text-primary sm:inline-flex">
+            <span className="relative flex size-1.5">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
+            </span>
+            Atención inmediata por IA 24/7
+          </span>
           <img
             src={logo.url}
             alt="Red Violeta Ciberprevención"

@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Clock } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
+import { LEGAL_LINKS, CONTACT_EMAIL } from "@/lib/legal";
+import { EmergencyWarning, LiabilityDisclaimer } from "@/components/LegalNotices";
 import logo from "@/assets/logo-red-violeta.png.asset.json";
 
 export function SiteFooter() {
@@ -28,7 +30,7 @@ export function SiteFooter() {
             <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
               {["Familias", "Colegios", "Empresas", "Administraciones"].map((s) => (
                 <li key={s}>
-                  <Link to="/servicios" className="active:text-primary hover:text-primary">
+                  <Link to="/servicios" className="hover:text-primary">
                     {s}
                   </Link>
                 </li>
@@ -41,17 +43,17 @@ export function SiteFooter() {
             </p>
             <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
               <li>
-                <Link to="/agentes" className="active:text-primary hover:text-primary">
+                <Link to="/agentes" className="hover:text-primary">
                   Agentes 24/7
                 </Link>
               </li>
               <li>
-                <Link to="/test" className="active:text-primary hover:text-primary">
+                <Link to="/test" className="hover:text-primary">
                   Test Gratuito
                 </Link>
               </li>
               <li>
-                <Link to="/sobre-nosotros" className="active:text-primary hover:text-primary">
+                <Link to="/sobre-nosotros" className="hover:text-primary">
                   Sobre Nosotros
                 </Link>
               </li>
@@ -62,10 +64,10 @@ export function SiteFooter() {
               Contacto
             </p>
             <a
-              href="mailto:info@redvioletaciberprevencion.es"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="mt-3 flex items-center gap-2 text-xs text-muted-foreground hover:text-primary"
             >
-              <Mail className="size-3.5" /> info@redvioletaciberprevencion.es
+              <Mail className="size-3.5" /> {CONTACT_EMAIL}
             </a>
             <p className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
               <Clock className="size-3.5" /> Disponible 24/7
@@ -86,10 +88,24 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-border pt-6 text-[11px] text-muted-foreground">
-          © {new Date().getFullYear()} Red Violeta Ciberprevención. Los agentes de esta web son
-          sistemas de inteligencia artificial (Reglamento UE 2024/1689) y no sustituyen a
-          profesionales colegiados.
+        <div className="mt-6 space-y-3">
+          <EmergencyWarning />
+          <LiabilityDisclaimer />
+        </div>
+
+        <div className="mt-8 flex flex-col gap-4 border-t border-border pt-6">
+          <nav className="flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-muted-foreground">
+            {LEGAL_LINKS.map((l) => (
+              <Link key={l.to} to={l.to} className="hover:text-primary">
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+          <p className="text-[11px] text-muted-foreground">
+            © {new Date().getFullYear()} Red Violeta Ciberprevención. Los agentes de esta web son
+            sistemas de inteligencia artificial (Reglamento UE 2024/1689) y no sustituyen a
+            profesionales colegiados.
+          </p>
         </div>
       </div>
     </footer>
