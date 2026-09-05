@@ -9,6 +9,7 @@ import {
   HeartCrack,
   ArrowRight,
   Bot,
+  CalendarClock,
 } from "lucide-react";
 import heroImg from "@/assets/hero-familia.jpg";
 import logo from "@/assets/logo-red-violeta.png.asset.json";
@@ -114,6 +115,12 @@ function Home() {
                 className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:opacity-90 active:scale-95"
               >
                 <Bot className="size-4" /> Hablar con un agente ahora
+              </Link>
+              <Link
+                to="/contacto"
+                className="inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-medium text-background transition-transform hover:opacity-90 active:scale-95"
+              >
+                <CalendarClock className="size-4" /> Agendar videollamada de diagnóstico gratuita
               </Link>
               <Link
                 to="/test"

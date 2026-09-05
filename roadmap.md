@@ -1,0 +1,17 @@
+# Roadmap — Red Violeta Ciberprevención
+
+## Hecho (sep 2026)
+- [x] Agentes IA (AURA, CALMA, PUENTE, LEX) + chat sin persistencia
+- [x] Capacitor (mobile-first, safe-area, haptics)
+- [x] Logo + favicon integrados
+- [x] Auditor de Vulnerabilidad Institucional (7 preguntas, índice de riesgo, animación IA)
+- [x] Formulario B2B con consentimiento RGPD (tabla supabase segura)
+- [x] Avisos legales en pie (emergencia 112/091/062/016, descargo Art. 50 UE 2024/1689)
+- [x] Insignia cabecera "Atención inmediata por IA 24/7"
+- [x] Botón "Agendar videollamada de diagnóstico gratuita" en hero
+- [x] 4 páginas legales: Términos, Privacidad, Cookies, LOPIVI
+
+## Pendiente
+- [ ] Página "Colegios e Instituciones" (4 tarjetas de beneficios + bloque de charlas presenciales) + entrada en menú y menú móvil
+- [ ] Flujo anónimo del alumno en 5 pantallas (Ghost Onboarding): bienvenida, validación código/QR, alias/avatar, gabinete 4 agentes, chat multiagente + insignia IA
+- [ ] Automatización Google Calendar/Gmail (evento Meet, alerta a info@…, email "📊 Informe de Vulnerabilidad Digital: [Centro]") — requiere conectar cuentas

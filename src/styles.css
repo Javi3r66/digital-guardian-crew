@@ -220,3 +220,24 @@
   color: var(--color-primary);
   text-decoration: underline;
 }
+
+.prose-legal h2 {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+.prose-legal a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.prose-legal ul {
+  padding-left: 1.15rem;
+  list-style: disc;
+}
+.prose-legal li + li {
+  margin-top: 0.25rem;
+}
+.prose-legal strong {
+  font-weight: 600;
+}

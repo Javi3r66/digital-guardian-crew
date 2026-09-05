@@ -16,6 +16,10 @@ import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as SobreNosotrosRouteImport } from './routes/sobre-nosotros'
 import { Route as TestRouteImport } from './routes/test'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
+import { Route as LegalLopiviRouteImport } from './routes/legal/lopivi'
+import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
+import { Route as LegalTerminosRouteImport } from './routes/legal/terminos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +56,26 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalCookiesRoute = LegalCookiesRouteImport.update({
+  id: '/legal/cookies',
+  path: '/legal/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalLopiviRoute = LegalLopiviRouteImport.update({
+  id: '/legal/lopivi',
+  path: '/legal/lopivi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacidadRoute = LegalPrivacidadRouteImport.update({
+  id: '/legal/privacidad',
+  path: '/legal/privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalTerminosRoute = LegalTerminosRouteImport.update({
+  id: '/legal/terminos',
+  path: '/legal/terminos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +85,10 @@ export interface FileRoutesByFullPath {
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/test': typeof TestRoute
   '/api/chat': typeof ApiChatRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/lopivi': typeof LegalLopiviRoute
+  '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/legal/terminos': typeof LegalTerminosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +98,10 @@ export interface FileRoutesByTo {
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/test': typeof TestRoute
   '/api/chat': typeof ApiChatRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/lopivi': typeof LegalLopiviRoute
+  '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/legal/terminos': typeof LegalTerminosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +112,10 @@ export interface FileRoutesById {
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/test': typeof TestRoute
   '/api/chat': typeof ApiChatRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/lopivi': typeof LegalLopiviRoute
+  '/legal/privacidad': typeof LegalPrivacidadRoute
+  '/legal/terminos': typeof LegalTerminosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +127,10 @@ export interface FileRouteTypes {
     | '/sobre-nosotros'
     | '/test'
     | '/api/chat'
+    | '/legal/cookies'
+    | '/legal/lopivi'
+    | '/legal/privacidad'
+    | '/legal/terminos'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +140,10 @@ export interface FileRouteTypes {
     | '/sobre-nosotros'
     | '/test'
     | '/api/chat'
+    | '/legal/cookies'
+    | '/legal/lopivi'
+    | '/legal/privacidad'
+    | '/legal/terminos'
   id:
     | '__root__'
     | '/'
@@ -109,6 +153,10 @@ export interface FileRouteTypes {
     | '/sobre-nosotros'
     | '/test'
     | '/api/chat'
+    | '/legal/cookies'
+    | '/legal/lopivi'
+    | '/legal/privacidad'
+    | '/legal/terminos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +167,10 @@ export interface RootRouteChildren {
   SobreNosotrosRoute: typeof SobreNosotrosRoute
   TestRoute: typeof TestRoute
   ApiChatRoute: typeof ApiChatRoute
+  LegalCookiesRoute: typeof LegalCookiesRoute
+  LegalLopiviRoute: typeof LegalLopiviRoute
+  LegalPrivacidadRoute: typeof LegalPrivacidadRoute
+  LegalTerminosRoute: typeof LegalTerminosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +224,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal/cookies': {
+      id: '/legal/cookies'
+      path: '/legal/cookies'
+      fullPath: '/legal/cookies'
+      preLoaderRoute: typeof LegalCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/lopivi': {
+      id: '/legal/lopivi'
+      path: '/legal/lopivi'
+      fullPath: '/legal/lopivi'
+      preLoaderRoute: typeof LegalLopiviRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacidad': {
+      id: '/legal/privacidad'
+      path: '/legal/privacidad'
+      fullPath: '/legal/privacidad'
+      preLoaderRoute: typeof LegalPrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/terminos': {
+      id: '/legal/terminos'
+      path: '/legal/terminos'
+      fullPath: '/legal/terminos'
+      preLoaderRoute: typeof LegalTerminosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +263,10 @@ const rootRouteChildren: RootRouteChildren = {
   SobreNosotrosRoute: SobreNosotrosRoute,
   TestRoute: TestRoute,
   ApiChatRoute: ApiChatRoute,
+  LegalCookiesRoute: LegalCookiesRoute,
+  LegalLopiviRoute: LegalLopiviRoute,
+  LegalPrivacidadRoute: LegalPrivacidadRoute,
+  LegalTerminosRoute: LegalTerminosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
