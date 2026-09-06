@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgentesRouteImport } from './routes/agentes'
+import { Route as ColegiosRouteImport } from './routes/colegios'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as SobreNosotrosRouteImport } from './routes/sobre-nosotros'
@@ -29,6 +30,11 @@ const IndexRoute = IndexRouteImport.update({
 const AgentesRoute = AgentesRouteImport.update({
   id: '/agentes',
   path: '/agentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ColegiosRoute = ColegiosRouteImport.update({
+  id: '/colegios',
+  path: '/colegios',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactoRoute = ContactoRouteImport.update({
@@ -80,6 +86,7 @@ const LegalTerminosRoute = LegalTerminosRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agentes': typeof AgentesRoute
+  '/colegios': typeof ColegiosRoute
   '/contacto': typeof ContactoRoute
   '/servicios': typeof ServiciosRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
@@ -93,6 +100,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agentes': typeof AgentesRoute
+  '/colegios': typeof ColegiosRoute
   '/contacto': typeof ContactoRoute
   '/servicios': typeof ServiciosRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agentes': typeof AgentesRoute
+  '/colegios': typeof ColegiosRoute
   '/contacto': typeof ContactoRoute
   '/servicios': typeof ServiciosRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/agentes'
+    | '/colegios'
     | '/contacto'
     | '/servicios'
     | '/sobre-nosotros'
@@ -135,6 +145,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/agentes'
+    | '/colegios'
     | '/contacto'
     | '/servicios'
     | '/sobre-nosotros'
@@ -148,6 +159,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/agentes'
+    | '/colegios'
     | '/contacto'
     | '/servicios'
     | '/sobre-nosotros'
@@ -162,6 +174,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgentesRoute: typeof AgentesRoute
+  ColegiosRoute: typeof ColegiosRoute
   ContactoRoute: typeof ContactoRoute
   ServiciosRoute: typeof ServiciosRoute
   SobreNosotrosRoute: typeof SobreNosotrosRoute
@@ -187,6 +200,13 @@ declare module '@tanstack/react-router' {
       path: '/agentes'
       fullPath: '/agentes'
       preLoaderRoute: typeof AgentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/colegios': {
+      id: '/colegios'
+      path: '/colegios'
+      fullPath: '/colegios'
+      preLoaderRoute: typeof ColegiosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contacto': {
@@ -258,6 +278,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgentesRoute: AgentesRoute,
+  ColegiosRoute: ColegiosRoute,
   ContactoRoute: ContactoRoute,
   ServiciosRoute: ServiciosRoute,
   SobreNosotrosRoute: SobreNosotrosRoute,

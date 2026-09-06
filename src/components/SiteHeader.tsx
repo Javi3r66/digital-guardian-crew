@@ -16,6 +16,7 @@ const NAV = [
   { to: "/", label: "Inicio" },
   { to: "/sobre-nosotros", label: "Sobre Nosotros" },
   { to: "/servicios", label: "Servicios" },
+  { to: "/colegios", label: "Colegios" },
   { to: "/agentes", label: "Agentes 24/7" },
   { to: "/test", label: "Test Gratuito" },
   { to: "/contacto", label: "Contactar" },
