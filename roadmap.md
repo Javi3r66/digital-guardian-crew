@@ -10,8 +10,9 @@
 - [x] Insignia cabecera "Atención inmediata por IA 24/7"
 - [x] Botón "Agendar videollamada de diagnóstico gratuita" en hero
 - [x] 4 páginas legales: Términos, Privacidad, Cookies, LOPIVI
+- [x] Página "Colegios e Instituciones" (4 beneficios + auditor + charlas) y entrada en el menú
 
 ## Pendiente
-- [ ] Página "Colegios e Instituciones" (4 tarjetas de beneficios + bloque de charlas presenciales) + entrada en menú y menú móvil
+
 - [ ] Flujo anónimo del alumno en 5 pantallas (Ghost Onboarding): bienvenida, validación código/QR, alias/avatar, gabinete 4 agentes, chat multiagente + insignia IA
 - [ ] Automatización Google Calendar/Gmail (evento Meet, alerta a info@…, email "📊 Informe de Vulnerabilidad Digital: [Centro]") — requiere conectar cuentas
