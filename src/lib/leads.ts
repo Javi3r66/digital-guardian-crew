@@ -1,5 +1,7 @@
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { notifyLeadFn } from "@/lib/notify.functions";
+
 
 export const leadSchema = z.object({
   kind: z.enum(["auditoria", "charla", "videollamada"]),
