@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Mail, Clock, Bot } from "lucide-react";
+import { Mail, Clock, Bot, CalendarClock } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
 import { DeviceToolkit } from "@/components/DeviceToolkit";
+import { B2BLeadForm } from "@/components/B2BLeadForm";
+
 
 export const Route = createFileRoute("/contacto")({
   head: () => ({
