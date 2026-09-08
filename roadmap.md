@@ -15,4 +15,4 @@
 ## Pendiente
 
 - [x] Flujo anónimo del alumno en 5 pantallas (/acceso): bienvenida, validación código/QR, alias/avatar, gabinete 4 agentes, chat multiagente + insignia IA
-- [ ] Automatización Google Calendar/Gmail (evento Meet, alerta a info@…, email "📊 Informe de Vulnerabilidad Digital: [Centro]") — requiere conectar cuentas
+- [x] Automatización Google Calendar/Gmail: formulario de agendamiento en /contacto que envía aviso por Gmail y crea evento con Meet

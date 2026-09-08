@@ -63,9 +63,26 @@ function Contacto() {
         <Clock className="size-3.5" /> Disponible 24/7 · Respuesta humana en menos de 24 horas
       </p>
 
+      <section className="mt-10 rounded-2xl border border-border bg-card p-6">
+        <div className="flex items-center gap-2">
+          <CalendarClock className="size-5 text-primary" />
+          <h2 className="text-lg font-semibold text-foreground">
+            Agendar videollamada de diagnóstico gratuita
+          </h2>
+        </div>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Elige día y hora: recibimos el aviso al instante y te confirmamos la cita por correo con
+          el enlace de la videollamada.
+        </p>
+        <div className="mt-5">
+          <B2BLeadForm kind="videollamada" submitLabel="Solicitar cita" compact />
+        </div>
+      </section>
+
       <div className="mt-8">
         <DeviceToolkit />
       </div>
+
 
       <div className="mt-10 rounded-2xl border border-destructive/30 bg-destructive/5 p-6">
         <h2 className="text-sm font-semibold text-foreground">
