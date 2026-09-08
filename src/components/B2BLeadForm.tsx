@@ -39,8 +39,10 @@ export function B2BLeadForm({
     email: "",
     num_alumnos: ALUMNOS[0]!,
     publico: publicoOptions?.[0] ?? "",
+    fecha: "",
     mensaje: "",
   });
+
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
