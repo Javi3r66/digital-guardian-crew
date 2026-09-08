@@ -188,7 +188,20 @@ export function B2BLeadForm({
             required
           />
         </div>
+        {kind === "videollamada" && (
+          <div className="space-y-1.5 sm:col-span-2">
+            <Label htmlFor={`${kind}-fecha`}>Fecha y hora preferida para la videollamada</Label>
+            <Input
+              id={`${kind}-fecha`}
+              type="datetime-local"
+              value={values["fecha"]}
+              onChange={(e) => set("fecha", e.target.value)}
+              required
+            />
+          </div>
+        )}
         {(compact || publicoOptions) && (
+
           <div className="space-y-1.5 sm:col-span-2">
             <Label htmlFor={`${kind}-msg`}>Fechas preferentes o comentarios</Label>
             <Textarea
