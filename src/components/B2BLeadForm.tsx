@@ -64,7 +64,9 @@ export function B2BLeadForm({
       num_alumnos: compact ? undefined : values["num_alumnos"],
       publico: values["publico"] || undefined,
       mensaje: values["mensaje"] || undefined,
+      fecha: values["fecha"] || undefined,
       riesgo,
+
       respuestas,
       consentimiento: consent,
     };
