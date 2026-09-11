@@ -13,7 +13,7 @@ import {
   CalendarClock,
 } from "lucide-react";
 import heroImg from "@/assets/hero-familia.jpg";
-import logo from "@/assets/logo-red-violeta.png.asset.json";
+import logo from "@/assets/logo-red-violeta.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -89,7 +89,7 @@ function Home() {
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-10 sm:py-16 lg:grid-cols-2 lg:py-24">
           <div>
             <img
-              src={logo.url}
+              src={logo}
               alt="Logotipo de Red Violeta Ciberprevención"
               width={220}
               height={220}

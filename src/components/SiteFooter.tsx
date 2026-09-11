@@ -3,7 +3,7 @@ import { Mail, Clock } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
 import { LEGAL_LINKS, CONTACT_EMAIL } from "@/lib/legal";
 import { EmergencyWarning, LiabilityDisclaimer } from "@/components/LegalNotices";
-import logo from "@/assets/logo-red-violeta.png.asset.json";
+import logo from "@/assets/logo-red-violeta.png";
 
 export function SiteFooter() {
   return (
@@ -12,7 +12,7 @@ export function SiteFooter() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <img
-              src={logo.url}
+              src={logo}
               alt="Red Violeta Ciberprevención"
               width={140}
               height={140}

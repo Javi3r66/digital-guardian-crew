@@ -10,7 +10,7 @@ import {
   DrawerTitle,
   DrawerClose,
 } from "@/components/ui/drawer";
-import logo from "@/assets/logo-red-violeta.png.asset.json";
+import logo from "@/assets/logo-red-violeta.png";
 
 const NAV = [
   { to: "/", label: "Inicio" },
@@ -42,7 +42,7 @@ export function SiteHeader() {
             Atención inmediata por IA 24/7
           </span>
           <img
-            src={logo.url}
+            src={logo}
             alt="Red Violeta Ciberprevención"
             width={40}
             height={40}
