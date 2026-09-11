@@ -10,7 +10,7 @@ import {
   DrawerTitle,
   DrawerClose,
 } from "@/components/ui/drawer";
-import logo from "@/assets/logo-red-violeta.png.asset.json";
+import logo from "@/assets/logo-red-violeta.png";
 
 const NAV = [
   { to: "/", label: "Inicio" },

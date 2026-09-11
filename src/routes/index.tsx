@@ -13,7 +13,7 @@ import {
   CalendarClock,
 } from "lucide-react";
 import heroImg from "@/assets/hero-familia.jpg";
-import logo from "@/assets/logo-red-violeta.png.asset.json";
+import logo from "@/assets/logo-red-violeta.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({

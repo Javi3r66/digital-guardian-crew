@@ -3,7 +3,7 @@ import { Mail, Clock } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
 import { LEGAL_LINKS, CONTACT_EMAIL } from "@/lib/legal";
 import { EmergencyWarning, LiabilityDisclaimer } from "@/components/LegalNotices";
-import logo from "@/assets/logo-red-violeta.png.asset.json";
+import logo from "@/assets/logo-red-violeta.png";
 
 export function SiteFooter() {
   return (
