@@ -12,7 +12,7 @@ export function SiteFooter() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <img
-              src={logo.url}
+              src={logo}
               alt="Red Violeta Ciberprevención"
               width={140}
               height={140}

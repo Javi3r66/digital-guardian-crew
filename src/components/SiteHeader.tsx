@@ -42,7 +42,7 @@ export function SiteHeader() {
             Atención inmediata por IA 24/7
           </span>
           <img
-            src={logo.url}
+            src={logo}
             alt="Red Violeta Ciberprevención"
             width={40}
             height={40}
