@@ -153,6 +153,8 @@ function Home() {
         </div>
       </section>
 
+      <ImpactStats />
+
       <section className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
         <h2 className="text-3xl font-bold tracking-tight text-foreground">
           El ciberacoso es un problema real
