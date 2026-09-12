@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import heroImg from "@/assets/hero-familia.jpg";
 import logo from "@/assets/logo-red-violeta.png";
+import { ImpactStats } from "@/components/ImpactStats";
 
 export const Route = createFileRoute("/")({
   head: () => ({
