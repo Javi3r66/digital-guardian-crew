@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import heroImg from "@/assets/hero-familia.jpg";
 import logo from "@/assets/logo-red-violeta.png";
+import { ImpactStats } from "@/components/ImpactStats";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -151,6 +152,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <ImpactStats />
 
       <section className="mx-auto max-w-6xl px-5 py-10 sm:py-16">
         <h2 className="text-3xl font-bold tracking-tight text-foreground">
