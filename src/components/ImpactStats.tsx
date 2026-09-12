@@ -59,7 +59,9 @@ const FOOTNOTE =
 function splitNumeric(value: string) {
   const match = value.match(/^([^\d]*)(\d[\d.\s]*)(.*)$/);
   if (!match) return null;
-  const [, prefix, digitsRaw, suffix] = match;
+  const prefix = match[1] ?? "";
+  const digitsRaw = match[2] ?? "";
+  const suffix = match[3] ?? "";
   const digits = digitsRaw.replace(/\s/g, "").replace(/\./g, "");
   // Solo animamos si el sufijo es numérico/porcentaje/vacío (evita "24/7").
   if (suffix && !/^[%]?$/.test(suffix)) return null;
