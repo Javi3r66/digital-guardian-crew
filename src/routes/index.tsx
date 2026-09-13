@@ -10,7 +10,7 @@ import {
   HeartCrack,
   ArrowRight,
   Bot,
-  CalendarClock,
+  ClipboardCheck,
 } from "lucide-react";
 import heroImg from "@/assets/hero-familia.jpg";
 import logo from "@/assets/logo-red-violeta.png";
@@ -113,22 +113,16 @@ function Home() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                to="/agentes"
+                to="/test"
                 className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:opacity-90 active:scale-95"
               >
-                <Bot className="size-4" /> Hablar con un agente ahora
+                <ClipboardCheck className="size-4" /> Test de autodiagnóstico gratuito
               </Link>
               <Link
-                to="/contacto"
-                className="inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-medium text-background transition-transform hover:opacity-90 active:scale-95"
-              >
-                <CalendarClock className="size-4" /> Agendar videollamada de diagnóstico gratuita
-              </Link>
-              <Link
-                to="/test"
+                to="/agentes"
                 className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary active:border-primary active:bg-accent/60 hover:text-primary"
               >
-                Iniciar test gratuito
+                <Bot className="size-4" /> Hablar con un agente ahora
               </Link>
             </div>
 
@@ -224,13 +218,7 @@ function Home() {
               to="/test"
               className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:opacity-90 active:scale-95"
             >
-              Hacer test gratuito
-            </Link>
-            <Link
-              to="/contacto"
-              className="rounded-xl border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary active:border-primary active:bg-accent/60 hover:text-primary"
-            >
-              Contactar especialista
+              Hacer el test de autodiagnóstico gratuito
             </Link>
           </div>
         </div>

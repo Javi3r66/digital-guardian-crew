@@ -1,4 +1,4 @@
-// Server-only: envía el correo de aviso (Gmail) y crea el evento en Google Calendar
+// Server-only: envía el correo de aviso (Gmail)
 // usando la cuenta de Google conectada al proyecto (info@redvioletaciberprevencion.es).
 
 const GATEWAY = "https://connector-gateway.lovable.dev";
@@ -38,12 +38,10 @@ export type NotifyPayload = {
   num_alumnos?: string | undefined;
   publico?: string | undefined;
   mensaje?: string | undefined;
-  fecha?: string | undefined;
   riesgo?: number | undefined;
 };
 
 const KIND_LABEL: Record<string, string> = {
-  videollamada: "Videollamada de diagnóstico",
   auditoria: "Informe de Vulnerabilidad Digital",
   charla: "Charla presencial",
 };
@@ -58,7 +56,6 @@ function summary(p: NotifyPayload) {
     ["Correo", p.email],
     ["Nº de alumnos", p.num_alumnos],
     ["Destinatarios", p.publico],
-    ["Fecha solicitada", p.fecha],
     ["Índice de riesgo", p.riesgo !== undefined ? `${p.riesgo}%` : undefined],
     ["Mensaje", p.mensaje],
   ];
@@ -66,15 +63,6 @@ function summary(p: NotifyPayload) {
     .filter(([, v]) => v !== undefined && v !== "")
     .map(([k, v]) => `${k}: ${v}`)
     .join("\n");
-}
-
-function eventWindow(fecha?: string) {
-  const start = fecha ? new Date(fecha) : new Date(Date.now() + 24 * 60 * 60 * 1000);
-  const safeStart = Number.isNaN(start.getTime())
-    ? new Date(Date.now() + 24 * 60 * 60 * 1000)
-    : start;
-  const end = new Date(safeStart.getTime() + 45 * 60 * 1000);
-  return { start: safeStart.toISOString(), end: end.toISOString() };
 }
 
 async function sendMail(p: NotifyPayload) {
@@ -96,43 +84,7 @@ async function sendMail(p: NotifyPayload) {
   }
 }
 
-async function createEvent(p: NotifyPayload) {
-  const key = process.env['GOOGLE_CALENDAR_API_KEY'];
-  if (!key) throw new Error("GOOGLE_CALENDAR_API_KEY no configurada");
-  const { start, end } = eventWindow(p.fecha);
-  const res = await fetch(
-    `${GATEWAY}/google_calendar/calendar/v3/calendars/primary/events?conferenceDataVersion=1`,
-    {
-      method: "POST",
-      headers: gatewayHeaders(key),
-      body: JSON.stringify({
-        summary: `${KIND_LABEL[p.kind] ?? p.kind} — ${p.centro}`,
-        description: summary(p),
-        start: { dateTime: start, timeZone: "Europe/Madrid" },
-        end: { dateTime: end, timeZone: "Europe/Madrid" },
-        conferenceData: {
-          createRequest: {
-            requestId: `rv-${Date.now()}`,
-            conferenceSolutionKey: { type: "hangoutsMeet" },
-          },
-        },
-        reminders: { useDefault: true },
-      }),
-    },
-  );
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Calendar [${res.status}]: ${text}`);
-  }
-}
-
 export async function notifyLead(p: NotifyPayload) {
-  const results = await Promise.allSettled([sendMail(p), createEvent(p)]);
-  for (const r of results) {
-    if (r.status === "rejected") console.error("[notifyLead]", r.reason);
-  }
-  return {
-    email: results[0]?.status === "fulfilled",
-    calendar: results[1]?.status === "fulfilled",
-  };
+  await sendMail(p);
+  return { email: true };
 }

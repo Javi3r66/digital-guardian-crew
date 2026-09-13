@@ -4,7 +4,7 @@ import { notifyLeadFn } from "@/lib/notify.functions";
 
 
 export const leadSchema = z.object({
-  kind: z.enum(["auditoria", "charla", "videollamada"]),
+  kind: z.enum(["auditoria", "charla"]),
   centro: z.string().trim().min(2, "Indica el nombre del centro").max(120),
   contacto: z.string().trim().min(2, "Indica el nombre de contacto").max(120),
   cargo: z.string().trim().max(60).optional(),
@@ -19,7 +19,6 @@ export const leadSchema = z.object({
   num_alumnos: z.string().trim().max(20).optional(),
   publico: z.string().trim().max(60).optional(),
   mensaje: z.string().trim().max(1000).optional(),
-  fecha: z.string().trim().max(40).optional(),
   riesgo: z.number().int().min(0).max(100).optional(),
 
   respuestas: z.record(z.string(), z.number()).optional(),
@@ -30,9 +29,6 @@ export type LeadInput = z.infer<typeof leadSchema>;
 
 export async function submitLead(input: LeadInput) {
   const data = leadSchema.parse(input);
-  const mensaje = [data.fecha ? `Fecha solicitada: ${data.fecha}` : null, data.mensaje]
-    .filter(Boolean)
-    .join("\n");
   const { error } = await supabase.from("b2b_leads").insert({
     kind: data.kind,
     centro: data.centro,
@@ -42,7 +38,7 @@ export async function submitLead(input: LeadInput) {
     email: data.email,
     num_alumnos: data.num_alumnos ?? null,
     publico: data.publico ?? null,
-    mensaje: mensaje || null,
+    mensaje: data.mensaje ?? null,
     riesgo: data.riesgo ?? null,
     respuestas: data.respuestas ?? null,
     consentimiento: data.consentimiento,
@@ -62,7 +58,6 @@ export async function submitLead(input: LeadInput) {
         ...(data.num_alumnos ? { num_alumnos: data.num_alumnos } : {}),
         ...(data.publico ? { publico: data.publico } : {}),
         ...(data.mensaje ? { mensaje: data.mensaje } : {}),
-        ...(data.fecha ? { fecha: data.fecha } : {}),
         ...(data.riesgo !== undefined ? { riesgo: data.riesgo } : {}),
       },
     });

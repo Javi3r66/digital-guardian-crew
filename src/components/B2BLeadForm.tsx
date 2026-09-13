@@ -39,7 +39,6 @@ export function B2BLeadForm({
     email: "",
     num_alumnos: ALUMNOS[0]!,
     publico: publicoOptions?.[0] ?? "",
-    fecha: "",
     mensaje: "",
   });
 
@@ -64,7 +63,6 @@ export function B2BLeadForm({
       num_alumnos: compact ? undefined : values["num_alumnos"],
       publico: values["publico"] || undefined,
       mensaje: values["mensaje"] || undefined,
-      fecha: values["fecha"] || undefined,
       riesgo,
 
       respuestas,
@@ -188,18 +186,6 @@ export function B2BLeadForm({
             required
           />
         </div>
-        {kind === "videollamada" && (
-          <div className="space-y-1.5 sm:col-span-2">
-            <Label htmlFor={`${kind}-fecha`}>Fecha y hora preferida para la videollamada</Label>
-            <Input
-              id={`${kind}-fecha`}
-              type="datetime-local"
-              value={values["fecha"]}
-              onChange={(e) => set("fecha", e.target.value)}
-              required
-            />
-          </div>
-        )}
         {(compact || publicoOptions) && (
 
           <div className="space-y-1.5 sm:col-span-2">
