@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Mail, Clock, Bot, CalendarClock } from "lucide-react";
+import { Mail, Clock, Bot } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
 import { DeviceToolkit } from "@/components/DeviceToolkit";
-import { B2BLeadForm } from "@/components/B2BLeadForm";
 
 
 export const Route = createFileRoute("/contacto")({
@@ -63,23 +62,7 @@ function Contacto() {
         <Clock className="size-3.5" /> Disponible 24/7 · Respuesta humana en menos de 24 horas
       </p>
 
-      <section className="mt-10 rounded-2xl border border-border bg-card p-6">
-        <div className="flex items-center gap-2">
-          <CalendarClock className="size-5 text-primary" />
-          <h2 className="text-lg font-semibold text-foreground">
-            Agendar videollamada de diagnóstico gratuita
-          </h2>
-        </div>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Elige día y hora: recibimos el aviso al instante y te confirmamos la cita por correo con
-          el enlace de la videollamada.
-        </p>
-        <div className="mt-5">
-          <B2BLeadForm kind="videollamada" submitLabel="Solicitar cita" compact />
-        </div>
-      </section>
-
-      <div className="mt-8">
+      <div className="mt-10">
         <DeviceToolkit />
       </div>
 

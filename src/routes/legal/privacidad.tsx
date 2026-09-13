@@ -49,7 +49,7 @@ function Privacidad() {
       </ul>
       <h2>3. Finalidades</h2>
       <p>
-        Atender solicitudes de diagnóstico, charlas y videollamadas; y remitir comunicaciones
+        Atender solicitudes de diagnóstico institucional y charlas; y remitir comunicaciones
         relacionadas, siempre con consentimiento.
       </p>
       <h2>4. Base jurídica</h2>

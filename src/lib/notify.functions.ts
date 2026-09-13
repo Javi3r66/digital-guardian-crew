@@ -11,7 +11,6 @@ const payloadSchema = z.object({
   num_alumnos: z.string().max(20).optional(),
   publico: z.string().max(60).optional(),
   mensaje: z.string().max(1000).optional(),
-  fecha: z.string().max(40).optional(),
   riesgo: z.number().int().min(0).max(100).optional(),
 });
 

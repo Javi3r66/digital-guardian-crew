@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, MessageCircle } from "lucide-react";
+import { ClipboardCheck, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { haptic } from "@/lib/native";
 import {
@@ -70,10 +70,10 @@ export function SiteHeader() {
             </Link>
           ))}
           <Link
-            to="/agentes"
+            to="/test"
             className="ml-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:opacity-90 active:scale-95"
           >
-            Hablar con un agente
+            Test gratuito
           </Link>
         </nav>
 
@@ -114,11 +114,11 @@ export function SiteHeader() {
           <div className="px-4 pb-4 pb-safe">
             <DrawerClose asChild>
               <Link
-                to="/agentes"
+                to="/test"
                 onClick={() => void haptic("medium")}
                 className="flex items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-3.5 text-sm font-semibold text-primary-foreground transition-transform active:scale-95"
               >
-                <MessageCircle className="size-4" /> Hablar con un agente
+                <ClipboardCheck className="size-4" /> Test de autodiagnóstico gratuito
               </Link>
             </DrawerClose>
           </div>
