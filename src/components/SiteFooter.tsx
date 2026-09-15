@@ -23,6 +23,7 @@ export function SiteFooter() {
               Solución integral contra el ciberacoso. Respuesta en menos de 24 horas.
             </p>
           </div>
+
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-foreground">
               Servicios
@@ -30,51 +31,52 @@ export function SiteFooter() {
             <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
               {["Familias", "Colegios", "Empresas", "Administraciones"].map((s) => (
                 <li key={s}>
-                  <Link to="/servicios" className="hover:text-primary">
-                    {s}
-                  </Link>
+                  <span className="hover:text-foreground transition-colors cursor-pointer">{s}</span>
                 </li>
               ))}
             </ul>
           </div>
+
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-foreground">
               Recursos
             </p>
             <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
               <li>
-                <Link to="/agentes" className="hover:text-primary">
+                <Link to="/agentes" className="hover:text-foreground transition-colors">
                   Agentes 24/7
                 </Link>
               </li>
               <li>
-                <Link to="/test" className="hover:text-primary">
+                <Link to="/test" className="hover:text-foreground transition-colors">
                   Test Gratuito
                 </Link>
               </li>
               <li>
-                <Link to="/sobre-nosotros" className="hover:text-primary">
+                <Link to="/sobre-nosotros" className="hover:text-foreground transition-colors">
                   Sobre Nosotros
                 </Link>
               </li>
             </ul>
           </div>
+
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-foreground">
               Contacto
             </p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="mt-3 flex items-center gap-2 text-xs text-muted-foreground hover:text-primary"
+              className="mt-3 flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
               <Mail className="size-3.5" /> {CONTACT_EMAIL}
             </a>
             <p className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
               <Clock className="size-3.5" /> Disponible 24/7
             </p>
+
             <div className="mt-4 flex items-center gap-3">
               <a
-                href="https://https://www.instagram.com/redvioletaciber/?hl=es"
+                href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -92,7 +94,7 @@ export function SiteFooter() {
                 <Linkedin className="size-4" />
               </a>
               <a
-                href="https://facebook.com/https://www.facebook.com/groups/2168387444022009/"
+                href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -104,37 +106,39 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 rounded-xl border border-border bg-background p-4">
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-foreground">
+        <div className="mt-10 rounded-xl border border-border bg-card p-4 text-xs text-muted-foreground shadow-xs">
+          <p className="font-semibold text-foreground uppercase tracking-wider text-[11px] mb-2">
             Ante una emergencia, llama
           </p>
-          <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+          <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs">
             {EMERGENCY_RESOURCES.map((r) => (
-              <span key={r.value}>
-                {r.label} <strong className="text-foreground">{r.value}</strong>
+              <span key={r.label}>
+                {r.label}{" "}
+                <a href={`tel:${r.phone.replace(/\s/g, "")}`} className="font-bold text-foreground hover:underline">
+                  {r.phone}
+                </a>
               </span>
             ))}
           </div>
         </div>
 
-        <div className="mt-6 space-y-3">
+        <div className="mt-6">
           <EmergencyWarning />
+        </div>
+
+        <div className="mt-6">
           <LiabilityDisclaimer />
         </div>
 
-        <div className="mt-8 flex flex-col gap-4 border-t border-border pt-6">
-          <nav className="flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-muted-foreground">
-            {LEGAL_LINKS.map((l) => (
-              <Link key={l.to} to={l.to} className="hover:text-primary">
-                {l.label}
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
+          <p>© {new Date().getFullYear()} Red Violeta Ciberprevención. Todos los derechos reservados.</p>
+          <div className="flex flex-wrap gap-4">
+            {LEGAL_LINKS.map((link) => (
+              <Link key={link.href} to={link.href} className="hover:text-foreground transition-colors">
+                {link.title}
               </Link>
             ))}
-          </nav>
-          <p className="text-[11px] text-muted-foreground">
-            © {new Date().getFullYear()} Red Violeta Ciberprevención. Los agentes de esta web son
-            sistemas de inteligencia artificial (Reglamento UE 2024/1689) y no sustituyen a
-            profesionales colegiados.
-          </p>
+          </div>
         </div>
       </div>
     </footer>
