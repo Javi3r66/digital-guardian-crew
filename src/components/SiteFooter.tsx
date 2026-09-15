@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Clock } from "lucide-react";
+import { Mail, Clock, Instagram, Linkedin, Facebook } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
 import { LEGAL_LINKS, CONTACT_EMAIL } from "@/lib/legal";
 import { EmergencyWarning, LiabilityDisclaimer } from "@/components/LegalNotices";
@@ -72,6 +72,35 @@ export function SiteFooter() {
             <p className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
               <Clock className="size-3.5" /> Disponible 24/7
             </p>
+            <div className="mt-4 flex items-center gap-3">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="flex size-8 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+              >
+                <Instagram className="size-4" />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="flex size-8 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+              >
+                <Linkedin className="size-4" />
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="flex size-8 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+              >
+                <Facebook className="size-4" />
+              </a>
+            </div>
           </div>
         </div>
 
