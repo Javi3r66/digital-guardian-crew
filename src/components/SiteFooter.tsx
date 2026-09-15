@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Clock, Instagram, Linkedin, Facebook } from "lucide-react";
+import { Mail, Clock, Instagram, Linkedin, Facebook } from "lucide-react";import { Mail, Clock, Instagram, Linkedin, Facebook } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
 import { LEGAL_LINKS, CONTACT_EMAIL } from "@/lib/legal";
 import { EmergencyWarning, LiabilityDisclaimer } from "@/components/LegalNotices";
@@ -74,7 +74,7 @@ export function SiteFooter() {
             </p>
             <div className="mt-4 flex items-center gap-3">
               <a
-                href="https://instagram.com"
+                href="https://https://www.instagram.com/redvioletaciber/?hl=es"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -92,7 +92,7 @@ export function SiteFooter() {
                 <Linkedin className="size-4" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://facebook.com/https://www.facebook.com/groups/2168387444022009/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
