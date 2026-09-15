@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Clock, Instagram, Linkedin, Facebook } from "lucide-react";import { Mail, Clock, Instagram, Linkedin, Facebook } from "lucide-react";
+import { Mail, Clock, Instagram, Linkedin, Facebook } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
 import { LEGAL_LINKS, CONTACT_EMAIL } from "@/lib/legal";
 import { EmergencyWarning, LiabilityDisclaimer } from "@/components/LegalNotices";
