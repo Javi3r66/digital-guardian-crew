@@ -17,6 +17,7 @@ const NAV = [
   { to: "/sobre-nosotros", label: "Sobre Nosotros" },
   { to: "/servicios", label: "Servicios" },
   { to: "/colegios", label: "Colegios" },
+  { to: "/#talleres-presupuestos", label: "Talleres y Presupuestos" },
   { to: "/agentes", label: "Agentes 24/7" },
   { to: "/acceso", label: "Acceso alumnado" },
   { to: "/test", label: "Test Gratuito" },

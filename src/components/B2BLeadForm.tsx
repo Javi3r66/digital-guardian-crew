@@ -19,6 +19,7 @@ type Props = {
   submitLabel?: string;
   compact?: boolean;
   publicoOptions?: string[];
+  publicoLabel?: string;
   onDone?: () => void;
 };
 
@@ -29,6 +30,7 @@ export function B2BLeadForm({
   submitLabel = "Enviar solicitud",
   compact = false,
   publicoOptions,
+  publicoLabel = "Destinatarios de la formación",
   onDone,
 }: Props) {
   const [values, setValues] = useState<Record<string, string>>({
@@ -161,7 +163,7 @@ export function B2BLeadForm({
         )}
         {publicoOptions && (
           <div className="space-y-1.5">
-            <Label htmlFor={`${kind}-publico`}>Destinatarios de la formación</Label>
+            <Label htmlFor={`${kind}-publico`}>{publicoLabel}</Label>
             <select
               id={`${kind}-publico`}
               value={values["publico"]}

@@ -15,6 +15,7 @@ import {
 import heroImg from "@/assets/hero-familia.jpg";
 import logo from "@/assets/logo-red-violeta.png";
 import { ImpactStats } from "@/components/ImpactStats";
+import { WorkshopsSection } from "@/components/WorkshopsSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -223,6 +224,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <WorkshopsSection />
     </div>
   );
 }
