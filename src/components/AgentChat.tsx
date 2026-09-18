@@ -16,13 +16,13 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
 
-  const { messages, sendMessage, status, error } = useChat({
+ const { messages, sendMessage, status, error } = useChat({
     id: agentId,
     transport: new DefaultChatTransport({
       api: "https://gsjgylomutnburmrzmmd.supabase.co/functions/v1/chat",
-      body: { agentId },
+      body: { agent: agentId },
     }),
-  });
+  }); 
 
   const busy = status === "submitted" || status === "streaming";
 
