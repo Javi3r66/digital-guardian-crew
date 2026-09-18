@@ -19,7 +19,7 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
   const { messages, sendMessage, status, error } = useChat({
     id: agentId,
     transport: new DefaultChatTransport({
-      api: "/api/chat",
+      api: "https://gsjgylomutnburmrzmmd.supabase.co/functions/v1/chat",
       body: { agentId },
     }),
   });
