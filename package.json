@@ -79,8 +79,8 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@lovable.dev/vite-tanstack-config": "^0.0.1",
     "@tanstack/router-plugin": "^1.114.1",
+    "@tanstack/start-plugin": "^1.114.1",
     "@types/node": "^22.10.1",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
