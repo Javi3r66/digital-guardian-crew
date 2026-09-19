@@ -1,50 +1,25 @@
-import { createClient } from '@supabase/supabase-js'
-import type { Database } from './types'
+import { createClient } from '@supabase/supabase-js';
+import type { Database } from './types';
 
-function isNewSupabaseApiKey(value: string): boolean {
-  return value.startsWith('sb_publishable_') || value.startsWith('sb_secret_')
-}
+const supabaseUrl = 
+  (typeof process !== 'undefined' && process.env?.VITE_SUPABASE_URL) ||
+  (typeof process !== 'undefined' && process.env?.SUPABASE_URL) ||
+  import.meta.env?.VITE_SUPABASE_URL ||
+  'https://gsjgylomutnburmzrmmd.supabase.co';
 
-function createSupabaseFetch(supabaseKey: string): typeof fetch {
-  return (input, init) => {
-    const headers = new Headers(
-      typeof Request !== 'undefined' && input instanceof Request ? input.headers : undefined
-    )
+const supabaseAnonKey = 
+  (typeof process !== 'undefined' && process.env?.VITE_SUPABASE_ANON_KEY) ||
+  (typeof process !== 'undefined' && process.env?.SUPABASE_ANON_KEY) ||
+  import.meta.env?.VITE_SUPABASE_ANON_KEY ||
+  'sb_publishable_BE3OnBe-y_k_QNuYy2eDsw_9NH1KuPE';
 
-    if (init?.headers) {
-      new Headers(init.headers).forEach((value, key) => headers.set(key, value))
-    }
+// Import the supabase client like this:
+// import { supabase } from "@/integrations/supabase/client";
 
-    if (isNewSupabaseApiKey(supabaseKey) && headers.get('Authorization') === `Bearer ${supabaseKey}`) {
-      headers.delete('Authorization')
-    }
-
-    headers.set('apikey', supabaseKey)
-    return fetch(input, { ...init, headers })
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+    persistSession: true,
+    autoRefreshToken: true,
   }
-}
-
-function createSupabaseAdminClient() {
-  const SUPABASE_URL = 
-    process.env.SUPABASE_URL || 
-    process.env.VITE_SUPABASE_URL || 
-    'https://gsjgylomutnburmzrmmd.supabase.co'
-
-  const SUPABASE_SERVICE_ROLE_KEY = 
-    process.env.SUPABASE_SERVICE_ROLE_KEY || 
-    process.env.VITE_SUPABASE_SERVICE_ROLE_KEY || 
-    'sb_publishable_BE3OnBe-y_k_QNuYy2eDsw_9NH1KuPE'
-
-  return createClient<Database>(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
-    global: {
-      fetch: createSupabaseFetch(SUPABASE_SERVICE_ROLE_KEY),
-    },
-    auth: {
-      storage: undefined,
-      persistSession: false,
-      autoRefreshToken: false,
-    },
-  })
-}
-
-export const supabaseAdmin = createSupabaseAdminClient()
+});
