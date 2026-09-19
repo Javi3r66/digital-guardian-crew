@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
-import { createLovableAiGatewayProvider } from "@/lib/ai-gateway.server";
+import { createOpenAI } from "@ai-sdk/openai";
 import { buildSystemPrompt } from "@/lib/agent-prompts.server";
 import type { AgentId } from "@/lib/agents";
 
@@ -21,16 +21,21 @@ export const Route = createFileRoute("/api/chat")({
           return new Response("Agente no válido", { status: 400 });
         }
 
-        const key = process.env["LOVABLE_API_KEY"];
-        if (!key) return new Response("Falta LOVABLE_API_KEY", { status: 500 });
+        const key = process.env["GROQ_API_KEY"];
+        if (!key) return new Response("Falta GROQ_API_KEY", { status: 500 });
 
         try {
-          const gateway = createLovableAiGatewayProvider(key);
+          const groq = createOpenAI({
+            baseURL: "https://api.groq.com/openai/v1",
+            apiKey: key,
+          });
+
           const result = streamText({
-            model: gateway("google/gemini-3.6-flash"),
+            model: groq("llama-3.3-70b-versatile"),
             system: buildSystemPrompt(agentId),
             messages: await convertToModelMessages(messages as UIMessage[]),
           });
+
           return result.toUIMessageStreamResponse({
             originalMessages: messages as UIMessage[],
           });
