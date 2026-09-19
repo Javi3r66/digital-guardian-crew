@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { convertToModelMessages, streamText, type UIMessage } from "ai";
+import { convertToCoreMessages, streamText, type UIMessage } from "ai";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import { buildSystemPrompt } from "@/lib/agent-prompts.server";
 import type { AgentId } from "@/lib/agents";
@@ -36,12 +36,10 @@ export const Route = createFileRoute("/api/chat")({
           const result = streamText({
             model: groq("llama-3.3-70b-versatile"),
             system: buildSystemPrompt(agentId),
-            messages: await convertToModelMessages(messages as UIMessage[]),
+            messages: convertToCoreMessages(messages as UIMessage[]),
           });
 
-          return result.toUIMessageStreamResponse({
-            originalMessages: messages as UIMessage[],
-          });
+          return result.toDataStreamResponse();
         } catch (error) {
           console.error("chat error", error);
           return new Response("Error al contactar con el servicio de IA", { status: 502 });
