@@ -1,8 +1,8 @@
 {
-  "cleanUrls": true,
+  "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/((?!assets/|.*\\..*).*)",
+      "source": "/((?!assets/|src/|node_modules/|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
