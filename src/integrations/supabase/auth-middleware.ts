@@ -6,7 +6,8 @@ import type { Database } from './types'
 
 
 
-function isNewSupabaseApiKey(value: string): boolean {
+function isNewSupabaseApiKey(value?: string): boolean {
+  if (!value) return false;
   return value.startsWith('sb_publishable_') || value.startsWith('sb_secret_');
 }
 
@@ -34,18 +35,8 @@ export const requireSupabaseAuth = createMiddleware({ type: 'function' }).server
   async ({ next }) => {
     
     const SUPABASE_URL = process.env['SUPABASE_URL'];
-    const SUPABASE_PUBLISHABLE_KEY = process.env['SUPABASE_PUBLISHABLE_KEY'];
-
-    if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
-      const missing = [
-        ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
-        ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
-      ];
-      const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
-      console.error(`[Supabase] ${message}`);
-      throw new Error(message);
-    }
-    
+const SUPABASE_URL = process.env['VITE_SUPABASE_URL'] || process.env['SUPABASE_URL'] || 'https://gsjgylomutnburmzrmmd.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = process.env['VITE_SUPABASE_ANON_KEY'] || process.env['SUPABASE_ANON_KEY'] || process.env['SUPABASE_PUBLISHABLE_KEY'] || 'sb_publishable_BE3OnBe-y_k_QNuYy2eDsw_9NH1KuPE';
     const request = getRequest();
 
     if (!request?.headers) {
