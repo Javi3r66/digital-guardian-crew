@@ -1,5 +1,5 @@
 import { supabase } from './client';
 
-export async function attachAuthHeader(request?: unknown) {
+export async function attachSupabaseAuth(request?: unknown) {
   return supabase;
 }
