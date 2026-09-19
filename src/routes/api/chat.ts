@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { convertToCoreMessages, streamText } from "ai";
 import { buildSystemPrompt } from "@/lib/agent-prompts.server";
 import type { AgentId } from "@/lib/agents";
 
@@ -67,12 +68,12 @@ export const Route = createFileRoute("/api/chat")({
                     const json = JSON.parse(line.replace("data: ", ""));
                     const content = json.choices?.[0]?.delta?.content;
                     if (content) {
-                      // Formato de Vercel AI SDK Data Stream protocol
+                      // Formato exacto de mensaje UI para la librería 'ai' (0:"texto")
                       const formattedChunk = `0:${JSON.stringify(content)}\n`;
                       controller.enqueue(encoder.encode(formattedChunk));
                     }
                   } catch (e) {
-                    // Ignora chunks incompletos de red
+                    // Ignora paquetes fragmentados
                   }
                 }
               }
@@ -82,9 +83,10 @@ export const Route = createFileRoute("/api/chat")({
           const customStream = groqResponse.body?.pipeThrough(transformStream);
 
           return new Response(customStream, {
+            status: 200,
             headers: {
               "Content-Type": "text/plain; charset=utf-8",
-              "x-vercel-ai-ui-message-stream": "v1",
+              "x-vercel-ai-data-stream": "v1",
             },
           });
         } catch (error) {
