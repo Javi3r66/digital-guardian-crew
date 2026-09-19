@@ -7,4 +7,14 @@ export default defineConfig({
     TanStackRouterVite(),
     tsconfigPaths(),
   ],
+  build: {
+    rollupOptions: {
+      external: [
+        'node:async_hooks',
+      ],
+    },
+  },
+  ssr: {
+    noExternal: ['@tanstack/start-storage-context'],
+  },
 })
