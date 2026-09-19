@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
-import path from 'path'
+import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
   plugins: [
@@ -10,14 +10,14 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      'node:async_hooks': 'unenv/runtime/mock/empty',
-      'async_hooks': 'unenv/runtime/mock/empty',
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'node:async_hooks': fileURLToPath(new URL('./src/empty-module.js', import.meta.url)),
+      'async_hooks': fileURLToPath(new URL('./src/empty-module.js', import.meta.url)),
     },
   },
   build: {
-    rollupOptions: {
-      external: ['node:async_hooks', 'async_hooks'],
+    commonjsOptions: {
+      ignoreTryAll: true,
     },
   },
 })
