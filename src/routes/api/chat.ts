@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
-import { createOpenAI } from "@ai-sdk/openai";
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import { buildSystemPrompt } from "@/lib/agent-prompts.server";
 import type { AgentId } from "@/lib/agents";
 
@@ -25,9 +25,12 @@ export const Route = createFileRoute("/api/chat")({
         if (!key) return new Response("Falta GROQ_API_KEY", { status: 500 });
 
         try {
-          const groq = createOpenAI({
+          const groq = createOpenAICompatible({
+            name: "groq",
             baseURL: "https://api.groq.com/openai/v1",
-            apiKey: key,
+            headers: {
+              Authorization: `Bearer ${key}`,
+            },
           });
 
           const result = streamText({
