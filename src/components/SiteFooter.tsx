@@ -29,32 +29,24 @@ export function SiteFooter() {
               Servicios
             </p>
             <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
-              {["Familias", "Colegios", "Empresas", "Administraciones"].map((s) => (
-                <li key={s}>
-                  <span className="hover:text-foreground transition-colors cursor-pointer">{s}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-foreground">
-              Recursos
-            </p>
-            <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
               <li>
-                <Link to="/agentes" className="hover:text-foreground transition-colors">
-                  Agentes 24/7
+                <Link to="/#servicios" className="hover:text-foreground transition-colors">
+                  Pruebas Periciales
                 </Link>
               </li>
               <li>
-                <Link to="/test" className="hover:text-foreground transition-colors">
-                  Test Gratuito
+                <Link to="/#servicios" className="hover:text-foreground transition-colors">
+                  Borrado Digital
                 </Link>
               </li>
               <li>
-                <Link to="/sobre-nosotros" className="hover:text-foreground transition-colors">
-                  Sobre Nosotros
+                <Link to="/#servicios" className="hover:text-foreground transition-colors">
+                  Defensa Legal
+                </Link>
+              </li>
+              <li>
+                <Link to="/#servicios" className="hover:text-foreground transition-colors">
+                  Apoyo Psicológico
                 </Link>
               </li>
             </ul>
@@ -64,61 +56,64 @@ export function SiteFooter() {
             <p className="text-xs font-semibold uppercase tracking-wide text-foreground">
               Contacto
             </p>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="mt-3 flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Mail className="size-3.5" /> {CONTACT_EMAIL}
-            </a>
-            <p className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
-              <Clock className="size-3.5" /> Disponible 24/7
-            </p>
+            <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
+              <li className="flex items-center gap-2">
+                <Mail className="h-3.5 w-3.5 text-primary shrink-0" />
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-foreground transition-colors">
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Clock className="h-3.5 w-3.5 text-primary shrink-0" />
+                <span>24/7 Atendemos emergencias</span>
+              </li>
+            </ul>
 
-            <div className="mt-4 flex items-center gap-3">
+            <div className="mt-4 flex items-center gap-3 text-muted-foreground">
               <a
                 href="https://instagram.com"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
+                className="hover:text-foreground transition-colors"
                 aria-label="Instagram"
-                className="flex size-8 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
               >
-                <Instagram className="size-4" />
+                <Instagram className="h-4 w-4" />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
+                className="hover:text-foreground transition-colors"
                 aria-label="LinkedIn"
-                className="flex size-8 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
               >
-                <Linkedin className="size-4" />
+                <Linkedin className="h-4 w-4" />
               </a>
               <a
                 href="https://facebook.com"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
+                className="hover:text-foreground transition-colors"
                 aria-label="Facebook"
-                className="flex size-8 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
               >
-                <Facebook className="size-4" />
+                <Facebook className="h-4 w-4" />
               </a>
             </div>
           </div>
-        </div>
 
-        <div className="mt-10 rounded-xl border border-border bg-card p-4 text-xs text-muted-foreground shadow-xs">
-          <p className="font-semibold text-foreground uppercase tracking-wider text-[11px] mb-2">
-            Ante una emergencia, llama
-          </p>
-          <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs">
-            {EMERGENCY_RESOURCES.map((r) => (
-              <span key={r.label}>
-                {r.label}{" "}
-                <a href={`tel:${r.phone.replace(/\s/g, "")}`} className="font-bold text-foreground hover:underline">
-                  {r.phone}
-                </a>
-              </span>
-            ))}
+          <div>
+            <p className="font-semibold text-foreground uppercase tracking-wider text-[11px] mb-2">
+              Ante una emergencia, llama
+            </p>
+            <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs">
+              {EMERGENCY_RESOURCES.map((r) => (
+                <span key={r.label}>
+                  {r.label}{" "}
+                  <a href={`tel:${r.phone?.replace(/\s/g, "") ?? ''}`} className="font-bold text-foreground hover:underline">
+                    {r.phone}
+                  </a>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -135,7 +130,7 @@ export function SiteFooter() {
           <div className="flex flex-wrap gap-4">
             {LEGAL_LINKS.map((link) => (
               <Link key={link.href} to={link.href} className="hover:text-foreground transition-colors">
-                {link.title}
+                {link.label}
               </Link>
             ))}
           </div>
