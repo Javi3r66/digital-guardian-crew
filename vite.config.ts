@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
+import path from 'path'
 
 export default defineConfig({
   plugins: [
@@ -9,7 +10,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      // Evita que el cliente intente cargar módulos nativos de Node.js
+      '@': path.resolve(__dirname, './src'),
       'node:async_hooks': 'unenv/runtime/mock/empty',
       'async_hooks': 'unenv/runtime/mock/empty',
     },
