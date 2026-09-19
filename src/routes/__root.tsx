@@ -1,34 +1,20 @@
-import { createRootRoute, HeadContent, Scripts, Outlet } from '@tanstack/react-router'
-import appCss from '../styles.css?url'
+import '../styles.css'
+import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { SiteHeader } from '../components/SiteHeader'
 import { SiteFooter } from '../components/SiteFooter'
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Red Violeta Ciberprevención' },
-    ],
-    links: [
-      { rel: 'stylesheet', href: appCss },
-    ],
-  }),
   component: RootComponent,
 })
 
 function RootComponent() {
   return (
-    <html lang="es">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <SiteHeader />
+    <div className="min-h-screen flex flex-col">
+      <SiteHeader />
+      <main className="flex-1">
         <Outlet />
-        <SiteFooter />
-        <Scripts />
-      </body>
-    </html>
+      </main>
+      <SiteFooter />
+    </div>
   )
 }
