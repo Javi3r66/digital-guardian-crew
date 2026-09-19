@@ -1,16 +1,12 @@
 import { supabase } from './client';
 
-export async function attachAuthHeader(request?: Request) {
-  if (!request?.headers) {
+export async function attachAuthHeader(request?: any) {
+  if (!request || !request.headers) {
     return supabase;
   }
 
-  const authHeader = request.headers.get('authorization') || '';
+  const authHeader = typeof request.headers.get === 'function' ? request.headers.get('authorization') || '' : '';
   const token = authHeader.startsWith('Bearer ') ? authHeader.replace('Bearer ', '') : '';
-
-  if (!token) {
-    return supabase;
-  }
 
   return supabase;
 }
