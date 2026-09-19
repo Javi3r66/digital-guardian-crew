@@ -67,12 +67,12 @@ export const Route = createFileRoute("/api/chat")({
                     const json = JSON.parse(line.replace("data: ", ""));
                     const content = json.choices?.[0]?.delta?.content;
                     if (content) {
-                      // Formato de data stream de Vercel AI SDK (0:"texto")
+                      // Formato de Vercel AI SDK Data Stream protocol
                       const formattedChunk = `0:${JSON.stringify(content)}\n`;
                       controller.enqueue(encoder.encode(formattedChunk));
                     }
                   } catch (e) {
-                    // Ignora chunks incompletos
+                    // Ignora chunks incompletos de red
                   }
                 }
               }
