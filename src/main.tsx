@@ -1,21 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from '@tanstack/react-router'
-import * as RouterModule from './router'
-
-// Detecta automáticamente si la exportación es default o nombrada (createRouter, getRouter, etc.)
-const routerInstance = 
-  RouterModule.default || 
-  RouterModule.router || 
-  (typeof RouterModule.createRouter === 'function' ? RouterModule.createRouter() : null) ||
-  (typeof RouterModule.getRouter === 'function' ? RouterModule.getRouter() : null)
+import { createRouter } from './router'
 
 const rootElement = document.getElementById('root')!
-if (!rootElement.innerHTML && routerInstance) {
-  const root = ReactDOM.createRoot(rootElement)
+const root = ReactDOM.createRoot(rootElement)
+
+try {
+  const router = createRouter()
   root.render(
     <React.StrictMode>
-      <RouterProvider router={routerInstance} />
+      <RouterProvider router={router} />
     </React.StrictMode>
+  )
+} catch (err) {
+  console.error('Error al inicializar la aplicación:', err)
+  root.render(
+    <div style={{ padding: '20px', color: 'red', fontFamily: 'sans-serif' }}>
+      <h2>Error al cargar la aplicación</h2>
+      <pre>{String(err)}</pre>
+    </div>
   )
 }
