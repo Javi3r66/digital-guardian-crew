@@ -4,10 +4,10 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev",
-    "build": "vinxi build",
-    "start": "vinxi start",
-    "preview": "vinxi start",
+    "dev": "vite dev",
+    "build": "vite build",
+    "start": "vite preview",
+    "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
@@ -72,12 +72,12 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2",
-    "vinxi": "^0.5.3",
     "zod": "^3.24.1"
   },
   "devDependencies": {
     "@lovable.dev/vite-tanstack-config": "^0.0.1",
     "@tanstack/router-plugin": "^1.114.1",
+    "@tanstack/start-plugin": "^1.114.1",
     "@types/node": "^22.10.1",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
