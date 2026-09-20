@@ -5,11 +5,19 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: [/^@capacitor\/.*/],
+      external: [
+        '@capacitor/core',
+        '@capacitor/haptics',
+        '@capacitor/preferences',
+        '@capacitor/camera',
+        '@capacitor/geolocation',
+        '@capacitor/push-notifications',
+        '@capacitor/status-bar',
+        '@capacitor/keyboard',
+      ],
     },
   },
   ssr: {
-    // Evita que el paquete SSR de TanStack Start intente procesar o empaquetar Capacitor
     external: [
       '@capacitor/core',
       '@capacitor/haptics',
@@ -20,6 +28,5 @@ export default defineConfig({
       '@capacitor/status-bar',
       '@capacitor/keyboard',
     ],
-    noExternal: [],
   },
 });
