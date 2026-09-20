@@ -125,11 +125,6 @@ export const storage = {
 /* Cámara                                                             */
 /* ------------------------------------------------------------------ */
 
-/**
- * Captura una imagen (p. ej. una captura de pantalla como prueba).
- * Devuelve un data URL que permanece en el dispositivo: no se envía a ningún
- * servidor desde aquí.
- */
 export async function capturePhoto(): Promise<string | null> {
   if (!isBrowser()) return null;
   if (isNativePlatform()) {
@@ -143,7 +138,6 @@ export async function capturePhoto(): Promise<string | null> {
     });
     return photo.dataUrl ?? null;
   }
-  // Respaldo web: selector de archivo con cámara en móviles.
   return new Promise((resolve) => {
     const input = document.createElement("input");
     input.type = "file";
@@ -206,7 +200,6 @@ export async function getCurrentPosition(): Promise<Coords | null> {
 
 export type PushResult = { granted: boolean; reason?: string };
 
-/** Solo tiene efecto en iOS/Android; en web informa de que no está disponible. */
 export async function enablePushNotifications(): Promise<PushResult> {
   if (!isNativePlatform()) {
     return { granted: false, reason: "Las notificaciones push solo están disponibles en la app móvil." };
