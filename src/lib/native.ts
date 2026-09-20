@@ -1,6 +1,5 @@
 /**
- * Capa de acceso e integración Web / Nativa.
- * Configuración estable para despliegue continuo en Vercel.
+ * Capa de acceso e integración Web / Nativa sin dependencias estáticas de Capacitor en build.
  */
 
 export type NativePlatform = "ios" | "android" | "web";
@@ -23,7 +22,7 @@ export function getPlatform(): NativePlatform {
 }
 
 /* ------------------------------------------------------------------ */
-/* Vibración / Haptics (Respaldo Web Nativo)                          */
+/* Vibración / Haptics                                                */
 /* ------------------------------------------------------------------ */
 
 type HapticStrength = "light" | "medium" | "heavy" | "success" | "warning" | "error";
@@ -36,12 +35,12 @@ export async function haptic(strength: HapticStrength = "light"): Promise<void> 
       navigator.vibrate(ms);
     }
   } catch {
-    /* Mantiene la estabilidad de la interacción */
+    /* ignore */
   }
 }
 
 /* ------------------------------------------------------------------ */
-/* Almacenamiento Local (LocalStorage / Web Standard)                 */
+/* Almacenamiento Local                                               */
 /* ------------------------------------------------------------------ */
 
 export const storage = {
@@ -58,7 +57,7 @@ export const storage = {
     try {
       window.localStorage.setItem(key, value);
     } catch {
-      /* Mantiene la estabilidad si el modo privado está activo */
+      /* ignore */
     }
   },
   async remove(key: string): Promise<void> {
@@ -66,13 +65,13 @@ export const storage = {
     try {
       window.localStorage.removeItem(key);
     } catch {
-      /* noop */
+      /* ignore */
     }
   },
 };
 
 /* ------------------------------------------------------------------ */
-/* Captura de Fotos / Cámara (API Web Estándar)                       */
+/* Cámara                                                             */
 /* ------------------------------------------------------------------ */
 
 export async function capturePhoto(): Promise<string | null> {
@@ -95,7 +94,7 @@ export async function capturePhoto(): Promise<string | null> {
 }
 
 /* ------------------------------------------------------------------ */
-/* Geolocalización (Geolocation API Navegador)                        */
+/* Geolocalización                                                    */
 /* ------------------------------------------------------------------ */
 
 export type Coords = { latitude: number; longitude: number; accuracy: number };
@@ -117,19 +116,15 @@ export async function getCurrentPosition(): Promise<Coords | null> {
 }
 
 /* ------------------------------------------------------------------ */
-/* Notificaciones Push                                                */
+/* Notificaciones Push y Shell Nativo                                 */
 /* ------------------------------------------------------------------ */
 
 export type PushResult = { granted: boolean; reason?: string };
 
 export async function enablePushNotifications(): Promise<PushResult> {
-  return { granted: false, reason: "Entorno Web activo." };
+  return { granted: false, reason: "No disponible en web" };
 }
 
-/* ------------------------------------------------------------------ */
-/* Inicialización de Entorno                                          */
-/* ------------------------------------------------------------------ */
-
 export async function initNativeShell(): Promise<void> {
-  /* Entorno web listo */
+  /* Noop */
 }
