@@ -1,12 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      // Ignora la resolución en estático de librerías nativas de Capacitor en la Web
-      external: [/^@capacitor\/.*/]
-    }
-  }
-})
+      // Ignora los paquetes nativos de Capacitor durante la compilación Web en Vercel
+      external: [
+        /^@capacitor\/.*/,
+      ],
+    },
+  },
+});
