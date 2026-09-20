@@ -5,8 +5,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      // Permite que Vite complete el empaquetado web aunque falte alguna API nativa de móvil
-      external: [/^@capacitor\/(?!core).*/]
+      external: (id) => id.startsWith('@capacitor/')
     }
   }
 })
