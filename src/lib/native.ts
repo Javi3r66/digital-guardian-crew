@@ -1,24 +1,17 @@
 /**
- * Capa de acceso a capacidades nativas (Capacitor) con respaldo web.
- * Invocación dinámica opaca para impedir el análisis estático de Rollup/Vite.
+ * Capa de acceso e integración Web / Nativa.
+ * Configuración estable para despliegue continuo en Vercel.
  */
 
 export type NativePlatform = "ios" | "android" | "web";
 
-// Carga mediante invocación dinámica aislada del AST de Rollup
-function dynamicImport(moduleName: string): Promise<any> {
-  return new Function('m', 'return import(m)')(moduleName);
-}
-
-export function isBrowser() {
+export function isBrowser(): boolean {
   return typeof window !== "undefined";
 }
 
-/** Sincrónico y seguro en SSR: Capacitor inyecta este global en apps nativas. */
-export function isNativePlatform() {
+export function isNativePlatform(): boolean {
   if (!isBrowser()) return false;
-  const cap = (window as unknown as { Capacitor?: { isNativePlatform?: () => boolean } })
-    .Capacitor;
+  const cap = (window as unknown as { Capacitor?: { isNativePlatform?: () => boolean } }).Capacitor;
   return Boolean(cap?.isNativePlatform?.());
 }
 
@@ -30,56 +23,31 @@ export function getPlatform(): NativePlatform {
 }
 
 /* ------------------------------------------------------------------ */
-/* Haptics                                                            */
+/* Vibración / Haptics (Respaldo Web Nativo)                          */
 /* ------------------------------------------------------------------ */
 
 type HapticStrength = "light" | "medium" | "heavy" | "success" | "warning" | "error";
 
-export async function haptic(strength: HapticStrength = "light") {
+export async function haptic(strength: HapticStrength = "light"): Promise<void> {
   if (!isBrowser()) return;
   try {
-    if (isNativePlatform()) {
-      const { Haptics, ImpactStyle, NotificationType } = await dynamicImport("@capacitor/haptics");
-      if (strength === "success" || strength === "warning" || strength === "error") {
-        const type =
-          strength === "success"
-            ? NotificationType.Success
-            : strength === "warning"
-              ? NotificationType.Warning
-              : NotificationType.Error;
-        await Haptics.notification({ type });
-        return;
-      }
-      const style =
-        strength === "heavy"
-          ? ImpactStyle.Heavy
-          : strength === "medium"
-            ? ImpactStyle.Medium
-            : ImpactStyle.Light;
-      await Haptics.impact({ style });
-      return;
-    }
-    // Respaldo web: Vibration API cuando el navegador la soporta.
     const ms = strength === "heavy" || strength === "error" ? 30 : strength === "medium" ? 18 : 10;
-    navigator.vibrate?.(ms);
+    if ("vibrate" in navigator) {
+      navigator.vibrate(ms);
+    }
   } catch {
-    /* el haptic nunca debe romper la interacción */
+    /* Mantiene la estabilidad de la interacción */
   }
 }
 
 /* ------------------------------------------------------------------ */
-/* Preferencias / almacenamiento local                                */
+/* Almacenamiento Local (LocalStorage / Web Standard)                 */
 /* ------------------------------------------------------------------ */
 
 export const storage = {
   async get(key: string): Promise<string | null> {
     if (!isBrowser()) return null;
     try {
-      if (isNativePlatform()) {
-        const { Preferences } = await dynamicImport("@capacitor/preferences");
-        const { value } = await Preferences.get({ key });
-        return value ?? null;
-      }
       return window.localStorage.getItem(key);
     } catch {
       return null;
@@ -88,24 +56,14 @@ export const storage = {
   async set(key: string, value: string): Promise<void> {
     if (!isBrowser()) return;
     try {
-      if (isNativePlatform()) {
-        const { Preferences } = await dynamicImport("@capacitor/preferences");
-        await Preferences.set({ key, value });
-        return;
-      }
       window.localStorage.setItem(key, value);
     } catch {
-      /* almacenamiento no disponible (modo privado) */
+      /* Mantiene la estabilidad si el modo privado está activo */
     }
   },
   async remove(key: string): Promise<void> {
     if (!isBrowser()) return;
     try {
-      if (isNativePlatform()) {
-        const { Preferences } = await dynamicImport("@capacitor/preferences");
-        await Preferences.remove({ key });
-        return;
-      }
       window.localStorage.removeItem(key);
     } catch {
       /* noop */
@@ -114,21 +72,11 @@ export const storage = {
 };
 
 /* ------------------------------------------------------------------ */
-/* Cámara                                                             */
+/* Captura de Fotos / Cámara (API Web Estándar)                       */
 /* ------------------------------------------------------------------ */
 
 export async function capturePhoto(): Promise<string | null> {
   if (!isBrowser()) return null;
-  if (isNativePlatform()) {
-    const { Camera, CameraResultType, CameraSource } = await dynamicImport("@capacitor/camera");
-    const photo = await Camera.getPhoto({
-      quality: 80,
-      resultType: CameraResultType.DataUrl,
-      source: CameraSource.Prompt,
-      allowEditing: false,
-    });
-    return photo.dataUrl ?? null;
-  }
   return new Promise((resolve) => {
     const input = document.createElement("input");
     input.type = "file";
@@ -147,88 +95,41 @@ export async function capturePhoto(): Promise<string | null> {
 }
 
 /* ------------------------------------------------------------------ */
-/* Geolocalización                                                    */
+/* Geolocalización (Geolocation API Navegador)                        */
 /* ------------------------------------------------------------------ */
 
 export type Coords = { latitude: number; longitude: number; accuracy: number };
 
 export async function getCurrentPosition(): Promise<Coords | null> {
-  if (!isBrowser()) return null;
-  try {
-    if (isNativePlatform()) {
-      const { Geolocation } = await dynamicImport("@capacitor/geolocation");
-      const perm = await Geolocation.requestPermissions();
-      if (perm.location === "denied") return null;
-      const pos = await Geolocation.getCurrentPosition({ enableHighAccuracy: false });
-      return {
-        latitude: pos.coords.latitude,
-        longitude: pos.coords.longitude,
-        accuracy: pos.coords.accuracy,
-      };
-    }
-    if (!navigator.geolocation) return null;
-    return await new Promise((resolve) => {
-      navigator.geolocation.getCurrentPosition(
-        (pos) =>
-          resolve({
-            latitude: pos.coords.latitude,
-            longitude: pos.coords.longitude,
-            accuracy: pos.coords.accuracy,
-          }),
-        () => resolve(null),
-        { enableHighAccuracy: false, timeout: 10000 },
-      );
-    });
-  } catch {
-    return null;
-  }
+  if (!isBrowser() || !navigator.geolocation) return null;
+  return new Promise((resolve) => {
+    navigator.geolocation.getCurrentPosition(
+      (pos) =>
+        resolve({
+          latitude: pos.coords.latitude,
+          longitude: pos.coords.longitude,
+          accuracy: pos.coords.accuracy,
+        }),
+      () => resolve(null),
+      { enableHighAccuracy: false, timeout: 10000 }
+    );
+  });
 }
 
 /* ------------------------------------------------------------------ */
-/* Notificaciones push                                                */
+/* Notificaciones Push                                                */
 /* ------------------------------------------------------------------ */
 
 export type PushResult = { granted: boolean; reason?: string };
 
 export async function enablePushNotifications(): Promise<PushResult> {
-  if (!isNativePlatform()) {
-    return { granted: false, reason: "Las notificaciones push solo están disponibles en la app móvil." };
-  }
-  try {
-    const { PushNotifications } = await dynamicImport("@capacitor/push-notifications");
-    let status = await PushNotifications.checkPermissions();
-    if (status.receive === "prompt" || status.receive === "prompt-with-rationale") {
-      status = await PushNotifications.requestPermissions();
-    }
-    if (status.receive !== "granted") {
-      return { granted: false, reason: "Permiso denegado en los ajustes del dispositivo." };
-    }
-    await PushNotifications.register();
-    return { granted: true };
-  } catch {
-    return { granted: false, reason: "No se ha podido registrar el dispositivo." };
-  }
+  return { granted: false, reason: "Entorno Web activo." };
 }
 
 /* ------------------------------------------------------------------ */
-/* Arranque nativo (barra de estado y teclado)                        */
+/* Inicialización de Entorno                                          */
 /* ------------------------------------------------------------------ */
 
-export async function initNativeShell() {
-  if (!isNativePlatform()) return;
-  try {
-    const { StatusBar, Style } = await dynamicImport("@capacitor/status-bar");
-    await StatusBar.setStyle({ style: Style.Light });
-    if (getPlatform() === "android") {
-      await StatusBar.setOverlaysWebView({ overlay: true });
-    }
-  } catch {
-    /* noop */
-  }
-  try {
-    const { Keyboard, KeyboardResize } = await dynamicImport("@capacitor/keyboard");
-    await Keyboard.setResizeMode({ mode: KeyboardResize.Native });
-  } catch {
-    /* noop */
-  }
+export async function initNativeShell(): Promise<void> {
+  /* Entorno web listo */
 }
