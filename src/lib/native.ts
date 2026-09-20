@@ -1,8 +1,15 @@
 /**
  * Capa de acceso a capacidades nativas (Capacitor) con respaldo web.
+ * Carga dinámica aislada para evitar errores en compilaciones Web/Vercel.
  */
 
 export type NativePlatform = "ios" | "android" | "web";
+
+// Función de carga dinámica que evade el análisis estático de Vite/Rollup
+function safeNativeImport(pkg: string): Promise<any> {
+  const specifier = pkg;
+  return import(/* @vite-ignore */ specifier);
+}
 
 export function isBrowser() {
   return typeof window !== "undefined";
@@ -33,7 +40,7 @@ export async function haptic(strength: HapticStrength = "light") {
   if (!isBrowser()) return;
   try {
     if (isNativePlatform()) {
-      const { Haptics, ImpactStyle, NotificationType } = await import("@capacitor/haptics");
+      const { Haptics, ImpactStyle, NotificationType } = await safeNativeImport("@capacitor/haptics");
       if (strength === "success" || strength === "warning" || strength === "error") {
         const type =
           strength === "success"
@@ -70,7 +77,7 @@ export const storage = {
     if (!isBrowser()) return null;
     try {
       if (isNativePlatform()) {
-        const { Preferences } = await import("@capacitor/preferences");
+        const { Preferences } = await safeNativeImport("@capacitor/preferences");
         const { value } = await Preferences.get({ key });
         return value ?? null;
       }
@@ -83,7 +90,7 @@ export const storage = {
     if (!isBrowser()) return;
     try {
       if (isNativePlatform()) {
-        const { Preferences } = await import("@capacitor/preferences");
+        const { Preferences } = await safeNativeImport("@capacitor/preferences");
         await Preferences.set({ key, value });
         return;
       }
@@ -96,7 +103,7 @@ export const storage = {
     if (!isBrowser()) return;
     try {
       if (isNativePlatform()) {
-        const { Preferences } = await import("@capacitor/preferences");
+        const { Preferences } = await safeNativeImport("@capacitor/preferences");
         await Preferences.remove({ key });
         return;
       }
@@ -114,7 +121,7 @@ export const storage = {
 export async function capturePhoto(): Promise<string | null> {
   if (!isBrowser()) return null;
   if (isNativePlatform()) {
-    const { Camera, CameraResultType, CameraSource } = await import("@capacitor/camera");
+    const { Camera, CameraResultType, CameraSource } = await safeNativeImport("@capacitor/camera");
     const photo = await Camera.getPhoto({
       quality: 80,
       resultType: CameraResultType.DataUrl,
@@ -150,7 +157,7 @@ export async function getCurrentPosition(): Promise<Coords | null> {
   if (!isBrowser()) return null;
   try {
     if (isNativePlatform()) {
-      const { Geolocation } = await import("@capacitor/geolocation");
+      const { Geolocation } = await safeNativeImport("@capacitor/geolocation");
       const perm = await Geolocation.requestPermissions();
       if (perm.location === "denied") return null;
       const pos = await Geolocation.getCurrentPosition({ enableHighAccuracy: false });
@@ -189,7 +196,7 @@ export async function enablePushNotifications(): Promise<PushResult> {
     return { granted: false, reason: "Las notificaciones push solo están disponibles en la app móvil." };
   }
   try {
-    const { PushNotifications } = await import("@capacitor/push-notifications");
+    const { PushNotifications } = await safeNativeImport("@capacitor/push-notifications");
     let status = await PushNotifications.checkPermissions();
     if (status.receive === "prompt" || status.receive === "prompt-with-rationale") {
       status = await PushNotifications.requestPermissions();
@@ -211,7 +218,7 @@ export async function enablePushNotifications(): Promise<PushResult> {
 export async function initNativeShell() {
   if (!isNativePlatform()) return;
   try {
-    const { StatusBar, Style } = await import("@capacitor/status-bar");
+    const { StatusBar, Style } = await safeNativeImport("@capacitor/status-bar");
     await StatusBar.setStyle({ style: Style.Light });
     if (getPlatform() === "android") {
       await StatusBar.setOverlaysWebView({ overlay: true });
@@ -220,7 +227,7 @@ export async function initNativeShell() {
     /* noop */
   }
   try {
-    const { Keyboard, KeyboardResize } = await import("@capacitor/keyboard");
+    const { Keyboard, KeyboardResize } = await safeNativeImport("@capacitor/keyboard");
     await Keyboard.setResizeMode({ mode: KeyboardResize.Native });
   } catch {
     /* noop */
