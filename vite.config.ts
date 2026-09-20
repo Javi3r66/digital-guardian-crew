@@ -5,7 +5,8 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: (id) => id.startsWith('@capacitor/') && id !== '@capacitor/core'
+      // Ignora la resolución en estático de librerías nativas de Capacitor en la Web
+      external: [/^@capacitor\/.*/]
     }
   }
 })
