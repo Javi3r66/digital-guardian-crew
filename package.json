@@ -10,6 +10,7 @@
   "dependencies": {
     "@tanstack/react-router": "^1.0.0",
     "@tanstack/react-store": "^0.7.0",
+    "ai": "^3.0.0",
     "autoprefixer": "^10.4.19",
     "clsx": "^2.1.1",
     "lucide-react": "^0.400.0",
