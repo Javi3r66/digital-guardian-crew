@@ -1,17 +1,15 @@
 /**
  * Capa de acceso a capacidades nativas (Capacitor) con respaldo web.
  *
- * Todos los plugins se importan de forma dinámica con /* @vite-ignore */ para que
- * el empaquetador de la web (Vite/Rollup) y el SSR no intenten resolver código nativo
- * durante la fase de build en Vercel.
+ * Utiliza eval('import(...)') para evitar que el analizador estático de Vite/Rollup
+ * intente resolver los módulos nativos de Capacitor durante la fase de compilación en Vercel.
  */
 
 export type NativePlatform = "ios" | "android" | "web";
 
-async function core() {
-  const pkg = "@capacitor/core";
-  const { Capacitor } = await import(/* @vite-ignore */ pkg);
-  return Capacitor;
+// Función auxiliar para importar de forma 100% dinámica e invisible para Vite/Rollup
+function dynamicImport<T = unknown>(moduleName: string): Promise<T> {
+  return (0, eval)(`import("${moduleName}")`);
 }
 
 export function isBrowser() {
@@ -43,8 +41,7 @@ export async function haptic(strength: HapticStrength = "light") {
   if (!isBrowser()) return;
   try {
     if (isNativePlatform()) {
-      const pkg = "@capacitor/haptics";
-      const { Haptics, ImpactStyle, NotificationType } = await import(/* @vite-ignore */ pkg);
+      const { Haptics, ImpactStyle, NotificationType } = await dynamicImport<typeof import("@capacitor/haptics")>("@capacitor/haptics");
       if (strength === "success" || strength === "warning" || strength === "error") {
         const type =
           strength === "success"
@@ -81,8 +78,7 @@ export const storage = {
     if (!isBrowser()) return null;
     try {
       if (isNativePlatform()) {
-        const pkg = "@capacitor/preferences";
-        const { Preferences } = await import(/* @vite-ignore */ pkg);
+        const { Preferences } = await dynamicImport<typeof import("@capacitor/preferences")>("@capacitor/preferences");
         const { value } = await Preferences.get({ key });
         return value ?? null;
       }
@@ -95,8 +91,7 @@ export const storage = {
     if (!isBrowser()) return;
     try {
       if (isNativePlatform()) {
-        const pkg = "@capacitor/preferences";
-        const { Preferences } = await import(/* @vite-ignore */ pkg);
+        const { Preferences } = await dynamicImport<typeof import("@capacitor/preferences")>("@capacitor/preferences");
         await Preferences.set({ key, value });
         return;
       }
@@ -109,8 +104,7 @@ export const storage = {
     if (!isBrowser()) return;
     try {
       if (isNativePlatform()) {
-        const pkg = "@capacitor/preferences";
-        const { Preferences } = await import(/* @vite-ignore */ pkg);
+        const { Preferences } = await dynamicImport<typeof import("@capacitor/preferences")>("@capacitor/preferences");
         await Preferences.remove({ key });
         return;
       }
@@ -128,8 +122,7 @@ export const storage = {
 export async function capturePhoto(): Promise<string | null> {
   if (!isBrowser()) return null;
   if (isNativePlatform()) {
-    const pkg = "@capacitor/camera";
-    const { Camera, CameraResultType, CameraSource } = await import(/* @vite-ignore */ pkg);
+    const { Camera, CameraResultType, CameraSource } = await dynamicImport<typeof import("@capacitor/camera")>("@capacitor/camera");
     const photo = await Camera.getPhoto({
       quality: 80,
       resultType: CameraResultType.DataUrl,
@@ -165,8 +158,7 @@ export async function getCurrentPosition(): Promise<Coords | null> {
   if (!isBrowser()) return null;
   try {
     if (isNativePlatform()) {
-      const pkg = "@capacitor/geolocation";
-      const { Geolocation } = await import(/* @vite-ignore */ pkg);
+      const { Geolocation } = await dynamicImport<typeof import("@capacitor/geolocation")>("@capacitor/geolocation");
       const perm = await Geolocation.requestPermissions();
       if (perm.location === "denied") return null;
       const pos = await Geolocation.getCurrentPosition({ enableHighAccuracy: false });
@@ -205,8 +197,7 @@ export async function enablePushNotifications(): Promise<PushResult> {
     return { granted: false, reason: "Las notificaciones push solo están disponibles en la app móvil." };
   }
   try {
-    const pkg = "@capacitor/push-notifications";
-    const { PushNotifications } = await import(/* @vite-ignore */ pkg);
+    const { PushNotifications } = await dynamicImport<typeof import("@capacitor/push-notifications")>("@capacitor/push-notifications");
     let status = await PushNotifications.checkPermissions();
     if (status.receive === "prompt" || status.receive === "prompt-with-rationale") {
       status = await PushNotifications.requestPermissions();
@@ -228,8 +219,7 @@ export async function enablePushNotifications(): Promise<PushResult> {
 export async function initNativeShell() {
   if (!isNativePlatform()) return;
   try {
-    const pkgStatusBar = "@capacitor/status-bar";
-    const { StatusBar, Style } = await import(/* @vite-ignore */ pkgStatusBar);
+    const { StatusBar, Style } = await dynamicImport<typeof import("@capacitor/status-bar")>("@capacitor/status-bar");
     await StatusBar.setStyle({ style: Style.Light });
     if (getPlatform() === "android") {
       await StatusBar.setOverlaysWebView({ overlay: true });
@@ -238,8 +228,7 @@ export async function initNativeShell() {
     /* noop */
   }
   try {
-    const pkgKeyboard = "@capacitor/keyboard";
-    const { Keyboard, KeyboardResize } = await import(/* @vite-ignore */ pkgKeyboard);
+    const { Keyboard, KeyboardResize } = await dynamicImport<typeof import("@capacitor/keyboard")>("@capacitor/keyboard");
     await Keyboard.setResizeMode({ mode: KeyboardResize.Native });
   } catch {
     /* noop */
