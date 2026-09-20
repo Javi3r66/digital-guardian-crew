@@ -9,7 +9,11 @@
   },
   "dependencies": {
     "@ai-sdk/openai-compatible": "^0.0.1",
+    "@capacitor/app": "^6.0.0",
     "@capacitor/core": "^6.0.0",
+    "@capacitor/haptics": "^6.0.0",
+    "@capacitor/keyboard": "^6.0.0",
+    "@capacitor/status-bar": "^6.0.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@tanstack/react-router": "^1.0.0",
     "@tanstack/react-store": "^0.7.0",
