@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      // Ignora los paquetes nativos de Capacitor durante la compilación Web en Vercel
+      // Le indica a Rollup/Vite que ignore las librerías nativas de Capacitor durante la compilación web
       external: [
         /^@capacitor\/.*/,
       ],
