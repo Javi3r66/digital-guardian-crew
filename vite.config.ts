@@ -1,18 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
-import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
-  plugins: [
-    TanStackRouterVite(),
-    react(),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      'node:async_hooks': fileURLToPath(new URL('./src/empty-module.js', import.meta.url)),
-      'async_hooks': fileURLToPath(new URL('./src/empty-module.js', import.meta.url)),
-    },
-  },
+  plugins: [react()],
+  build: {
+    rollupOptions: {
+      // Ignora todos los paquetes nativos de Capacitor durante la compilación web en Vercel
+      external: [/^@capacitor\/.*/]
+    }
+  }
 })
