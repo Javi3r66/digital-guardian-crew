@@ -5,8 +5,8 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      // Ignora todos los paquetes nativos de Capacitor durante la compilación web en Vercel
-      external: [/^@capacitor\/.*/]
+      // Permite que Vite complete el empaquetado web aunque falte alguna API nativa de móvil
+      external: [/^@capacitor\/(?!core).*/]
     }
   }
 })
