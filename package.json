@@ -7,25 +7,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ai-sdk/openai-compatible": "^0.0.1",
-    "@capacitor/camera": "^6.0.0",
-    "@capacitor/core": "^6.2.2",
-    "@capacitor/geolocation": "^6.0.0",
-    "@capacitor/haptics": "^6.0.0",
-    "@capacitor/keyboard": "^6.0.0",
-    "@capacitor/preferences": "^6.0.0",
-    "@capacitor/push-notifications": "^6.0.0",
-    "@capacitor/status-bar": "^6.0.0",
     "@tanstack/react-router": "^1.168.23",
-    "clsx": "^2.1.0",
-    "lucide-react": "^0.344.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwind-merge": "^2.2.1"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@tanstack/router-plugin": "^1.168.23",
@@ -33,12 +20,6 @@
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.7.0",
-    "autoprefixer": "^10.4.18",
-    "eslint": "^8.56.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
     "typescript": "^5.9.3",
     "vite": "^5.4.21"
   }
