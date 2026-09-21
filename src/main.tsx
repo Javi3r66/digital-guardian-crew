@@ -1,19 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { routeTree } from './routeTree.gen'
 
-const App = () => {
-  return (
-    <div style={{ padding: '40px', fontFamily: 'system-ui, sans-serif', textAlign: 'center' }}>
-      <h1>Digital Guardian Crew</h1>
-      <p style={{ color: '#10b981', fontWeight: 'bold' }}>✓ Aplicación desplegada con éxito en Vercel</p>
-    </div>
-  )
+const router = createRouter({ routeTree })
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
 }
 
 const rootElement = document.getElementById('root')!
-const root = ReactDOM.createRoot(rootElement)
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+if (!rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement)
+  root.render(
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  )
+}
