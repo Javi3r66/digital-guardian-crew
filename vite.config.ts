@@ -8,16 +8,22 @@ export default defineConfig({
     TanStackRouterVite(),
     react(),
   ],
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
+
   css: {
     postcss: {
-      plugins: [],
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
     },
   },
+
   build: {
     outDir: 'dist',
   },
