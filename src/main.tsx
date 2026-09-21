@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client'
 
 const App = () => {
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+    <div style={{ padding: '40px', fontFamily: 'system-ui, sans-serif', textAlign: 'center' }}>
       <h1>Digital Guardian Crew</h1>
-      <p>Despliegue activo y funcionando.</p>
+      <p style={{ color: '#10b981', fontWeight: 'bold' }}>✓ Aplicación desplegada con éxito en Vercel</p>
     </div>
   )
 }
