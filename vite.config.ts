@@ -1,40 +1,9 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  plugins: [
-    TanStackRouterVite({
-      routesDirectory: './src/routes',
-      generatedRouteTree: './src/routeTree.gen.ts',
-      autoCodeSplitting: true,
-    }),
-    react(),
-  ],
+  plugins: [react()],
   build: {
-    rollupOptions: {
-      external: [
-        '@capacitor/core',
-        '@capacitor/haptics',
-        '@capacitor/preferences',
-        '@capacitor/camera',
-        '@capacitor/geolocation',
-        '@capacitor/push-notifications',
-        '@capacitor/status-bar',
-        '@capacitor/keyboard',
-      ],
-    },
+    outDir: 'dist',
   },
-  ssr: {
-    external: [
-      '@capacitor/core',
-      '@capacitor/haptics',
-      '@capacitor/preferences',
-      '@capacitor/camera',
-      '@capacitor/geolocation',
-      '@capacitor/push-notifications',
-      '@capacitor/status-bar',
-      '@capacitor/keyboard',
-    ],
-  },
-});
+})
