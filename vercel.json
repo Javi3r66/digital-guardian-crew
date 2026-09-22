@@ -1,9 +1,0 @@
-{
-  "outputDirectory": "dist",
-  "rewrites": [
-    {
-      "source": "/((?!assets/|src/|node_modules/|.*\\..*).*)",
-      "destination": "/index.html"
-    }
-  ]
-}

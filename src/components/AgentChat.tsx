@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
 import ReactMarkdown from "react-markdown";
 import { Send, ThumbsUp, ThumbsDown, Sparkles, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";

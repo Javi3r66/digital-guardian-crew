@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { convertToCoreMessages, streamText, type UIMessage } from "ai";
-import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
+import { convertToCoreMessages, streamText } from "ai";
 import { buildSystemPrompt } from "@/lib/agent-prompts.server";
 import type { AgentId } from "@/lib/agents";
 
@@ -10,7 +9,7 @@ export const Route = createFileRoute("/api/chat")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const body = (await request.json()) as { messages?: unknown; agentId?: unknown };
+        const body = (await request.json()) as { messages?: any[]; agentId?: unknown };
         const messages = body.messages;
         const agentId = body.agentId as AgentId;
 
@@ -25,21 +24,71 @@ export const Route = createFileRoute("/api/chat")({
         if (!key) return new Response("Falta GROQ_API_KEY", { status: 500 });
 
         try {
-          const groq = createOpenAICompatible({
-            name: "groq",
-            baseURL: "https://api.groq.com/openai/v1",
+          const systemPrompt = buildSystemPrompt(agentId);
+
+          const formattedMessages = [
+            { role: "system", content: systemPrompt },
+            ...messages.map((m) => ({
+              role: m.role ?? "user",
+              content: typeof m.content === "string" ? m.content : m.parts?.[0]?.text ?? "",
+            })),
+          ];
+
+          const groqResponse = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+            method: "POST",
             headers: {
-              Authorization: `Bearer ${key}`,
+              "Authorization": `Bearer ${key}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              model: "llama-3.3-70b-versatile",
+              messages: formattedMessages,
+              temperature: 0.6,
+              stream: true,
+            }),
+          });
+
+          if (!groqResponse.ok) {
+            const errText = await groqResponse.text();
+            console.error("Groq API error:", errText);
+            return new Response("Error de comunicación con Groq", { status: groqResponse.status });
+          }
+
+          const encoder = new TextEncoder();
+          const decoder = new TextDecoder();
+
+          const transformStream = new TransformStream({
+            async transform(chunk, controller) {
+              const text = decoder.decode(chunk);
+              const lines = text.split("\n");
+
+              for (const line of lines) {
+                if (line.startsWith("data: ") && line !== "data: [DONE]") {
+                  try {
+                    const json = JSON.parse(line.replace("data: ", ""));
+                    const content = json.choices?.[0]?.delta?.content;
+                    if (content) {
+                      // Formato exacto de mensaje UI para la librería 'ai' (0:"texto")
+                      const formattedChunk = `0:${JSON.stringify(content)}\n`;
+                      controller.enqueue(encoder.encode(formattedChunk));
+                    }
+                  } catch (e) {
+                    // Ignora paquetes fragmentados
+                  }
+                }
+              }
             },
           });
 
-          const result = streamText({
-            model: groq("llama-3.3-70b-versatile"),
-            system: buildSystemPrompt(agentId),
-            messages: convertToCoreMessages(messages as UIMessage[]),
-          });
+          const customStream = groqResponse.body?.pipeThrough(transformStream);
 
-          return result.toDataStreamResponse();
+          return new Response(customStream, {
+            status: 200,
+            headers: {
+              "Content-Type": "text/plain; charset=utf-8",
+              "x-vercel-ai-data-stream": "v1",
+            },
+          });
         } catch (error) {
           console.error("chat error", error);
           return new Response("Error al contactar con el servicio de IA", { status: 502 });

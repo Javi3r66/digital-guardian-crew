@@ -1,21 +1,26 @@
 /**
- * Capa de acceso a capacidades nativas (Capacitor) con soporte seguro para SSR/Web.
+ * Capa de acceso a capacidades nativas (Capacitor) con respaldo web.
+ *
+ * Todos los plugins se importan de forma dinámica para que el bundle de
+ * servidor (SSR) y el navegador no evalúen código nativo al cargar el módulo.
  */
 
 export type NativePlatform = "ios" | "android" | "web";
 
-// Función de carga con evaluación indirecta para prevenir el análisis estático de Vite/Rollup
-function loadModule<T = any>(name: string): Promise<T> {
-  return new Function('n', 'return import(n)')(name);
+async function core() {
+  const { Capacitor } = await import("@capacitor/core");
+  return Capacitor;
 }
 
-export function isBrowser(): boolean {
+export function isBrowser() {
   return typeof window !== "undefined";
 }
 
-export function isNativePlatform(): boolean {
+/** Sincrónico y seguro en SSR: Capacitor inyecta este global en apps nativas. */
+export function isNativePlatform() {
   if (!isBrowser()) return false;
-  const cap = (window as unknown as { Capacitor?: { isNativePlatform?: () => boolean } }).Capacitor;
+  const cap = (window as unknown as { Capacitor?: { isNativePlatform?: () => boolean } })
+    .Capacitor;
   return Boolean(cap?.isNativePlatform?.());
 }
 
@@ -27,16 +32,16 @@ export function getPlatform(): NativePlatform {
 }
 
 /* ------------------------------------------------------------------ */
-/* Haptics                                                            */
+/* Haptics                                                             */
 /* ------------------------------------------------------------------ */
 
 type HapticStrength = "light" | "medium" | "heavy" | "success" | "warning" | "error";
 
-export async function haptic(strength: HapticStrength = "light"): Promise<void> {
+export async function haptic(strength: HapticStrength = "light") {
   if (!isBrowser()) return;
   try {
     if (isNativePlatform()) {
-      const { Haptics, ImpactStyle, NotificationType } = await loadModule("@capacitor/haptics");
+      const { Haptics, ImpactStyle, NotificationType } = await import("@capacitor/haptics");
       if (strength === "success" || strength === "warning" || strength === "error") {
         const type =
           strength === "success"
@@ -56,17 +61,16 @@ export async function haptic(strength: HapticStrength = "light"): Promise<void> 
       await Haptics.impact({ style });
       return;
     }
+    // Respaldo web: Vibration API cuando el navegador la soporta.
     const ms = strength === "heavy" || strength === "error" ? 30 : strength === "medium" ? 18 : 10;
-    if ("vibrate" in navigator) {
-      navigator.vibrate(ms);
-    }
+    navigator.vibrate?.(ms);
   } catch {
-    /* ignore */
+    /* el haptic nunca debe romper la interacción */
   }
 }
 
 /* ------------------------------------------------------------------ */
-/* Preferencias / Almacenamiento                                       */
+/* Preferencias / almacenamiento local                                 */
 /* ------------------------------------------------------------------ */
 
 export const storage = {
@@ -74,7 +78,7 @@ export const storage = {
     if (!isBrowser()) return null;
     try {
       if (isNativePlatform()) {
-        const { Preferences } = await loadModule("@capacitor/preferences");
+        const { Preferences } = await import("@capacitor/preferences");
         const { value } = await Preferences.get({ key });
         return value ?? null;
       }
@@ -87,38 +91,43 @@ export const storage = {
     if (!isBrowser()) return;
     try {
       if (isNativePlatform()) {
-        const { Preferences } = await loadModule("@capacitor/preferences");
+        const { Preferences } = await import("@capacitor/preferences");
         await Preferences.set({ key, value });
         return;
       }
       window.localStorage.setItem(key, value);
     } catch {
-      /* ignore */
+      /* almacenamiento no disponible (modo privado) */
     }
   },
   async remove(key: string): Promise<void> {
     if (!isBrowser()) return;
     try {
       if (isNativePlatform()) {
-        const { Preferences } = await loadModule("@capacitor/preferences");
+        const { Preferences } = await import("@capacitor/preferences");
         await Preferences.remove({ key });
         return;
       }
       window.localStorage.removeItem(key);
     } catch {
-      /* ignore */
+      /* noop */
     }
   },
 };
 
 /* ------------------------------------------------------------------ */
-/* Cámara                                                             */
+/* Cámara                                                              */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Captura una imagen (p. ej. una captura de pantalla como prueba).
+ * Devuelve un data URL que permanece en el dispositivo: no se envía a ningún
+ * servidor desde aquí.
+ */
 export async function capturePhoto(): Promise<string | null> {
   if (!isBrowser()) return null;
   if (isNativePlatform()) {
-    const { Camera, CameraResultType, CameraSource } = await loadModule("@capacitor/camera");
+    const { Camera, CameraResultType, CameraSource } = await import("@capacitor/camera");
     const photo = await Camera.getPhoto({
       quality: 80,
       resultType: CameraResultType.DataUrl,
@@ -127,6 +136,7 @@ export async function capturePhoto(): Promise<string | null> {
     });
     return photo.dataUrl ?? null;
   }
+  // Respaldo web: selector de archivo con cámara en móviles.
   return new Promise((resolve) => {
     const input = document.createElement("input");
     input.type = "file";
@@ -145,7 +155,7 @@ export async function capturePhoto(): Promise<string | null> {
 }
 
 /* ------------------------------------------------------------------ */
-/* Geolocalización                                                    */
+/* Geolocalización                                                     */
 /* ------------------------------------------------------------------ */
 
 export type Coords = { latitude: number; longitude: number; accuracy: number };
@@ -154,7 +164,7 @@ export async function getCurrentPosition(): Promise<Coords | null> {
   if (!isBrowser()) return null;
   try {
     if (isNativePlatform()) {
-      const { Geolocation } = await loadModule("@capacitor/geolocation");
+      const { Geolocation } = await import("@capacitor/geolocation");
       const perm = await Geolocation.requestPermissions();
       if (perm.location === "denied") return null;
       const pos = await Geolocation.getCurrentPosition({ enableHighAccuracy: false });
@@ -165,7 +175,7 @@ export async function getCurrentPosition(): Promise<Coords | null> {
       };
     }
     if (!navigator.geolocation) return null;
-    return new Promise((resolve) => {
+    return await new Promise((resolve) => {
       navigator.geolocation.getCurrentPosition(
         (pos) =>
           resolve({
@@ -174,7 +184,7 @@ export async function getCurrentPosition(): Promise<Coords | null> {
             accuracy: pos.coords.accuracy,
           }),
         () => resolve(null),
-        { enableHighAccuracy: false, timeout: 10000 }
+        { enableHighAccuracy: false, timeout: 10000 },
       );
     });
   } catch {
@@ -183,46 +193,51 @@ export async function getCurrentPosition(): Promise<Coords | null> {
 }
 
 /* ------------------------------------------------------------------ */
-/* Notificaciones Push y Shell                                        */
+/* Notificaciones push                                                 */
 /* ------------------------------------------------------------------ */
 
 export type PushResult = { granted: boolean; reason?: string };
 
+/** Solo tiene efecto en iOS/Android; en web informa de que no está disponible. */
 export async function enablePushNotifications(): Promise<PushResult> {
   if (!isNativePlatform()) {
-    return { granted: false, reason: "Solo disponible en app nativa." };
+    return { granted: false, reason: "Las notificaciones push solo están disponibles en la app móvil." };
   }
   try {
-    const { PushNotifications } = await loadModule("@capacitor/push-notifications");
+    const { PushNotifications } = await import("@capacitor/push-notifications");
     let status = await PushNotifications.checkPermissions();
     if (status.receive === "prompt" || status.receive === "prompt-with-rationale") {
       status = await PushNotifications.requestPermissions();
     }
     if (status.receive !== "granted") {
-      return { granted: false, reason: "Permiso denegado." };
+      return { granted: false, reason: "Permiso denegado en los ajustes del dispositivo." };
     }
     await PushNotifications.register();
     return { granted: true };
   } catch {
-    return { granted: false, reason: "Error al registrar dispositivo." };
+    return { granted: false, reason: "No se ha podido registrar el dispositivo." };
   }
 }
 
-export async function initNativeShell(): Promise<void> {
+/* ------------------------------------------------------------------ */
+/* Arranque nativo (barra de estado y teclado)                         */
+/* ------------------------------------------------------------------ */
+
+export async function initNativeShell() {
   if (!isNativePlatform()) return;
   try {
-    const { StatusBar, Style } = await loadModule("@capacitor/status-bar");
+    const { StatusBar, Style } = await import("@capacitor/status-bar");
     await StatusBar.setStyle({ style: Style.Light });
     if (getPlatform() === "android") {
       await StatusBar.setOverlaysWebView({ overlay: true });
     }
   } catch {
-    /* ignore */
+    /* noop */
   }
   try {
-    const { Keyboard, KeyboardResize } = await loadModule("@capacitor/keyboard");
+    const { Keyboard, KeyboardResize } = await import("@capacitor/keyboard");
     await Keyboard.setResizeMode({ mode: KeyboardResize.Native });
   } catch {
-    /* ignore */
+    /* noop */
   }
 }
