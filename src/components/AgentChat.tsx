@@ -9,6 +9,8 @@ import { AGENT_MAP, type AgentId } from "@/lib/agents";
 import { cn } from "@/lib/utils";
 import { haptic } from "@/lib/native";
 
+const SUPABASE_ANON_KEY = "sb_publishable_BE3OnBe-y_k_QNuYy2eDsw_9NHlKuPE";
+
 export function AgentChat({ agentId }: { agentId: AgentId }) {
   const agent = AGENT_MAP[agentId];
   const [input, setInput] = useState("");
@@ -16,13 +18,17 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
 
- const { messages, sendMessage, status, error } = useChat({
+  const { messages, sendMessage, status, error } = useChat({
     id: agentId,
     transport: new DefaultChatTransport({
       api: "https://gsjgylomutnburmrzmmd.supabase.co/functions/v1/chat",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      },
       body: { agent: agentId },
     }),
-  }); 
+  });
 
   const busy = status === "submitted" || status === "streaming";
 
