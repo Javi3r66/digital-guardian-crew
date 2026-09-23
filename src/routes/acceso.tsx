@@ -58,9 +58,10 @@ function AccesoAnonimo() {
   const [errorCodigo, setErrorCodigo] = useState<string | null>(null);
   const [alias, setAlias] = useState(() => aliasAleatorio());
   const [avatar, setAvatar] = useState(AVATARS[0]!);
-  const [agente, setAgente] = useState<AgentId | null>(null);
+    const [agente, setAgente] = useState<AgentId | null>(null);
 
     const [validandoCodigo, setValidandoCodigo] = useState(false);
+  const [centroCodigo, setCentroCodigo] = useState<string | null>(null);
 
   async function validarCodigo(): Promise<boolean> {
     const texto = codigo.trim();
