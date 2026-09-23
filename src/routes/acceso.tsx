@@ -82,10 +82,11 @@ function AccesoAnonimo() {
       setErrorCodigo("No se ha podido comprobar el código. Inténtalo de nuevo.");
       return false;
     }
-    if (!data) {
+        if (!data) {
       setErrorCodigo("Ese código no corresponde a ningún centro activo.");
       return false;
     }
+    setCentroCodigo(texto);
     return true;
   }
 
@@ -322,7 +323,7 @@ function AccesoAnonimo() {
               <span>🤖 {AI_CHAT_BADGE}</span>
             </div>
 
-            <AgentChat agentId={agente} />
+                       <AgentChat agentId={agente} centroCodigo={centroCodigo} />
           </div>
         )}
       </div>
