@@ -36,8 +36,8 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
     inputRef.current?.focus();
   }, [agentId, status]);
 
-  useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
+   useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [messages, status]);
 
   function submit() {
