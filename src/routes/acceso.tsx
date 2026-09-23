@@ -19,7 +19,7 @@ import { AGENTS, EMERGENCY_RESOURCES, type AgentId } from "@/lib/agents";
 import { AI_CHAT_BADGE } from "@/lib/legal";
 import { cn } from "@/lib/utils";
 import { haptic } from "@/lib/native";
-
+import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/acceso")({
   head: () => ({
     meta: [
@@ -60,10 +60,33 @@ function AccesoAnonimo() {
   const [avatar, setAvatar] = useState(AVATARS[0]!);
   const [agente, setAgente] = useState<AgentId | null>(null);
 
-  const codigoValido = useMemo(
-    () => /^[A-Za-z0-9-]{6,}$/.test(codigo.trim()),
-    [codigo],
-  );
+    const [validandoCodigo, setValidandoCodigo] = useState(false);
+
+  async function validarCodigo(): Promise<boolean> {
+    const texto = codigo.trim();
+    if (!texto) {
+      setErrorCodigo("Introduce el código de tu centro.");
+      return false;
+    }
+    setValidandoCodigo(true);
+    const { data, error } = await supabase
+      .from("centros")
+      .select("codigo")
+      .eq("codigo", texto)
+      .eq("activo", true)
+      .maybeSingle();
+    setValidandoCodigo(false);
+
+    if (error) {
+      setErrorCodigo("No se ha podido comprobar el código. Inténtalo de nuevo.");
+      return false;
+    }
+    if (!data) {
+      setErrorCodigo("Ese código no corresponde a ningún centro activo.");
+      return false;
+    }
+    return true;
+  }
 
   function go(next: number) {
     void haptic("light");
@@ -143,20 +166,16 @@ function AccesoAnonimo() {
                 autoCapitalize="characters"
                 className="h-11"
               />
-              <Button
+                           <Button
                 className="h-11"
-                onClick={() => {
-                  if (!codigoValido) {
-                    setErrorCodigo(
-                      "El código debe tener al menos 6 caracteres (letras, números o guiones).",
-                    );
-                    return;
-                  }
-                  go(2);
+                disabled={validandoCodigo}
+                onClick={async () => {
+                  const ok = await validarCodigo();
+                  if (ok) go(2);
                 }}
               >
-                Validar
-              </Button>
+                {validandoCodigo ? "Comprobando..." : "Validar"}
+              </Button> 
             </div>
             {errorCodigo && <p className="text-sm text-destructive">{errorCodigo}</p>}
             <div className="flex items-start gap-2 rounded-xl bg-muted/60 px-4 py-3 text-xs text-muted-foreground">
