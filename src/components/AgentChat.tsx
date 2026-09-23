@@ -11,7 +11,7 @@ import { haptic } from "@/lib/native";
 
 const SUPABASE_ANON_KEY = "sb_publishable_BE3OnBe-y_k_QNuYy2eDsw_9NHlKuPE";
 
-export function AgentChat({ agentId }: { agentId: AgentId }) {
+export function AgentChat({ agentId, centroCodigo = null }: { agentId: AgentId; centroCodigo?: string | null }) {
   const agent = AGENT_MAP[agentId];
   const [input, setInput] = useState("");
   const [feedback, setFeedback] = useState<Record<string, "up" | "down">>({});
@@ -26,7 +26,7 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
         apikey: SUPABASE_ANON_KEY,
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
       },
-      body: { agent: agentId },
+           body: { agent: agentId, centro: centroCodigo }, 
     }),
   });
 
