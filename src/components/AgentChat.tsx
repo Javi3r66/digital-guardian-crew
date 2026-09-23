@@ -49,7 +49,7 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
   }
 
   return (
-    <div className="flex h-[70svh] max-h-[620px] min-h-[440px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+     <div className="flex h-[75svh] max-h-[780px] min-h-[480px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">   
       <div className="flex items-center gap-3 border-b border-border px-5 py-4">
         <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
           <agent.icon className="size-5" />
