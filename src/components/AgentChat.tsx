@@ -166,7 +166,11 @@ export function AgentChat({ agentId }: { agentId: AgentId }) {
         )}
         <div ref={endRef} />
       </div>
-
+      <div className="border-t border-border bg-muted/30 px-4 py-2 text-[11px] text-muted-foreground">
+        Para que este servicio esté disponible para el máximo de personas, existe un límite de
+        mensajes por hora compartido en cada red. Si lo alcanzas, el chat te lo indicará y podrás
+        continuar más tarde.
+      </div>
       <div className="border-t border-border p-3 pb-safe">
         <div className="flex items-end gap-2">
           <Textarea
