@@ -4,7 +4,7 @@ export const EMERGENCY_WARNING = {
 };
 
 export const LIABILITY_DISCLAIMER =
-  "Descargo de responsabilidad: Red Violeta Ciberprevención y sus administradores/creadores quedan totalmente eximidos de responsabilidad civil, penal o administrativa derivada de decisiones tomadas por los centros educativos, usuarios o terceros basándose en la información proporcionada por los agentes de IA. La plataforma actúa exclusivamente como una herramienta facilitadora de apoyo y generación de borradores informativos bajo supervisión humana (Art. 50 Reglamento UE 2024/1689).";
+  "Naturaleza y límites del servicio: Red Violeta es una plataforma tecnológica de información, prevención y orientación inicial. Las respuestas de sus sistemas de inteligencia artificial tienen carácter general e informativo y se generan de forma automática: no constituyen asesoramiento jurídico, psicológico, sanitario, educativo o social profesional, ni sustituyen la intervención de profesionales cualificados, del centro educativo o de las autoridades competentes. Red Violeta no garantiza que una respuesta automatizada sea adecuada para las circunstancias particulares de cada persona. Ante una situación que requiera intervención profesional o institucional, se recomienda acudir al recurso competente; ante un peligro inmediato, contacte con los servicios de emergencia.";
 
 export const AI_CHAT_BADGE =
   "Respuesta generada por Inteligencia Artificial Multi-Agente. Esta herramienta ofrece orientación previa y borradores informativos que deben ser validados por profesionales.";
