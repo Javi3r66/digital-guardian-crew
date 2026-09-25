@@ -3,12 +3,11 @@ import { Mail, Clock, Bot } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
 import { DeviceToolkit } from "@/components/DeviceToolkit";
 
-
 export const Route = createFileRoute("/contacto")({
   head: () => ({
     meta: [
       { title: "Contactar con Red Violeta Ciberprevención" },
-            {
+      {
         name: "description",
         content:
           "Escríbenos y te responderemos en cuanto podamos. Consulta también los teléfonos oficiales de emergencia y los agentes de IA disponibles 24/7.",
@@ -17,18 +16,6 @@ export const Route = createFileRoute("/contacto")({
       {
         property: "og:description",
         content: "Agentes de inteligencia artificial disponibles 24/7. Escríbenos cuando lo necesites.",
-      },
-         
-      
-      { property: "og:title", content: "Contactar con Red Violeta Ciberprevención" },
-      {
-        property: "og:description",
-        content: "Agentes de inteligencia artificial disponibles 24/7. Escríbenos cuando lo necesites.",
-      },
-      { property: "og:title", content: "Contactar con Red Violeta Ciberprevención" },
-      {
-        property: "og:description",
-        content: "Respuesta en menos de 24 horas. Agentes disponibles 24/7.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -42,13 +29,12 @@ function Contacto() {
     <div className="mx-auto max-w-3xl px-5 py-10 sm:py-16">
       <h1 className="text-3xl font-bold sm:text-4xl tracking-tight text-foreground">Contactar</h1>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-        Cuéntanos tu caso por correo y un especialista se pone en contacto contigo en menos de 24
-        horas. Si necesitas orientación ahora mismo, los agentes están disponibles a cualquier
-        hora.
+        Escríbenos por correo y te responderemos en cuanto podamos. Si necesitas orientación ahora
+        mismo, los agentes de inteligencia artificial están disponibles a cualquier hora.
       </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <a
+        
           href="mailto:info@redvioletaciberprevencion.es"
           className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary active:border-primary active:bg-accent/60"
         >
@@ -71,13 +57,12 @@ function Contacto() {
       </div>
 
       <p className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">
-        <Clock className="size-3.5" /> Disponible 24/7 · Respuesta humana en menos de 24 horas
+        <Clock className="size-3.5" /> Agentes de IA disponibles 24/7 · Correo revisado con regularidad
       </p>
 
       <div className="mt-10">
         <DeviceToolkit />
       </div>
-
 
       <div className="mt-10 rounded-2xl border border-destructive/30 bg-destructive/5 p-6">
         <h2 className="text-sm font-semibold text-foreground">
@@ -97,8 +82,8 @@ function Contacto() {
 
       <p className="mt-8 text-[11px] leading-relaxed text-muted-foreground">
         Tratamos tus datos conforme al Reglamento (UE) 2016/679 y a la LO 3/2018 (LOPDGDD). No
-        incluyas datos de salud, imágenes íntimas ni datos de terceros en el primer correo: el
-        especialista te indicará el canal seguro para aportarlos.
+        incluyas datos de salud, imágenes íntimas ni datos de terceros en el primer correo: te
+        indicaremos por otro canal seguro cómo aportarlos si fuera necesario.
       </p>
     </div>
   );
