@@ -51,7 +51,7 @@ export const AGENTS: Agent[] = [
     id: "psicologia",
     name: "CALMA",
     pillar: "Clínico",
-    role: "Agente de apoyo psicológico",
+        role: "Sistema de IA de apoyo emocional",
     icon: HeartPulse,
     summary:
       "Primeros auxilios psicológicos ante ciberacoso: contención emocional, psicoeducación familiar y detección de señales de alarma para derivación urgente.",
@@ -81,7 +81,7 @@ export const AGENTS: Agent[] = [
     id: "social",
     name: "PUENTE",
     pillar: "Social",
-    role: "Agente de trabajo social y mediación",
+       role: "Sistema de IA de orientación educativa y social",
     icon: Users,
     summary:
       "Activa el circuito de protección: centro educativo, servicios sociales y recursos públicos, y prepara la mediación cuando procede.",
