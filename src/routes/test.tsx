@@ -71,7 +71,8 @@ function Test() {
         Ocho preguntas orientativas para situar tu caso. Es anónimo: no pide ningún dato personal y
         no se envía nada a nuestros servidores. Tus respuestas quedan guardadas solo en este
         dispositivo para que puedas continuar el test sin conexión, y puedes borrarlas cuando
-        quieras con «Reiniciar». No es un diagnóstico ni una valoración jurídica.
+              quieras con «Reiniciar». No es un diagnóstico médico o psicológico, ni una valoración
+        jurídica o de seguridad certificada: es solo una guía para decidir con quién hablar primero.  
       </p>
 
       <div className="mt-8 space-y-3">
@@ -129,12 +130,12 @@ function Test() {
       </div>
 
       {sent && answered === QUESTIONS.length && (
-        <div className={cn("mt-8 rounded-2xl border p-6", level.bg)}>
+               <div className={cn("mt-8 rounded-2xl border p-6", level.bg)}>
           <p className="text-xs uppercase tracking-wide text-muted-foreground">
-            Grado de vulnerabilidad digital orientativo
+            Resultado orientativo de prevención digital
           </p>
           <p className={cn("mt-1 text-2xl font-bold", level.tone)}>
-            {level.label} · {risk} de {QUESTIONS.length} indicadores de riesgo
+            Esto es lo que te recomendamos
           </p>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
             {risk >= 6
