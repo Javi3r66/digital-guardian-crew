@@ -19,9 +19,9 @@ export function SiteFooter() {
               loading="lazy"
               className="h-20 w-auto object-contain"
             />
-            <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-              Solución integral contra el ciberacoso. Respuesta en menos de 24 horas.
-            </p>
+                       <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+              Prevención, información y orientación frente al ciberacoso, mediante inteligencia artificial.
+            </p> 
           </div>
 
           <div>
@@ -29,26 +29,26 @@ export function SiteFooter() {
               Servicios
             </p>
             <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
-              <li>
+                          <li>
                 <Link to="/#servicios" className="hover:text-foreground transition-colors">
-                  Pruebas Periciales
+                  Preservación de evidencia digital
                 </Link>
               </li>
               <li>
                 <Link to="/#servicios" className="hover:text-foreground transition-colors">
-                  Borrado Digital
+                  Retirada de contenido
                 </Link>
               </li>
               <li>
                 <Link to="/#servicios" className="hover:text-foreground transition-colors">
-                  Defensa Legal
+                  Información jurídica
                 </Link>
               </li>
               <li>
                 <Link to="/#servicios" className="hover:text-foreground transition-colors">
-                  Apoyo Psicológico
+                  Apoyo emocional
                 </Link>
-              </li>
+              </li> 
             </ul>
           </div>
 
@@ -63,9 +63,9 @@ export function SiteFooter() {
                   {CONTACT_EMAIL}
                 </a>
               </li>
-              <li className="flex items-center gap-2">
+                           <li className="flex items-center gap-2">
                 <Clock className="h-3.5 w-3.5 text-primary shrink-0" />
-                <span>24/7 Atendemos emergencias</span>
+                <span>Orientación automatizada disponible 24/7</span>
               </li>
             </ul>
 
@@ -105,14 +105,14 @@ export function SiteFooter() {
               Ante una emergencia, llama
             </p>
             <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs">
-              {EMERGENCY_RESOURCES.map((r) => (
+                         {EMERGENCY_RESOURCES.map((r) => (
                 <span key={r.label}>
                   {r.label}{" "}
-                  <a href={`tel:${r.phone?.replace(/\s/g, "") ?? ''}`} className="font-bold text-foreground hover:underline">
-                    {r.phone}
+                  <a href={`tel:${r.value?.replace(/\s/g, "") ?? ''}`} className="font-bold text-foreground hover:underline">
+                    {r.value}
                   </a>
                 </span>
-              ))}
+              ))}   
             </div>
           </div>
         </div>
