@@ -32,7 +32,7 @@ function Contacto() {
         Escríbenos por correo y te responderemos en cuanto podamos. Si necesitas orientación ahora
         mismo, los agentes de inteligencia artificial están disponibles a cualquier hora.
       </p>
-
+<a
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         
           href="mailto:info@redvioletaciberprevencion.es"
