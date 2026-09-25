@@ -10,7 +10,8 @@ export const Route = createFileRoute("/colegios")({
       {
         name: "description",
         content:
-          "Blindaje LOPIVI para centros educativos: auditoría de vulnerabilidad institucional, protocolos, evidencias digitales y charlas presenciales para alumnado, docentes y familias.",
+                content:
+          "Orientación LOPIVI para centros educativos: test institucional orientativo, información sobre protocolos, y charlas presenciales para alumnado, docentes y familias.",  
       },
       { property: "og:title", content: "Colegios e Instituciones | Red Violeta" },
       {
@@ -28,8 +29,13 @@ export const Route = createFileRoute("/colegios")({
 const BENEFITS = [
   {
     icon: ShieldCheck,
-    title: "Cumplimiento LOPIVI verificable",
-    text: "Revisamos el protocolo del centro y la figura del coordinador de bienestar y protección exigidos por la LO 8/2021, y te dejamos la documentación ordenada y trazable.",
+    title: "Orientación sobre la LOPIVI",
+    text: "Información general sobre el protocolo de protección y la figura del coordinador de bienestar y protección exigidos por la LO 8/2021, como punto de partida para que el centro organice su propia documentación.",
+  },
+  {
+    icon: Gavel,
+    title: "Orientación ante incidentes",
+    text: "Información general sobre cómo preservar evidencia digital, criterios de comunicación a familias, y el marco del RGPD, la LO 3/2018 y el Reglamento (UE) 2024/1689 de IA.",
   },
   {
     icon: Gavel,
