@@ -10,14 +10,13 @@ export const Route = createFileRoute("/colegios")({
       {
         name: "description",
         content:
-                content:
-          "Orientación LOPIVI para centros educativos: test institucional orientativo, información sobre protocolos, y charlas presenciales para alumnado, docentes y familias.",  
+          "Orientación LOPIVI para centros educativos: test institucional orientativo, información sobre protocolos, y charlas presenciales para alumnado, docentes y familias.",
       },
       { property: "og:title", content: "Colegios e Instituciones | Red Violeta" },
       {
         property: "og:description",
         content:
-          "Auditoría de vulnerabilidad, protocolos LOPIVI y formación presencial contra el ciberacoso para centros educativos.",
+          "Orientación LOPIVI, información sobre protocolos y formación presencial contra el ciberacoso para centros educativos.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -36,11 +35,6 @@ const BENEFITS = [
     icon: Gavel,
     title: "Orientación ante incidentes",
     text: "Información general sobre cómo preservar evidencia digital, criterios de comunicación a familias, y el marco del RGPD, la LO 3/2018 y el Reglamento (UE) 2024/1689 de IA.",
-  },
-  {
-    icon: Gavel,
-    title: "Blindaje legal ante incidentes",
-    text: "Cadena de custodia de evidencias digitales, criterios de comunicación a familias y encaje con el RGPD, la LO 3/2018 y el Reglamento (UE) 2024/1689 de IA.",
   },
   {
     icon: Users,
@@ -84,8 +78,9 @@ function Colegios() {
         <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground sm:text-base">
           La LO 8/2021 (LOPIVI) obliga a todos los centros educativos a contar con protocolos de
           protección y con un coordinador de bienestar. Red Violeta acompaña a la dirección del
-          centro en el diagnóstico, el blindaje legal y la formación presencial, con atención por
-          inteligencia artificial disponible las 24 horas para toda la comunidad educativa.
+          centro con orientación general, un test institucional orientativo y formación presencial,
+          con atención por inteligencia artificial disponible las 24 horas para toda la comunidad
+          educativa.
         </p>
       </section>
 
