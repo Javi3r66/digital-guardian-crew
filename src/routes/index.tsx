@@ -21,16 +21,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Red Violeta Ciberprevención | Respuesta integral al ciberacoso" },
-      {
+            {
         name: "description",
         content:
-          "Detectamos el ciberacoso en menos de 24 horas y combinamos ciberseguridad, apoyo psicológico, mediación familiar y asesoría legal, con agentes de IA disponibles 24/7.",
+          "Prevención, información y orientación frente al ciberacoso, con agentes de inteligencia artificial especializados disponibles 24/7.",
       },
       { property: "og:title", content: "Red Violeta Ciberprevención" },
       {
         property: "og:description",
         content:
-          "Solución integral contra el ciberacoso: ciberseguridad, psicología, trabajo social y protección legal.",
+          "Plataforma de prevención y orientación frente al ciberacoso, con agentes de inteligencia artificial especializados.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -62,25 +62,25 @@ const PILLARS = [
     tag: "Técnico",
     icon: ShieldCheck,
     title: "Ciberseguridad especializada",
-    text: "Analizamos cómo sucedió el ataque y generamos tu Grado de Vulnerabilidad Digital para identificar los riesgos y protegerte.",
+    text: "AURA, nuestro sistema de IA, te orienta paso a paso para proteger tus cuentas, preservar pruebas y conocer tu situación con el test orientativo de vulnerabilidad digital.",
   },
   {
-    tag: "Clínico",
+    tag: "Emocional",
     icon: HeartPulse,
-    title: "Apoyo psicológico especializado",
-    text: "Nuestro equipo de psicólogos entiende el trauma del ciberacoso y ofrece apoyo terapéutico para el menor y su familia.",
+    title: "Apoyo emocional especializado",
+    text: "CALMA, nuestro sistema de IA, ofrece apoyo emocional inicial y psicoeducación para el menor y su familia, y deriva a profesionales cualificados cuando es necesario.",
   },
   {
     tag: "Social",
     icon: Users,
-    title: "Mediación y protección",
-    text: "Mediamos entre la familia, el centro educativo y los responsables. Diseñamos protocolos que funcionan porque cada caso es único.",
+    title: "Orientación educativa y social",
+    text: "PUENTE te orienta para activar el protocolo del centro educativo y conocer los recursos sociales y públicos disponibles en tu situación.",
   },
   {
     tag: "Legal",
     icon: Scale,
-    title: "Protección legal completa",
-    text: "Abogados especializados en derecho digital te asesoran sobre tus derechos y opciones conforme a la normativa española.",
+    title: "Información jurídica general",
+    text: "LEX te ofrece información jurídica general sobre tus derechos y opciones conforme a la normativa española vigente.",
   },
 ];
 
@@ -97,8 +97,8 @@ function Home() {
               height={220}
               className="mb-6 h-28 w-auto object-contain"
             />
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              Solución integral
+                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              Prevención con inteligencia artificial
             </p>
             <h1 className="mt-4 text-3xl font-bold sm:text-4xl leading-[1.1] tracking-tight text-foreground sm:text-5xl">
               Ciberseguridad con impacto social
@@ -106,10 +106,11 @@ function Home() {
             <p className="mt-4 text-lg font-medium text-foreground">
               Ni tu hijo ni tú estáis solos.
             </p>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Detectamos el ciberacoso en menos de 24 horas. Te ofrecemos una respuesta integral
-              que combina ciberseguridad, apoyo psicológico, mediación familiar y asesoría legal.
-              Porque cada caso es único y merece atención especializada.
+                       <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+              Red Violeta es una plataforma de inteligencia artificial que ofrece prevención,
+              información y orientación inicial frente al ciberacoso: ciberseguridad, apoyo
+              emocional, orientación educativa y social, e información jurídica. Porque cada
+              caso es único y merece una respuesta cercana.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -117,7 +118,7 @@ function Home() {
                 to="/test"
                 className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:opacity-90 active:scale-95"
               >
-                <ClipboardCheck className="size-4" /> Test de autodiagnóstico gratuito
+                               <ClipboardCheck className="size-4" /> Test orientativo gratuito 
               </Link>
               <Link
                 to="/agentes"
@@ -129,10 +130,10 @@ function Home() {
 
             <div className="mt-8 flex items-center gap-4 rounded-xl border border-border bg-card p-4">
               <span className="text-2xl font-bold text-primary">+35%</span>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                Aumento en solicitudes de auxilio (ANAR). Nosotros respondemos en menos de 24
-                horas.
-              </p>
+                          <p className="text-xs leading-relaxed text-muted-foreground">
+                Aumento en solicitudes de auxilio (ANAR). Red Violeta ofrece orientación
+                automatizada, disponible 24/7.
+              </p> 
             </div>
           </div>
 
@@ -176,9 +177,9 @@ function Home() {
           <h2 className="text-3xl font-bold tracking-tight text-foreground">
             Cómo funciona Red Violeta
           </h2>
-          <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
-            Integramos cuatro pilares especializados para ofrecerte una respuesta completa y
-            coordinada. Cada pilar cuenta además con un agente de IA disponible 24/7.
+                    <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+            Cuatro ámbitos de orientación, cada uno con un sistema de inteligencia artificial
+            especializado, disponible 24/7.
           </p>
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
             {PILLARS.map((p) => (
@@ -210,16 +211,16 @@ function Home() {
           <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             ¿Tu hijo sufre ciberacoso?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
-            No está solo. Los agentes de Red Violeta están disponibles 24/7 y el equipo humano se
-            pone en contacto contigo en menos de 24 horas.
+                    <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
+            No estáis solos. Los agentes de inteligencia artificial de Red Violeta están
+            disponibles 24/7 para ofrecerte información y orientación inicial.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link
               to="/test"
               className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:opacity-90 active:scale-95"
             >
-              Hacer el test de autodiagnóstico gratuito
+                          Hacer el test orientativo gratuito 
             </Link>
           </div>
         </div>
