@@ -5,10 +5,10 @@ export const Route = createFileRoute("/servicios")({
   head: () => ({
     meta: [
       { title: "Servicios para familias, colegios y empresas | Red Violeta" },
-      {
+           {
         name: "description",
         content:
-          "Soluciones especializadas contra el ciberacoso para familias, centros educativos, empresas y administraciones públicas, con cumplimiento LOPIVI.",
+          "Orientación, prevención y talleres formativos contra el ciberacoso para familias, centros educativos, empresas y administraciones públicas, alineados con la LOPIVI.",
       },
       { property: "og:title", content: "Servicios especializados | Red Violeta" },
       {
@@ -26,42 +26,42 @@ export const Route = createFileRoute("/servicios")({
 const SERVICES = [
   {
     tag: "Familias",
-    title: "Apoyo integral para tu familia",
-    text: "Cuando en la familia se sufre ciberacoso, necesitas respuestas rápidas y especializadas. Te ayudamos con un diagnóstico claro y un plan de acción que realmente funciona.",
+    title: "Orientación integral para tu familia",
+    text: "Cuando en la familia se vive una situación de ciberacoso, es fácil sentirse perdido. Nuestros agentes de IA te orientan de inmediato, y puedes solicitar una conversación personalizada sobre tu caso.",
     items: [
-      "Respuesta en menos de 24 horas",
-      "Evaluación integral 4 en 1",
-      "Acompañamiento especializado",
+      "Orientación inmediata con los 4 agentes de IA",
+      "Test orientativo gratuito de vulnerabilidad digital",
+      "Conversación personalizada bajo petición",
     ],
   },
   {
     tag: "Colegios",
-    title: "Protección integral del alumnado",
-    text: "Ofrecemos protocolos auditables y respuesta especializada para casos de ciberacoso. Cumplimos con la LOPIVI y aportamos informes técnicos que respaldan tus decisiones.",
+    title: "Orientación y prevención para el alumnado",
+    text: "Ayudamos a tu centro a reforzar la prevención frente al ciberacoso, en línea con la LOPIVI: acceso a los agentes de IA para el alumnado, el test orientativo, y talleres de formación adaptados a vuestras necesidades.",
     items: [
-      "Suscripción anual Protección LOPIVI",
-      "Protocolos auditables",
-      "Informes de IA predictiva",
+      "Acceso del alumnado a los 4 agentes de IA",
+      "Talleres de prevención adaptados al centro",
+      "Test orientativo gratuito de vulnerabilidad digital",
     ],
   },
   {
     tag: "Empresas",
     title: "Bienestar digital para tu equipo",
-    text: "Las empresas están obligadas a proteger a sus empleados contra el ciberacoso para garantizar su salud psicofísica y cumplir con normativas estrictas.",
+    text: "El ciberacoso también puede darse en el entorno laboral. Ofrecemos formación y recursos de prevención para cuidar el bienestar digital de tu equipo.",
     items: [
-      "Plan Bienestar Digital Familiar",
-      "Apoyo a empleados y familias, favoreciendo el clima laboral y la conciliación",
-      "Reducción significativa del absentismo laboral",
+      "Talleres de ciberseguridad y bienestar digital",
+      "Acceso de empleados y sus familias a los agentes de IA",
+      "Recursos de prevención adaptados al entorno laboral",
     ],
   },
   {
     tag: "Administraciones",
-    title: "Impacto social medible",
-    text: "Implementamos programas con métricas claras de impacto social. Certificamos espacios seguros y generamos reportes que demuestran resultados reales.",
+    title: "Colaboración con administraciones públicas",
+    text: "Colaboramos con administraciones públicas en campañas de sensibilización y programas de prevención del ciberacoso adaptados a cada territorio.",
     items: [
-      "Consultoría especializada",
-      'Certificación "Espacio Seguro"',
-      "Reportes de impacto social",
+      "Jornadas de sensibilización ciudadana",
+      "Formación para personal técnico y de servicios sociales",
+      "Conversación para diseñar un programa a medida",
     ],
   },
 ];
