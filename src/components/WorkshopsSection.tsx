@@ -38,7 +38,7 @@ const WORKSHOPS = [
     icon: Building2,
     emoji: "💼",
     title: "Centros de Trabajo",
-    text: "Capacitación en ciberseguridad humana, concienciación digital y salud mental en entornos corporativos.",
+        text: "Capacitación en ciberseguridad humana, concienciación digital y bienestar digital en entornos corporativos.",
     points: [
       "Prevención del ciberacoso laboral y conductas de riesgo.",
       "Gestión de la desconexión digital y buen uso de canales internos.",
