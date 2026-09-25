@@ -32,17 +32,17 @@ const STATS: Stat[] = [
   {
     label: "Disponibilidad",
     value: "24/7",
-    caption: "Atención inmediata y confidencial",
+    caption: "Orientación automatizada disponible en todo momento",
   },
   {
-    label: "Efectividad",
-    value: "+100",
-    caption: "Consultas de orientación atendidas con protocolos de protección",
+    label: "Especialización",
+    value: "4",
+    caption: "Sistemas de IA especializados: seguridad, apoyo emocional, orientación social y jurídica",
   },
   {
-    label: "Rigor técnico",
-    value: "100%",
-    caption: "Privacidad y anonimato garantizados",
+    label: "Enfoque en privacidad",
+    value: "Anónimo",
+    caption: "No se piden datos identificativos para usar el chat",
   },
 ];
 
