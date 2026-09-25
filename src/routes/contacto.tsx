@@ -8,10 +8,22 @@ export const Route = createFileRoute("/contacto")({
   head: () => ({
     meta: [
       { title: "Contactar con Red Violeta Ciberprevención" },
-      {
+            {
         name: "description",
         content:
-          "Escríbenos y te respondemos en menos de 24 horas. Consulta también los teléfonos oficiales de emergencia y los agentes disponibles 24/7.",
+          "Escríbenos y te responderemos en cuanto podamos. Consulta también los teléfonos oficiales de emergencia y los agentes de IA disponibles 24/7.",
+      },
+      { property: "og:title", content: "Contactar con Red Violeta Ciberprevención" },
+      {
+        property: "og:description",
+        content: "Agentes de inteligencia artificial disponibles 24/7. Escríbenos cuando lo necesites.",
+      },
+         
+      
+      { property: "og:title", content: "Contactar con Red Violeta Ciberprevención" },
+      {
+        property: "og:description",
+        content: "Agentes de inteligencia artificial disponibles 24/7. Escríbenos cuando lo necesites.",
       },
       { property: "og:title", content: "Contactar con Red Violeta Ciberprevención" },
       {
