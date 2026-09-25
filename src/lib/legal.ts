@@ -10,8 +10,7 @@ export const AI_CHAT_BADGE =
   "Respuesta generada por Inteligencia Artificial Multi-Agente. Esta herramienta ofrece orientación previa y borradores informativos que deben ser validados por profesionales.";
 
 export const B2B_CONSENT =
-  "Acepto el tratamiento de datos para la emisión del informe institucional y el envío de comunicaciones de ciberseguridad según el RGPD y la LOPDGDD 3/2018. Responsable: Red Violeta Ciberprevención.";
-
+  "Acepto el tratamiento de mis datos para gestionar esta solicitud y recibir comunicaciones de Red Violeta Ciberprevención, según el RGPD y la LOPDGDD 3/2018. Responsable: Red Violeta Ciberprevención.";
 export const CONTACT_EMAIL = "info@redvioletaciberprevencion.es";
 
 export const LEGAL_LINKS = [
