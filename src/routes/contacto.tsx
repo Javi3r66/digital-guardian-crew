@@ -33,26 +33,16 @@ function Contacto() {
         mismo, los agentes de inteligencia artificial están disponibles a cualquier hora.
       </p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        
-          href="mailto:info@redvioletaciberprevencion.es"
-          className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary active:border-primary active:bg-accent/60"
-        >
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <a href="mailto:info@redvioletaciberprevencion.es" className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary active:border-primary active:bg-accent/60">
           <Mail className="size-5 text-primary" />
           <p className="mt-3 text-sm font-semibold text-foreground">Correo electrónico</p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            info@redvioletaciberprevencion.es
-          </p>
+          <p className="mt-1 text-xs text-muted-foreground">info@redvioletaciberprevencion.es</p>
         </a>
-        <Link
-          to="/agentes"
-          className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary active:border-primary active:bg-accent/60"
-        >
+        <Link to="/agentes" className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary active:border-primary active:bg-accent/60">
           <Bot className="size-5 text-primary" />
           <p className="mt-3 text-sm font-semibold text-foreground">Agentes 24/7</p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            Ciberseguridad, psicología, trabajo social y orientación legal
-          </p>
+          <p className="mt-1 text-xs text-muted-foreground">Ciberseguridad, psicología, trabajo social y orientación legal</p>
         </Link>
       </div>
 
@@ -65,15 +55,10 @@ function Contacto() {
       </div>
 
       <div className="mt-10 rounded-2xl border border-destructive/30 bg-destructive/5 p-6">
-        <h2 className="text-sm font-semibold text-foreground">
-          Si hay riesgo inmediato, no esperes
-        </h2>
+        <h2 className="text-sm font-semibold text-foreground">Si hay riesgo inmediato, no esperes</h2>
         <div className="mt-3 flex flex-wrap gap-2">
           {EMERGENCY_RESOURCES.map((r) => (
-            <span
-              key={r.value}
-              className="rounded-full border border-border bg-background px-3 py-1.5 text-xs text-foreground"
-            >
+            <span key={r.value} className="rounded-full border border-border bg-background px-3 py-1.5 text-xs text-foreground">
               {r.label} <strong>{r.value}</strong>
             </span>
           ))}
@@ -81,9 +66,7 @@ function Contacto() {
       </div>
 
       <p className="mt-8 text-[11px] leading-relaxed text-muted-foreground">
-        Tratamos tus datos conforme al Reglamento (UE) 2016/679 y a la LO 3/2018 (LOPDGDD). No
-        incluyas datos de salud, imágenes íntimas ni datos de terceros en el primer correo: te
-        indicaremos por otro canal seguro cómo aportarlos si fuera necesario.
+        Tratamos tus datos conforme al Reglamento (UE) 2016/679 y a la LO 3/2018 (LOPDGDD). No incluyas datos de salud, imágenes íntimas ni datos de terceros en el primer correo: te indicaremos por otro canal seguro cómo aportarlos si fuera necesario.
       </p>
     </div>
   );
