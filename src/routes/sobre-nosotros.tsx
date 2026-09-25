@@ -24,10 +24,10 @@ export const Route = createFileRoute("/sobre-nosotros")({
 });
 
 const TEAM = [
-  { icon: ShieldCheck, title: "Ciberseguridad", text: "Contención del incidente y preservación de evidencia digital." },
-  { icon: HeartPulse, title: "Psicología", text: "Atención al trauma del ciberacoso para el menor y su familia." },
-  { icon: Users, title: "Trabajo social", text: "Coordinación con el centro educativo y los servicios sociales." },
-  { icon: Scale, title: "Derecho digital", text: "Asesoramiento sobre derechos y vías de protección legal." },
+  { icon: ShieldCheck, title: "AURA · Seguridad digital", text: "Orientación inmediata para proteger cuentas y preservar evidencia digital." },
+  { icon: HeartPulse, title: "CALMA · Apoyo emocional", text: "Contención emocional inicial y psicoeducación para el menor y su familia." },
+  { icon: Users, title: "PUENTE · Orientación social", text: "Información sobre cómo activar el protocolo del centro y los recursos sociales disponibles." },
+  { icon: Scale, title: "LEX · Información jurídica", text: "Información jurídica general sobre derechos y posibles vías de actuación." },
 ];
 
 function Sobre() {
@@ -35,14 +35,16 @@ function Sobre() {
     <div className="mx-auto max-w-4xl px-5 py-10 sm:py-16">
       <h1 className="text-3xl font-bold sm:text-4xl tracking-tight text-foreground">Nuestra misión</h1>
       <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-        Red Violeta Ciberprevención nace para transformar la respuesta al ciberacoso. Cuando una
-        familia detecta que algo va mal, se encuentra con recursos dispersos: un informático por un
-        lado, un psicólogo por otro, el colegio por otro y un abogado al final del camino. Ese
-        recorrido consume semanas que la víctima no tiene.
+        Red Violeta Ciberprevención nace para facilitar el primer paso frente al ciberacoso. Cuando
+        una familia detecta que algo va mal, a menudo no sabe por dónde empezar ni a quién acudir
+        primero.
       </p>
       <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-        Nuestra propuesta es unir las cuatro disciplinas sobre el mismo caso y desde la primera
-        hora, con una respuesta en menos de 24 horas y un plan de acción escrito.
+        Por eso creamos cuatro sistemas de inteligencia artificial especializados —AURA, CALMA,
+        PUENTE y LEX— que ofrecen orientación inmediata desde el primer momento, disponibles las
+        24 horas. Los agentes de Red Violeta son sistemas de IA: no son profesionales sanitarios,
+        abogados, trabajadores sociales ni servicios públicos de emergencia, y no sustituyen su
+        intervención cuando esta es necesaria.
       </p>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2">
