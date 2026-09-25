@@ -87,7 +87,7 @@ export const AGENTS: Agent[] = [
       "Activa el circuito de protección: centro educativo, servicios sociales y recursos públicos, y prepara la mediación cuando procede.",
     capabilities: [
       "Activación del protocolo del centro educativo y del coordinador de bienestar (LOPIVI)",
-      "Redacción de escritos de solicitud a dirección, inspección educativa y servicios sociales",
+          "Ayuda a organizar la información para un escrito de solicitud a dirección, inspección educativa o servicios sociales",
       "Mapa de recursos públicos y de tercer sector según la comunidad autónoma",
       "Preparación de la mediación escolar y familiar, y criterios para descartarla",
     ],
@@ -111,12 +111,12 @@ export const AGENTS: Agent[] = [
     id: "legal",
     name: "LEX",
     pillar: "Legal",
-    role: "Agente de orientación jurídica",
+      role: "Sistema de IA de información jurídica",
     icon: Scale,
     summary:
       "Orientación jurídica preliminar sobre la vía penal, civil y administrativa aplicable al ciberacoso en España, y preparación de la denuncia.",
     capabilities: [
-      "Encaje preliminar de los hechos en los tipos penales aplicables",
+           "Información general sobre qué conductas pueden estar reguladas en el Código Penal, sin determinar si un caso concreto constituye delito", 
       "Explicación de la responsabilidad del menor infractor según su edad",
       "Guion de denuncia y documentación a aportar ante Policía, Guardia Civil o juzgado",
       "Derechos de la víctima, protección de datos y derecho al olvido",
