@@ -91,10 +91,9 @@ export function B2BLeadForm({
     return (
       <div className="flex items-start gap-3 rounded-2xl border border-primary/30 bg-primary/5 p-5">
         <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
-        <p className="text-sm text-foreground">
-          Solicitud registrada. Te escribimos a <strong>{values["email"]}</strong> en menos de 24 horas
-          con el informe y una propuesta de fecha para la reunión de diagnóstico.
-        </p>
+             <p className="text-sm text-foreground">
+          Solicitud registrada. Te escribiremos a <strong>{values["email"]}</strong> en cuanto podamos.
+        </p>   
       </div>
     );
   }
