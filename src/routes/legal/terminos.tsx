@@ -49,9 +49,7 @@ function Terminos() {
       </p>
       <h2>3. Exclusión de responsabilidad</h2>
       <p>
-        Red Violeta Ciberprevención y sus administradores quedan eximidos de responsabilidad civil,
-        penal o administrativa derivada de decisiones tomadas por usuarios o terceros basándose en
-        la información de los agentes de IA.
+       Red Violeta es una plataforma tecnológica de información y orientación. Las respuestas de sus sistemas de inteligencia artificial no constituyen asesoramiento profesional y no sustituyen la intervención de profesionales cualificados ni de las autoridades competentes. Red Violeta no garantiza que una respuesta automatizada sea adecuada para las circunstancias particulares de cada persona.
       </p>
       <h2>4. Urgencias</h2>
       <p>
