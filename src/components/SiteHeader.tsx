@@ -20,7 +20,6 @@ const NAV = [
   { to: "/#talleres-presupuestos", label: "Talleres y Presupuestos" },
   { to: "/agentes", label: "Agentes 24/7" },
   { to: "/acceso", label: "Acceso alumnado" },
-  { to: "/test", label: "Test Gratuito" },
   { to: "/contacto", label: "Contactar" },
 ] as const;
 
@@ -35,7 +34,7 @@ export function SiteHeader() {
           className="flex min-w-0 items-center gap-2 active:opacity-70"
           onClick={() => setOpen(false)}
         >
-          <span className="hidden items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold text-primary sm:inline-flex">
+          <span className="hidden items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold text-primary xl:inline-flex">
             <span className="relative flex size-1.5">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
@@ -60,7 +59,7 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {NAV.map((n) => (
+          {NAV.filter((n) => n.to !== "/acceso").map((n) => (
             <Link
               key={n.to}
               to={n.to}
@@ -70,6 +69,12 @@ export function SiteHeader() {
               {n.label}
             </Link>
           ))}
+          <Link
+            to="/acceso"
+            className="ml-2 rounded-lg border-[1.5px] border-primary px-4 py-[7px] text-sm font-medium text-primary transition-colors hover:bg-primary/5 active:scale-95"
+          >
+            Acceso alumnado
+          </Link>
           <Link
             to="/test"
             className="ml-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:opacity-90 active:scale-95"
@@ -119,7 +124,7 @@ export function SiteHeader() {
                 onClick={() => void haptic("medium")}
                 className="flex items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-3.5 text-sm font-semibold text-primary-foreground transition-transform active:scale-95"
               >
-                <ClipboardCheck className="size-4" /> Test de autodiagnóstico gratuito
+                <ClipboardCheck className="size-4" /> Test orientativo gratuito
               </Link>
             </DrawerClose>
           </div>
