@@ -1,7 +1,5 @@
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
-import { notifyLeadFn } from "@/lib/notify.functions";
-
 
 export const leadSchema = z.object({
   kind: z.enum(["auditoria", "charla"]),
@@ -45,24 +43,25 @@ export async function submitLead(input: LeadInput) {
   });
   if (error) throw new Error(error.message);
 
-  // Aviso por correo + evento en el calendario. No bloquea el envío del formulario.
+  // Aviso por correo. No bloquea el envío del formulario.
   try {
-    await notifyLeadFn({
-      data: {
+    await fetch("/api/notify-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
         kind: data.kind,
         centro: data.centro,
         contacto: data.contacto,
-        ...(data.cargo ? { cargo: data.cargo } : {}),
-        ...(data.telefono ? { telefono: data.telefono } : {}),
+        cargo: data.cargo,
+        telefono: data.telefono,
         email: data.email,
-        ...(data.num_alumnos ? { num_alumnos: data.num_alumnos } : {}),
-        ...(data.publico ? { publico: data.publico } : {}),
-        ...(data.mensaje ? { mensaje: data.mensaje } : {}),
-        ...(data.riesgo !== undefined ? { riesgo: data.riesgo } : {}),
-      },
+        num_alumnos: data.num_alumnos,
+        publico: data.publico,
+        mensaje: data.mensaje,
+        riesgo: data.riesgo,
+      }),
     });
   } catch (e) {
     console.error("[submitLead] notificación fallida", e);
   }
 }
-
