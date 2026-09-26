@@ -1,32 +1,6 @@
-// Server-only: envía el correo de aviso (Gmail)
-// usando la cuenta de Google conectada al proyecto (info@redvioletaciberprevencion.es).
-
-const GATEWAY = "https://connector-gateway.lovable.dev";
+// Server-only: envía el correo de aviso usando Resend.
 export const NOTIFY_EMAIL = "info@redvioletaciberprevencion.es";
-
-function gatewayHeaders(connectionKey: string) {
-  return {
-    Authorization: `Bearer ${process.env['LOVABLE_API_KEY']}`,
-    "X-Connection-Api-Key": connectionKey,
-    "Content-Type": "application/json",
-  };
-}
-
-const b64 = (s: string) =>
-  btoa(Array.from(new TextEncoder().encode(s), (b) => String.fromCharCode(b)).join(""));
-const header = (v: string) => (/^[\x00-\x7F]*$/.test(v) ? v : `=?UTF-8?B?${b64(v)}?=`);
-
-function rawEmail(to: string, subject: string, body: string) {
-  const email = [
-    `To: ${to}`,
-    `Subject: ${header(subject)}`,
-    "MIME-Version: 1.0",
-    'Content-Type: text/plain; charset="UTF-8"',
-    "",
-    body,
-  ].join("\r\n");
-  return b64(email).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
+const RESEND_FROM = "Red Violeta Ciberprevención <alertas@redvioletaciberprevencion.es>";
 
 export type NotifyPayload = {
   kind: string;
@@ -42,7 +16,7 @@ export type NotifyPayload = {
 };
 
 const KIND_LABEL: Record<string, string> = {
-  auditoria: "Informe de Vulnerabilidad Digital",
+  auditoria: "Test institucional",
   charla: "Charla presencial",
 };
 
@@ -56,31 +30,35 @@ function summary(p: NotifyPayload) {
     ["Correo", p.email],
     ["Nº de alumnos", p.num_alumnos],
     ["Destinatarios", p.publico],
-    ["Índice de riesgo", p.riesgo !== undefined ? `${p.riesgo}%` : undefined],
+    ["Puntuación orientativa", p.riesgo !== undefined ? `${p.riesgo}%` : undefined],
     ["Mensaje", p.mensaje],
   ];
   return rows
     .filter(([, v]) => v !== undefined && v !== "")
-    .map(([k, v]) => `${k}: ${v}`)
+    .map(([k, v]) => `<p><strong>${k}:</strong> ${v}</p>`)
     .join("\n");
 }
 
 async function sendMail(p: NotifyPayload) {
-  const key = process.env['GOOGLE_MAIL_API_KEY'];
-  if (!key) throw new Error("GOOGLE_MAIL_API_KEY no configurada");
-  const subject =
-    p.kind === "auditoria"
-      ? `📊 Informe de Vulnerabilidad Digital: ${p.centro}`
-      : `Nueva solicitud (${KIND_LABEL[p.kind] ?? p.kind}): ${p.centro}`;
-  const body = `Nueva solicitud recibida desde redvioletaciberprevencion.es\n\n${summary(p)}\n`;
-  const res = await fetch(`${GATEWAY}/google_mail/gmail/v1/users/me/messages/send`, {
+  const key = process.env["RESEND_API_KEY"];
+  if (!key) throw new Error("RESEND_API_KEY no configurada");
+  const subject = `Nueva solicitud (${KIND_LABEL[p.kind] ?? p.kind}): ${p.centro}`;
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: gatewayHeaders(key),
-    body: JSON.stringify({ raw: rawEmail(NOTIFY_EMAIL, subject, body) }),
+    headers: {
+      Authorization: `Bearer ${key}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: RESEND_FROM,
+      to: [NOTIFY_EMAIL],
+      subject,
+      html: `<p>Nueva solicitud recibida desde redvioletaciberprevencion.es</p>${summary(p)}`,
+    }),
   });
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`Gmail [${res.status}]: ${text}`);
+    throw new Error(`Resend [${res.status}]: ${text}`);
   }
 }
 
