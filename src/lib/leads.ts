@@ -68,3 +68,4 @@ export async function submitLead(input: LeadInput) {
   } catch (e) {
     console.error("[submitLead] notificación fallida", e);
   }
+}
