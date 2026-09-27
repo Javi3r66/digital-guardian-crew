@@ -45,9 +45,13 @@ export async function submitLead(input: LeadInput) {
 
   // Aviso por correo. No bloquea el envío del formulario.
   try {
-    await fetch("/api/notify-lead", {
+    await fetch("https://gsjgylomutnburmrzmmd.supabase.co/functions/v1/notify-lead", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        apikey: "sb_publishable_BE3OnBe-y_k_QNuYy2eDsw_9NHlKuPE",
+        Authorization: "Bearer sb_publishable_BE3OnBe-y_k_QNuYy2eDsw_9NHlKuPE",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         kind: data.kind,
         centro: data.centro,
@@ -64,4 +68,3 @@ export async function submitLead(input: LeadInput) {
   } catch (e) {
     console.error("[submitLead] notificación fallida", e);
   }
-}
