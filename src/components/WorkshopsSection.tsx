@@ -128,10 +128,9 @@ export function WorkshopsSection() {
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogContent className="max-h-[90svh] overflow-y-auto sm:max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Solicitar presupuesto para talleres</DialogTitle>
-            <DialogDescription>
-              Cuéntanos sobre tu entidad y te enviaremos una propuesta personalizada en menos de 24
-              horas.
+            <DialogTitle>Solicitar informacion para talleres</DialogTitle>
+                        <DialogDescription>
+              Cuéntanos sobre tu entidad y te enviaremos una propuesta personalizada en cuanto podamos.
             </DialogDescription>
           </DialogHeader>
           <B2BLeadForm
