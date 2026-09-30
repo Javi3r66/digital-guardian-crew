@@ -58,7 +58,7 @@ export function WorkshopsSection() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <section id="talleres-presupuestos" className="bg-[#f9f8fc] scroll-mt-20">
+    <section id="talleres-informacion" className="bg-[#f9f8fc] scroll-mt-20">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:py-20">
         <div className="max-w-3xl">
           <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
