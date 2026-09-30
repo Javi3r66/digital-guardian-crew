@@ -1,6 +1,6 @@
 export const EMERGENCY_WARNING = {
   title: "AVISO IMPORTANTE DE SEGURIDAD",
-  body: "Red Violeta es un sistema automatizado de orientación y triaje preventivo asistido por IA. NO ES UN SERVICIO DE EMERGENCIAS NI SUSTITUYE A LAS FUERZAS Y CUERPOS DE SEGURIDAD DEL ESTADO. En caso de peligro inminente, agresión, riesgo vital o emergencia real, contacte inmediatamente al 112, 091 (Policía Nacional), 062 (Guardia Civil) o al 016.",
+  body: "Red Violeta es un sistema automatizado de orientación preventiva asistido por IA. NO ES UN SERVICIO DE EMERGENCIAS NI SUSTITUYE A LAS FUERZAS Y CUERPOS DE SEGURIDAD DEL ESTADO. En caso de peligro inminente, agresión, riesgo vital o emergencia real, contacte inmediatamente al 112, 091 (Policía Nacional), 062 (Guardia Civil) o al 016.",
 };
 
 export const LIABILITY_DISCLAIMER =
