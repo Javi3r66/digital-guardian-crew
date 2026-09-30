@@ -128,10 +128,10 @@ function AccesoAnonimo() {
             </span>
             <h2 className="text-xl font-semibold">1. Bienvenida segura</h2>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex gap-2">
+                          <li className="flex gap-2">
                 <EyeOff className="mt-0.5 size-4 shrink-0 text-primary" /> Eres anónimo:
-                no registramos identidad, IP asociada ni historial de conversación.
-              </li>
+                no registramos tu identidad ni el historial de tu conversación.
+              </li> 
               <li className="flex gap-2">
                 <Sparkles className="mt-0.5 size-4 shrink-0 text-primary" /> Te atienden
                 cuatro agentes de IA: técnico, psicológico, social y legal.
