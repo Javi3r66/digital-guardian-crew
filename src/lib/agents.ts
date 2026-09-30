@@ -20,16 +20,16 @@ export const AGENTS: Agent[] = [
   {
     id: "ciberseguridad",
     name: "AURA",
-    pillar: "Técnico",
+       pillar: "Seguridad",
     role: "Agente de ciberseguridad",
     icon: ShieldCheck,
-    summary:
-      "Guía la contención técnica del incidente: preservación de pruebas, cierre de vectores de ataque y cálculo del Grado de Vulnerabilidad Digital.",
+       summary:
+      "Orientación técnica para contener el incidente: preservación de pruebas, cierre de vectores de riesgo y un test orientativo de prevención digital.",
     capabilities: [
       "Checklist de preservación de evidencia digital (capturas con fecha, URL y usuario, hashes, acta notarial)",
       "Bastionado de cuentas: 2FA, revisión de sesiones activas, privacidad por defecto",
       "Rutas de denuncia y retirada de contenido en cada plataforma (canales de reporte y Canal Prioritario de la AEPD)",
-      "Cuestionario estructurado de Grado de Vulnerabilidad Digital",
+      "Test orientativo de prevención digital",
     ],
     legalBasis: [
       "RGPD (UE) 2016/679 y LO 3/2018 (LOPDGDD), art. 84",
@@ -44,13 +44,13 @@ export const AGENTS: Agent[] = [
       "¿Cómo guardo las capturas para que sirvan como prueba?",
       "Quiero cerrar el acceso a sus cuentas, guíame paso a paso",
     ],
-    greeting:
-      "Soy AURA, el agente técnico de Red Violeta. Te ayudo a contener el incidente y a preservar las pruebas correctamente. Cuéntame qué ha pasado, sin incluir datos personales identificativos.",
+       greeting:
+      "Soy AURA, un sistema de IA de seguridad digital. Te oriento para contener el incidente y preservar las pruebas correctamente. Cuéntame qué ha pasado, sin incluir datos personales identificativos.",
   },
   {
     id: "psicologia",
     name: "CALMA",
-    pillar: "Clínico",
+        pillar: "Emocional",
         role: "Sistema de IA de apoyo emocional",
     icon: HeartPulse,
     summary:
@@ -74,8 +74,8 @@ export const AGENTS: Agent[] = [
       "Me siento culpable por no haberlo visto antes",
       "¿Qué señales indican que necesita ayuda urgente?",
     ],
-    greeting:
-      "Soy CALMA, el agente de apoyo psicológico. Estoy aquí para escucharte y darte pautas de primeros auxilios psicológicos. Si en algún momento hay riesgo para la vida, te derivaré al 024 o al 112.",
+       greeting:
+      "Soy CALMA, un sistema de IA de apoyo emocional. Estoy aquí para escucharte y darte pautas generales. No soy un profesional sanitario; si en algún momento hay riesgo para la vida, te derivaré al 024 o al 112.",
   },
   {
     id: "social",
@@ -104,8 +104,8 @@ export const AGENTS: Agent[] = [
       "Escríbeme un escrito para la dirección del centro",
       "¿Qué recursos públicos tengo disponibles?",
     ],
-    greeting:
-      "Soy PUENTE, el agente de trabajo social. Te ayudo a activar el protocolo del centro y los recursos públicos que te corresponden. ¿En qué situación estás?",
+       greeting:
+      "Soy PUENTE, un sistema de IA de orientación educativa y social. Te oriento sobre cómo activar el protocolo del centro y los recursos públicos disponibles. ¿En qué situación estás?",
   },
   {
     id: "legal",
@@ -135,8 +135,8 @@ export const AGENTS: Agent[] = [
       "El acosador tiene 13 años, ¿qué se puede hacer?",
       "¿Qué necesito para poner la denuncia?",
     ],
-    greeting:
-      "Soy LEX, el agente de orientación jurídica. Trabajo con la legislación vigente en España y te doy orientación general, nunca asesoramiento legal personalizado. ¿Qué ha ocurrido?",
+       greeting:
+      "Soy LEX, un sistema de IA de información jurídica general. Trabajo con la legislación vigente en España, nunca doy asesoramiento legal personalizado. ¿Qué ha ocurrido?",
   },
 ];
 
