@@ -17,7 +17,7 @@ const NAV = [
   { to: "/sobre-nosotros", label: "Sobre Nosotros" },
   { to: "/servicios", label: "Servicios" },
   { to: "/colegios", label: "Colegios" },
-  { to: "/#talleres-informacion", label: "Talleres e Informacion" },
+  { to: "/#talleres-informacion", hash: "talleres-informacion", label: "Talleres e Informacion" },
   { to: "/agentes", label: "Agentes 24/7" },
   { to: "/acceso", label: "Acceso alumnado" },
   { to: "/contacto", label: "Contactar" },
@@ -59,16 +59,37 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {NAV.filter((n) => n.to !== "/acceso").map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              activeProps={{ className: "text-primary bg-primary/5" }}
-              className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary active:bg-primary/10"
-            >
-              {n.label}
-            </Link>
-          ))}
+          {NAV.filter((n) => n.to !== "/acceso").map((n) => {
+            if ("hash" in n && n.hash) {
+              return (
+                <a
+                  key={n.to}
+                  href={n.to}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (window.location.pathname !== "/") {
+                      window.location.href = n.to;
+                    } else {
+                      document.getElementById(n.hash)?.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary active:bg-primary/10 cursor-pointer"
+                >
+                  {n.label}
+                </a>
+              );
+            }
+            return (
+              <Link
+                key={n.to}
+                to={n.to}
+                activeProps={{ className: "text-primary bg-primary/5" }}
+                className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary active:bg-primary/10"
+              >
+                {n.label}
+              </Link>
+            );
+          })}
           <Link
             to="/acceso"
             className="ml-2 rounded-lg border-[1.5px] border-primary px-4 py-[7px] text-sm font-medium text-primary transition-colors hover:bg-primary/5 active:scale-95"
@@ -102,20 +123,45 @@ export function SiteHeader() {
             <DrawerTitle className="text-base">Navegación</DrawerTitle>
           </DrawerHeader>
           <nav className="touch-scroll flex max-h-[60svh] flex-col overflow-y-auto px-4 pb-2">
-            {NAV.map((n) => (
-              <DrawerClose asChild key={n.to}>
-                <Link
-                  to={n.to}
-                  onClick={() => void haptic("light")}
-                  activeProps={{ className: "text-primary bg-primary/5" }}
-                  className={cn(
-                    "rounded-xl px-4 py-3.5 text-[15px] text-muted-foreground transition-colors active:bg-accent",
-                  )}
-                >
-                  {n.label}
-                </Link>
-              </DrawerClose>
-            ))}
+            {NAV.map((n) => {
+              if ("hash" in n && n.hash) {
+                return (
+                  <DrawerClose asChild key={n.to}>
+                    <a
+                      href={n.to}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        void haptic("light");
+                        if (window.location.pathname !== "/") {
+                          window.location.href = n.to;
+                        } else {
+                          document.getElementById(n.hash)?.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                      className={cn(
+                        "rounded-xl px-4 py-3.5 text-[15px] text-muted-foreground transition-colors active:bg-accent cursor-pointer"
+                      )}
+                    >
+                      {n.label}
+                    </a>
+                  </DrawerClose>
+                );
+              }
+              return (
+                <DrawerClose asChild key={n.to}>
+                  <Link
+                    to={n.to}
+                    onClick={() => void haptic("light")}
+                    activeProps={{ className: "text-primary bg-primary/5" }}
+                    className={cn(
+                      "rounded-xl px-4 py-3.5 text-[15px] text-muted-foreground transition-colors active:bg-accent"
+                    )}
+                  >
+                    {n.label}
+                  </Link>
+                </DrawerClose>
+              );
+            })}
           </nav>
           <div className="px-4 pb-4 pb-safe">
             <DrawerClose asChild>
