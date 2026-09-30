@@ -28,10 +28,10 @@ export const Route = createFileRoute("/agentes")({
 });
 
 const STEPS = [
-  {
+   {
     icon: MessageSquare,
     title: "1. Elige el agente",
-    text: "Selecciona el pilar que necesitas: técnico, clínico, social o legal. Puedes cambiar de agente en cualquier momento; cada uno mantiene su propia conversación.",
+    text: "Selecciona el ámbito que necesitas: seguridad, apoyo emocional, social o legal. Puedes cambiar de agente en cualquier momento; cada uno mantiene su propia conversación.",
   },
   {
     icon: BookOpen,
@@ -43,10 +43,10 @@ const STEPS = [
     title: "3. Recibe pasos accionables",
     text: "Obtienes hasta cinco pasos concretos, con la norma española en la que se apoyan y los recursos oficiales a los que acudir.",
   },
-  {
+   {
     icon: RefreshCcw,
     title: "4. Valora la respuesta",
-    text: "El pulgar arriba/abajo alimenta el ciclo de mejora: las respuestas marcadas pasan a revisión de un profesional humano antes de incorporarse a la base de conocimiento.",
+    text: "Puedes indicar con el pulgar si la respuesta te ha sido útil, como referencia para ti mismo/a durante la conversación.",
   },
 ];
 
@@ -63,10 +63,10 @@ function Agentes() {
         <h1 className="mt-3 max-w-3xl text-3xl font-bold sm:text-4xl leading-tight tracking-tight text-foreground">
           Agentes automatizados especializados en ciberacoso
         </h1>
-        <p className="mt-4 max-w-2xl text-base text-muted-foreground">
+               <p className="mt-4 max-w-2xl text-base text-muted-foreground">
           Cada uno de los cuatro pilares de Red Violeta tiene su propio agente independiente, con
-          su ámbito, sus límites y su base normativa española. Están disponibles 24/7 y son el
-          primer paso mientras el equipo humano toma tu caso.
+          su ámbito, sus límites y su base normativa española. Están disponibles 24/7 para
+          ofrecerte información y orientación inicial.
         </p>
         <div className="mt-6 flex flex-wrap gap-2 text-xs text-muted-foreground">
           {[
@@ -174,32 +174,29 @@ function Agentes() {
             ))}
           </div>
 
-          <div className="mt-8 rounded-2xl border border-border bg-card p-6">
+                   <div className="mt-8 rounded-2xl border border-border bg-card p-6">
             <h2 className="text-sm font-semibold text-foreground">
-              Aprendizaje y autoentrenamiento: cómo funciona realmente
+              Cómo funcionan realmente los agentes
             </h2>
             <div className="mt-3 grid gap-4 text-xs leading-relaxed text-muted-foreground sm:grid-cols-3">
               <p>
-                <strong className="text-foreground">Memoria de caso.</strong> Dentro de una
-                conversación el agente conserva todo el contexto y refina sus respuestas. No se
-                guarda nada: al cerrar o recargar la página la conversación desaparece.
+                <strong className="text-foreground">Cada conversación es independiente.</strong> El
+                agente no guarda memoria entre conversaciones distintas ni las comparte entre
+                personas usuarias: al cerrar o recargar la página, la conversación desaparece.
               </p>
               <p>
-                <strong className="text-foreground">Base de conocimiento viva.</strong> El
-                aprendizaje entre casos se implementa como recuperación sobre una base de
-                conocimiento (protocolos, normativa actualizada, casuística anonimizada) que se
-                amplía sin reentrenar el modelo. Es lo que hace que el agente aprenda de forma
-                trazable y auditable.
+                <strong className="text-foreground">Instrucciones fijas.</strong> Cada agente sigue
+                un conjunto de instrucciones definido de antemano y revisado periódicamente por el
+                equipo de Red Violeta. No se reentrena automáticamente a partir de las
+                conversaciones de las personas usuarias.
               </p>
               <p>
-                <strong className="text-foreground">Revisión humana obligatoria.</strong> Tu
-                valoración no modifica al agente automáticamente: entra en una cola que valida un
-                profesional del pilar correspondiente. Un autoentrenamiento sin supervisión sobre
-                datos de víctimas no sería admisible bajo el RGPD ni bajo el Reglamento (UE)
-                2024/1689 de IA.
+                <strong className="text-foreground">Tu valoración.</strong> Puedes indicar si una
+                respuesta te ha sido útil. De momento esa valoración queda solo en tu propia
+                sesión, como referencia para ti mismo/a.
               </p>
             </div>
-          </div>
+          </div>         
         </div>
       </section>
 
@@ -208,10 +205,11 @@ function Agentes() {
           <h2 className="text-sm font-semibold text-foreground">
             Límites de los agentes y recursos oficiales
           </h2>
-          <p className="mt-2 max-w-3xl text-xs leading-relaxed text-muted-foreground">
+                    <p className="mt-2 max-w-3xl text-xs leading-relaxed text-muted-foreground">
             Los agentes son sistemas de inteligencia artificial. No son profesionales colegiados,
-            no emiten diagnósticos ni asesoramiento jurídico y no sustituyen al equipo humano de
-            Red Violeta. Ante riesgo inmediato, acude siempre a los recursos públicos:
+            no emiten diagnósticos ni asesoramiento jurídico, y no sustituyen la intervención de
+            profesionales cualificados ni de las autoridades competentes. Ante riesgo inmediato,
+            acude siempre a los recursos públicos:
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {EMERGENCY_RESOURCES.map((r) => (
