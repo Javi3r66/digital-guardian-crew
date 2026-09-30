@@ -105,7 +105,7 @@ export function WorkshopsSection() {
             ¿Quieres organizar una jornada o taller en tu centro o institución?
           </h3>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-primary-foreground/90">
-            Solicita un presupuesto personalizado sin compromiso. Diseñamos la formación a medida de
+            Solicita informacion personalizada sin compromiso. Diseñamos la formación a medida de
             tus horarios, instalaciones (presencial u online) y número de participantes.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
@@ -113,7 +113,7 @@ export function WorkshopsSection() {
               onClick={() => setModalOpen(true)}
               className="inline-flex items-center gap-2 rounded-xl bg-primary-foreground px-6 py-3 text-sm font-semibold text-primary transition-transform hover:opacity-90 active:scale-95"
             >
-              Solicitar Presupuesto <ArrowRight className="size-4" />
+              Solicitar Informacion <ArrowRight className="size-4" />
             </button>
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=Solicitud%20de%20presupuesto%20para%20talleres`}
