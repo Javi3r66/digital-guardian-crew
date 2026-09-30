@@ -131,11 +131,11 @@ export function AgentChat({ agentId, centroCodigo = null }: { agentId: AgentId; 
                           )}
                         </button>
                       ))}
-                      {feedback[m.id] && (
+                                          {feedback[m.id] && (
                         <span className="flex items-center gap-1 text-[11px] text-primary">
-                          <Sparkles className="size-3" /> registrado para revisión experta
+                          <Sparkles className="size-3" /> gracias por tu valoración
                         </span>
-                      )}
+                      )}  
                     </div>
                   </>
                 )}
