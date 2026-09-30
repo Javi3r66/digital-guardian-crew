@@ -9,11 +9,11 @@ export const Route = createFileRoute("/test")({
   head: () => ({
     meta: [
       { title: "Test gratuito de vulnerabilidad digital | Red Violeta" },
-      {
+           {
         name: "description",
         content:
-          "Cuestionario orientativo y anónimo para estimar el Grado de Vulnerabilidad Digital ante el ciberacoso. No se guarda ningún dato.",
-      },
+          "Cuestionario orientativo y anónimo frente al ciberacoso. No se guarda ningún dato.",
+      }, 
       { property: "og:title", content: "Test gratuito de vulnerabilidad digital" },
       {
         property: "og:description",
