@@ -20,7 +20,7 @@ import { WorkshopsSection } from "@/components/WorkshopsSection";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Red Violeta Ciberprevención | Respuesta integral al ciberacoso" },
+            { title: "Red Violeta Ciberprevención | Prevención y orientación con IA" },
             {
         name: "description",
         content:
