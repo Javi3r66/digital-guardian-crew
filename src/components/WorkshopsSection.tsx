@@ -115,12 +115,13 @@ export function WorkshopsSection() {
             >
               Solicitar Informacion <ArrowRight className="size-4" />
             </button>
-            <a
-              href={`mailto:${CONTACT_EMAIL}?subject=Solicitud%20de%20presupuesto%20para%20talleres`}
-              className="inline-flex items-center gap-2 rounded-xl border border-primary-foreground/40 bg-transparent px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
-            >
-              <Mail className="size-4" /> Enviar un Email
-            </a>
+           <button
+  type="button"
+  onClick={() => setModalOpen(true)}
+  className="inline-flex items-center gap-2 rounded-xl border border-primary-foreground/40 bg-transparent px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:opacity-90 active:scale-95"
+>
+  <Mail className="size-4" /> Enviar un Email
+</button>
           </div>
         </div>
       </div>
