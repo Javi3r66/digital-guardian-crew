@@ -128,14 +128,14 @@ function Colegios() {
         <div className="mt-6 rounded-2xl border border-border bg-card p-5 sm:p-6">
           <h3 className="text-base font-semibold">Solicita fechas y presupuesto</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Indícanos el público destinatario y las fechas que barajáis; te enviamos propuesta y
-            presupuesto sin compromiso.
+            Indícanos el público destinatario y las fechas que barajáis; te enviamos propuesta e
+            informacion sin compromiso.
           </p>
           <div className="mt-5">
             <B2BLeadForm
               kind="charla"
               publicoOptions={PUBLICOS}
-              submitLabel="Solicitar fechas y presupuesto"
+              submitLabel="Solicitar fechas e informacion"
             />
           </div>
         </div>
