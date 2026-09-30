@@ -138,7 +138,7 @@ export function WorkshopsSection() {
             compact
             publicoLabel="Tipo de Entidad"
             publicoOptions={ENTITY_OPTIONS}
-            submitLabel="Solicitar presupuesto"
+            submitLabel="Solicitar informacion"
             onDone={() => setModalOpen(false)}
           />
         </DialogContent>
