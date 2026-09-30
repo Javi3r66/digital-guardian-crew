@@ -43,8 +43,8 @@ const BENEFITS = [
   },
   {
     icon: LineChart,
-    title: "Diagnóstico y seguimiento medible",
-    text: "Índice de Exposición al Riesgo del centro, plan de mejora priorizado y revisión periódica para demostrar avances ante inspección y familias.",
+    title: "Test institucional orientativo",
+    text: "Un cuestionario de siete preguntas que te da una idea general de los puntos fuertes y los puntos a reforzar en el protocolo de tu centro.",
   },
 ];
 
@@ -94,13 +94,13 @@ function Colegios() {
         ))}
       </section>
 
-      <section className="mt-14">
+            <section className="mt-14">
         <h2 className="text-2xl font-semibold tracking-tight">
-          Auditor de Vulnerabilidad Institucional
+          Test institucional orientativo
         </h2>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-          Siete preguntas sobre protocolos, evidencias y blindaje legal. Al terminar obtendrás el
-          Índice de Exposición al Riesgo de tu centro.
+          Siete preguntas sobre protocolos, evidencias y formación. Al terminar obtendrás un
+          resultado orientativo, sin guardar ningún dato.
         </p>
         <div className="mt-6">
           <InstitutionalAuditor />
