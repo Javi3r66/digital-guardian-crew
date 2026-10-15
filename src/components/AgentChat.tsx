@@ -26,7 +26,7 @@ export function AgentChat({ agentId, centroCodigo = null }: { agentId: AgentId; 
         apikey: SUPABASE_ANON_KEY,
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
       },
-           body: { agent: agentId, centro: centroCodigo }, 
+      body: { agent: agentId, centro: centroCodigo },
     }),
   });
 
@@ -36,7 +36,7 @@ export function AgentChat({ agentId, centroCodigo = null }: { agentId: AgentId; 
     inputRef.current?.focus();
   }, [agentId, status]);
 
-   useEffect(() => {
+  useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [messages, status]);
 
@@ -49,7 +49,7 @@ export function AgentChat({ agentId, centroCodigo = null }: { agentId: AgentId; 
   }
 
   return (
-     <div className="flex h-[75svh] max-h-[780px] min-h-[480px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">   
+    <div className="flex h-[75svh] max-h-[780px] min-h-[480px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
       <div className="flex items-center gap-3 border-b border-border px-5 py-4">
         <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
           <agent.icon className="size-5" />
@@ -131,11 +131,11 @@ export function AgentChat({ agentId, centroCodigo = null }: { agentId: AgentId; 
                           )}
                         </button>
                       ))}
-                                          {feedback[m.id] && (
+                      {feedback[m.id] && (
                         <span className="flex items-center gap-1 text-[11px] text-primary">
                           <Sparkles className="size-3" /> gracias por tu valoración
                         </span>
-                      )}  
+                      )}
                     </div>
                   </>
                 )}
@@ -166,11 +166,13 @@ export function AgentChat({ agentId, centroCodigo = null }: { agentId: AgentId; 
         )}
         <div ref={endRef} />
       </div>
+
       <div className="border-t border-border bg-muted/30 px-4 py-2 text-[11px] text-muted-foreground">
         Para que este servicio esté disponible para el máximo de personas, existe un límite de
         mensajes por hora compartido en cada red. Si lo alcanzas, el chat te lo indicará y podrás
         continuar más tarde.
       </div>
+
       <div className="border-t border-border p-3 pb-safe">
         <div className="flex items-end gap-2">
           <Textarea
