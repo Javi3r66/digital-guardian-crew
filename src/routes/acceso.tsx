@@ -20,6 +20,7 @@ import { AI_CHAT_BADGE } from "@/lib/legal";
 import { cn } from "@/lib/utils";
 import { haptic } from "@/lib/native";
 import { supabase } from "@/integrations/supabase/client";
+
 export const Route = createFileRoute("/acceso")({
   head: () => ({
     meta: [
@@ -58,10 +59,9 @@ function AccesoAnonimo() {
   const [errorCodigo, setErrorCodigo] = useState<string | null>(null);
   const [alias, setAlias] = useState(() => aliasAleatorio());
   const [avatar, setAvatar] = useState(AVATARS[0]!);
-    const [agente, setAgente] = useState<AgentId | null>(null);
-
-    const [validandoCodigo, setValidandoCodigo] = useState(false);
+  const [agente, setAgente] = useState<AgentId | null>(null);
   const [centroCodigo, setCentroCodigo] = useState<string | null>(null);
+  const [validandoCodigo, setValidandoCodigo] = useState(false);
 
   async function validarCodigo(): Promise<boolean> {
     const texto = codigo.trim();
@@ -82,7 +82,7 @@ function AccesoAnonimo() {
       setErrorCodigo("No se ha podido comprobar el código. Inténtalo de nuevo.");
       return false;
     }
-        if (!data) {
+    if (!data) {
       setErrorCodigo("Ese código no corresponde a ningún centro activo.");
       return false;
     }
@@ -128,10 +128,10 @@ function AccesoAnonimo() {
             </span>
             <h2 className="text-xl font-semibold">1. Bienvenida segura</h2>
             <ul className="space-y-2 text-sm text-muted-foreground">
-                          <li className="flex gap-2">
+              <li className="flex gap-2">
                 <EyeOff className="mt-0.5 size-4 shrink-0 text-primary" /> Eres anónimo:
                 no registramos tu identidad ni el historial de tu conversación.
-              </li> 
+              </li>
               <li className="flex gap-2">
                 <Sparkles className="mt-0.5 size-4 shrink-0 text-primary" /> Te atienden
                 cuatro agentes de IA: técnico, psicológico, social y legal.
@@ -168,7 +168,7 @@ function AccesoAnonimo() {
                 autoCapitalize="characters"
                 className="h-11"
               />
-                           <Button
+              <Button
                 className="h-11"
                 disabled={validandoCodigo}
                 onClick={async () => {
@@ -177,7 +177,7 @@ function AccesoAnonimo() {
                 }}
               >
                 {validandoCodigo ? "Comprobando..." : "Validar"}
-              </Button> 
+              </Button>
             </div>
             {errorCodigo && <p className="text-sm text-destructive">{errorCodigo}</p>}
             <div className="flex items-start gap-2 rounded-xl bg-muted/60 px-4 py-3 text-xs text-muted-foreground">
@@ -191,7 +191,13 @@ function AccesoAnonimo() {
               <Button variant="ghost" onClick={() => go(0)}>
                 <ArrowLeft className="size-4" /> Atrás
               </Button>
-              <Button variant="outline" onClick={() => go(2)}>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setCentroCodigo(null);
+                  go(2);
+                }}
+              >
                 Continuar como invitado
               </Button>
             </div>
@@ -323,7 +329,7 @@ function AccesoAnonimo() {
               <span>🤖 {AI_CHAT_BADGE}</span>
             </div>
 
-                       <AgentChat agentId={agente} centroCodigo={centroCodigo} />
+            <AgentChat agentId={agente} centroCodigo={centroCodigo} />
           </div>
         )}
       </div>
