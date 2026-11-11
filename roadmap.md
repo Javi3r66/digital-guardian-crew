@@ -7,7 +7,7 @@
 - [x] Auditor de Vulnerabilidad Institucional (7 preguntas, índice de riesgo, animación IA)
 - [x] Formulario B2B con consentimiento RGPD (tabla supabase segura)
 - [x] Avisos legales en pie (emergencia 112/091/062/016, descargo Art. 50 UE 2024/1689)
--- [x] Insignia de cabecera: asistentes de IA, no sustituyen a los servicios de emergencia
+- [x] Insignia de cabecera: asistentes de IA, no sustituyen a los servicios de emergencia
 - [x] Test de autodiagnóstico gratuito como llamada principal del sitio
 - [x] 4 páginas legales: Términos, Privacidad, Cookies, LOPIVI
 - [x] Página "Colegios e Instituciones" (4 beneficios + auditor + charlas) y entrada en el menú
