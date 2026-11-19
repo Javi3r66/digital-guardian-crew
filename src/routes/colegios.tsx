@@ -19,6 +19,7 @@ export const Route = createFileRoute("/colegios")({
           "Orientación LOPIVI, información sobre protocolos y formación presencial contra el ciberacoso para centros educativos.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://redvioletaciberprevencion.es/hero-familia.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

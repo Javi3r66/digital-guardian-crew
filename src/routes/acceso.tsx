@@ -37,6 +37,7 @@ export const Route = createFileRoute("/acceso")({
           "Cinco pasos para entrar sin dar tu nombre y recibir orientación inmediata frente al ciberacoso.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://redvioletaciberprevencion.es/hero-familia.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

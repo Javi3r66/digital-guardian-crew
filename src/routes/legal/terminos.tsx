@@ -17,6 +17,7 @@ export const Route = createFileRoute("/legal/terminos")({
           "Condiciones de uso de los agentes de IA de Red Violeta Ciberprevención.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://redvioletaciberprevencion.es/hero-familia.jpg" },
       { name: "twitter:card", content: "summary" },
     ],
   }),

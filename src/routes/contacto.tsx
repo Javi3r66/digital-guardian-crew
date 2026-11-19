@@ -18,6 +18,7 @@ export const Route = createFileRoute("/contacto")({
         content: "Agentes de inteligencia artificial disponibles 24/7. Escríbenos cuando lo necesites.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://redvioletaciberprevencion.es/hero-familia.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

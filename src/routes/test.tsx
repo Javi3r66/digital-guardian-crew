@@ -20,6 +20,7 @@ export const Route = createFileRoute("/test")({
         content: "Ocho preguntas para orientarte sobre tu situación frente al ciberacoso.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://redvioletaciberprevencion.es/hero-familia.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

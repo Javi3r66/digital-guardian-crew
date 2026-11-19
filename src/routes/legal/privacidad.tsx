@@ -17,6 +17,7 @@ export const Route = createFileRoute("/legal/privacidad")({
           "Tratamiento de datos personales en Red Violeta Ciberprevención según RGPD y LOPDGDD.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://redvioletaciberprevencion.es/hero-familia.jpg" },
       { name: "twitter:card", content: "summary" },
     ],
   }),

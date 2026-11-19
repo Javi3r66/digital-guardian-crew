@@ -16,6 +16,7 @@ export const Route = createFileRoute("/legal/cookies")({
         content: "Uso de cookies en Red Violeta Ciberprevención.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://redvioletaciberprevencion.es/hero-familia.jpg" },
       { name: "twitter:card", content: "summary" },
     ],
   }),

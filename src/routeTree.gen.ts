@@ -17,7 +17,7 @@ import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as SobreNosotrosRouteImport } from './routes/sobre-nosotros'
 import { Route as TestRouteImport } from './routes/test'
-import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as apiNotifyLeadRouteImport } from './routes/ api/notify-lead'
 import { Route as LegalCookiesRouteImport } from './routes/legal/cookies'
 import { Route as LegalLopiviRouteImport } from './routes/legal/lopivi'
 import { Route as LegalPrivacidadRouteImport } from './routes/legal/privacidad'
@@ -63,9 +63,9 @@ const TestRoute = TestRouteImport.update({
   path: '/test',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiChatRoute = ApiChatRouteImport.update({
-  id: '/api/chat',
-  path: '/api/chat',
+const apiNotifyLeadRoute = apiNotifyLeadRouteImport.update({
+  id: '/ api/notify-lead',
+  path: '/ api/notify-lead',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LegalCookiesRoute = LegalCookiesRouteImport.update({
@@ -98,7 +98,7 @@ export interface FileRoutesByFullPath {
   '/servicios': typeof ServiciosRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/test': typeof TestRoute
-  '/api/chat': typeof ApiChatRoute
+  '/ api/notify-lead': typeof apiNotifyLeadRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/lopivi': typeof LegalLopiviRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
@@ -113,7 +113,7 @@ export interface FileRoutesByTo {
   '/servicios': typeof ServiciosRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/test': typeof TestRoute
-  '/api/chat': typeof ApiChatRoute
+  '/ api/notify-lead': typeof apiNotifyLeadRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/lopivi': typeof LegalLopiviRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
@@ -129,7 +129,7 @@ export interface FileRoutesById {
   '/servicios': typeof ServiciosRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/test': typeof TestRoute
-  '/api/chat': typeof ApiChatRoute
+  '/ api/notify-lead': typeof apiNotifyLeadRoute
   '/legal/cookies': typeof LegalCookiesRoute
   '/legal/lopivi': typeof LegalLopiviRoute
   '/legal/privacidad': typeof LegalPrivacidadRoute
@@ -146,7 +146,7 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sobre-nosotros'
     | '/test'
-    | '/api/chat'
+    | '/ api/notify-lead'
     | '/legal/cookies'
     | '/legal/lopivi'
     | '/legal/privacidad'
@@ -161,7 +161,7 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sobre-nosotros'
     | '/test'
-    | '/api/chat'
+    | '/ api/notify-lead'
     | '/legal/cookies'
     | '/legal/lopivi'
     | '/legal/privacidad'
@@ -176,7 +176,7 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sobre-nosotros'
     | '/test'
-    | '/api/chat'
+    | '/ api/notify-lead'
     | '/legal/cookies'
     | '/legal/lopivi'
     | '/legal/privacidad'
@@ -192,7 +192,7 @@ export interface RootRouteChildren {
   ServiciosRoute: typeof ServiciosRoute
   SobreNosotrosRoute: typeof SobreNosotrosRoute
   TestRoute: typeof TestRoute
-  ApiChatRoute: typeof ApiChatRoute
+  apiNotifyLeadRoute: typeof apiNotifyLeadRoute
   LegalCookiesRoute: typeof LegalCookiesRoute
   LegalLopiviRoute: typeof LegalLopiviRoute
   LegalPrivacidadRoute: typeof LegalPrivacidadRoute
@@ -257,11 +257,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/chat': {
-      id: '/api/chat'
-      path: '/api/chat'
-      fullPath: '/api/chat'
-      preLoaderRoute: typeof ApiChatRouteImport
+    '/ api/notify-lead': {
+      id: '/ api/notify-lead'
+      path: '/ api/notify-lead'
+      fullPath: '/ api/notify-lead'
+      preLoaderRoute: typeof apiNotifyLeadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/legal/cookies': {
@@ -304,7 +304,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServiciosRoute: ServiciosRoute,
   SobreNosotrosRoute: SobreNosotrosRoute,
   TestRoute: TestRoute,
-  ApiChatRoute: ApiChatRoute,
+  apiNotifyLeadRoute: apiNotifyLeadRoute,
   LegalCookiesRoute: LegalCookiesRoute,
   LegalLopiviRoute: LegalLopiviRoute,
   LegalPrivacidadRoute: LegalPrivacidadRoute,

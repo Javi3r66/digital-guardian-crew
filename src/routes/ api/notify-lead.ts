@@ -33,7 +33,7 @@ function summary(p: Record<string, string | undefined>) {
     .join("\n");
 }
 
-export const Route = createFileRoute("/api/notify-lead")({
+export const Route = createFileRoute("/ api/notify-lead")({
   server: {
     handlers: {
       POST: async ({ request }) => {

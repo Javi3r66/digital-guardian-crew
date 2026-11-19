@@ -17,6 +17,7 @@ export const Route = createFileRoute("/servicios")({
           "Respuesta al ciberacoso adaptada a familias, colegios, empresas y administraciones.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://redvioletaciberprevencion.es/hero-familia.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

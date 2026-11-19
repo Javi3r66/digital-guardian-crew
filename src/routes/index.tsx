@@ -33,6 +33,7 @@ export const Route = createFileRoute("/")({
           "Plataforma de prevención y orientación frente al ciberacoso, con agentes de inteligencia artificial especializados.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://redvioletaciberprevencion.es/hero-familia.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

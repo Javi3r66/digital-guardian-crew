@@ -17,6 +17,7 @@ export const Route = createFileRoute("/legal/lopivi")({
           "Protocolo de protección del menor conforme a LOPIVI y la Ley 26/2015.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://redvioletaciberprevencion.es/hero-familia.jpg" },
       { name: "twitter:card", content: "summary" },
     ],
   }),
