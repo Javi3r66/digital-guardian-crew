@@ -23,7 +23,7 @@ export const Route = createRootRoute({
           url: 'https://redvioletaciberprevencion.es',
           sameAs: [
             'https://www.instagram.com/redvioletaciber/',
-            'https://www.facebook.com/redvioletaciberprevencionprevencion',
+            'https://www.facebook.com/redvioletaciberprevencion',
           ],
         }),
       },

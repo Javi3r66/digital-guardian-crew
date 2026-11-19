@@ -80,7 +80,7 @@ export function SiteFooter() {
                 <Instagram className="h-4 w-4" />
               </a>
               <a
-                href="https://www.facebook.com/redvioletaciberprevencionprevencion"
+                href="https://www.facebook.com/redvioletaciberprevencion"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors"
