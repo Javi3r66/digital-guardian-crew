@@ -13,6 +13,21 @@ export const Route = createRootRoute({
     links: [
       { rel: 'stylesheet', href: appCss },
     ],
+    scripts: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'Red Violeta Ciberprevención',
+          url: 'https://redvioletaciberprevencion.es',
+          sameAs: [
+            'https://www.instagram.com/redvioletaciber/',
+            'https://www.facebook.com/redvioletaciber',
+          ],
+        }),
+      },
+    ],
   }),
   component: RootComponent,
 })

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Clock, Instagram, Linkedin, Facebook } from "lucide-react";
+import { Mail, Clock, Instagram, Facebook } from "lucide-react";
 import { EMERGENCY_RESOURCES } from "@/lib/agents";
 import { LEGAL_LINKS, CONTACT_EMAIL } from "@/lib/legal";
 import { EmergencyWarning, LiabilityDisclaimer } from "@/components/LegalNotices";
@@ -71,29 +71,20 @@ export function SiteFooter() {
 
             <div className="mt-4 flex items-center gap-3 text-muted-foreground">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/redvioletaciber/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors"
-                aria-label="Instagram"
+                aria-label="Instagram de Red Violeta Ciberprevención"
               >
                 <Instagram className="h-4 w-4" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.facebook.com/redvioletaciber"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-4 w-4" />
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-foreground transition-colors"
-                aria-label="Facebook"
+                aria-label="Facebook de Red Violeta Ciberprevención"
               >
                 <Facebook className="h-4 w-4" />
               </a>
