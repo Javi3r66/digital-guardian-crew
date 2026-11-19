@@ -17,6 +17,7 @@ export const Route = createFileRoute("/legal/cookies")({
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "https://redvioletaciberprevencion.es/og-image.jpg" },
+      { rel: "canonical", href: "https://www.redvioletaciberprevencion.es/legal/cookies" },
       { property: "og:site_name", content: "Red Violeta Ciberprevención" },
       { name: "twitter:card", content: "summary" },
     ],

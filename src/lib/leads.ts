@@ -48,8 +48,8 @@ export async function submitLead(input: LeadInput) {
     await fetch("https://gsjgylomutnburmrzmmd.supabase.co/functions/v1/notify-lead", {
       method: "POST",
       headers: {
-        apikey: "sb_publishable_BE3OnBe-y_k_QNuYy2eDsw_9NHlKuPE",
-        Authorization: "Bearer sb_publishable_BE3OnBe-y_k_QNuYy2eDsw_9NHlKuPE",
+        apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

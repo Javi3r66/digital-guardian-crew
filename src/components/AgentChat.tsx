@@ -9,7 +9,7 @@ import { AGENT_MAP, type AgentId } from "@/lib/agents";
 import { cn } from "@/lib/utils";
 import { haptic } from "@/lib/native";
 
-const SUPABASE_ANON_KEY = "sb_publishable_BE3OnBe-y_k_QNuYy2eDsw_9NHlKuPE";
+
 
 export function AgentChat({ agentId, centroCodigo = null }: { agentId: AgentId; centroCodigo?: string | null }) {
   const agent = AGENT_MAP[agentId];
@@ -23,8 +23,8 @@ export function AgentChat({ agentId, centroCodigo = null }: { agentId: AgentId; 
     transport: new DefaultChatTransport({
       api: "https://gsjgylomutnburmrzmmd.supabase.co/functions/v1/chat",
       headers: {
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
       },
       body: { agent: agentId, centro: centroCodigo },
     }),
