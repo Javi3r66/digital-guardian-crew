@@ -120,7 +120,7 @@ export function SiteFooter() {
           <p>© {new Date().getFullYear()} Red Violeta Ciberprevención. Todos los derechos reservados.</p>
           <div className="flex flex-wrap gap-4">
             {LEGAL_LINKS.map((link) => (
-              <Link key={link.href} to={link.href} className="hover:text-foreground transition-colors">
+              <Link key={link.to} to={link.to} className="hover:text-foreground transition-colors">
                 {link.label}
               </Link>
             ))}
