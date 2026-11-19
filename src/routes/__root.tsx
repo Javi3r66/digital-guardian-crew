@@ -1,4 +1,4 @@
-import { createRootRoute, HeadContent, Scripts, Outlet } from '@tanstack/react-router'
+import { createRootRoute, HeadContent, Scripts, Outlet, useRouterState } from '@tanstack/react-router'
 import appCss from '../styles.css?url'
 import { SiteHeader } from '../components/SiteHeader'
 import { SiteFooter } from '../components/SiteFooter'
@@ -33,10 +33,15 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname })
   return (
     <html lang="es">
       <head>
         <HeadContent />
+        <link
+          rel="canonical"
+          href={`https://www.redvioletaciberprevencion.es${pathname === '/' ? '/' : pathname.replace(/\/$/, '')}`}
+        />
       </head>
       <body>
         <SiteHeader />
