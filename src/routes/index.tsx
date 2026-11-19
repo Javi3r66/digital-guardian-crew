@@ -20,7 +20,7 @@ import { WorkshopsSection } from "@/components/WorkshopsSection";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-            { title: "Red Violeta Ciberprevención | Protección frente al ciberacoso" },
+            { title: "Red Violeta Ciberprevención | Prevención del ciberacoso" },
             {
         name: "description",
         content:
@@ -44,17 +44,17 @@ export const Route = createFileRoute("/")({
 const PROBLEMS = [
   {
     icon: EyeOff,
-    title: "Familias a ciegas",
+    title: "Red Violeta Ciberprevención | Prevención del ciberacoso",
     text: "Los controles parentales no funcionan y las familias no saben a quién acudir. Se necesita una respuesta empática, rápida y profesional.",
   },
   {
     icon: Clock,
-    title: "Llegar demasiado tarde",
+    title: "Red Violeta Ciberprevención | Prevención del ciberacoso",
     text: "Las líneas de ayuda tradicionales están colapsadas. Los menores esperan semanas para una respuesta y los adultos encuentran desconocimiento generalizado.",
   },
   {
     icon: HeartCrack,
-    title: "Impacto emocional",
+    title: "Red Violeta Ciberprevención | Prevención del ciberacoso",
     text: "El aislamiento, la vergüenza y el miedo son constantes. Necesitan apoyo inmediato, empático y especializado.",
   },
 ];
@@ -63,25 +63,25 @@ const PILLARS = [
   {
     tag: "Técnico",
     icon: ShieldCheck,
-    title: "Ciberseguridad especializada",
+    title: "Red Violeta Ciberprevención | Prevención del ciberacoso",
     text: "AURA, nuestro sistema de IA, te orienta paso a paso para proteger tus cuentas, preservar pruebas y conocer tu situación con el test orientativo de vulnerabilidad digital.",
   },
   {
     tag: "Emocional",
     icon: HeartPulse,
-    title: "Apoyo emocional especializado",
+    title: "Red Violeta Ciberprevención | Prevención del ciberacoso",
     text: "CALMA, nuestro sistema de IA, ofrece apoyo emocional inicial y psicoeducación para el menor y su familia, y deriva a profesionales cualificados cuando es necesario.",
   },
   {
     tag: "Social",
     icon: Users,
-    title: "Orientación educativa y social",
+    title: "Red Violeta Ciberprevención | Prevención del ciberacoso",
     text: "PUENTE te orienta para activar el protocolo del centro educativo y conocer los recursos sociales y públicos disponibles en tu situación.",
   },
   {
     tag: "Legal",
     icon: Scale,
-    title: "Información jurídica general",
+    title: "Red Violeta Ciberprevención | Prevención del ciberacoso",
     text: "LEX te ofrece información jurídica general sobre tus derechos y opciones conforme a la normativa española vigente.",
   },
 ];
